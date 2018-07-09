@@ -93,8 +93,8 @@ function SendFlexMessage(userId, message, password, reply_token, callback) {
                             "aspectRatio": "20:13",
                             "aspectMode": "cover",
                             "action": {
-                                "type": "uri",
-                                "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
+                            "type": "uri",
+                            "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
                             }
                         },
                         "body": {
@@ -102,98 +102,90 @@ function SendFlexMessage(userId, message, password, reply_token, callback) {
                             "layout": "vertical",
                             "spacing": "md",
                             "action": {
-                                "type": "uri",
-                                "uri": "https://linecorp.com"
+                            "type": "uri",
+                            "uri": "https://linecorp.com"
                             },
                             "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "TATUNG大同 15KG定頻洗衣機 (TAW-A150L)",
-                                    "size": "xl",
-                                    "weight": "bold"
-                                },
+                            {
+                                "type": "text",
+                                "text": "TATUNG大同 15KG定頻洗衣機 (TAW-A150L)",
+                                "size": "xl",
+                                "weight": "bold"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "spacing": "sm",
+                                "contents": [
                                 {
                                     "type": "box",
-                                    "layout": "vertical",
-                                    "spacing": "sm",
+                                    "layout": "baseline",
                                     "contents": [
-                                        {
-                                            "type": "box",
-                                            "layout": "baseline",
-                                            "contents": [
-                                                {
-                                                    "type": "icon",
-                                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_regular_32.png"
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "text": "$10.5",
-                                                    "weight": "bold",
-                                                    "margin": "sm",
-                                                    "flex": 0
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "text": "400kcl",
-                                                    "size": "sm",
-                                                    "align": "end",
-                                                    "color": "#aaaaaa"
-                                                }
-                                            ]
-                                        },
-                                        {
-                                            "type": "box",
-                                            "layout": "baseline",
-                                            "contents": [
-                                                {
-                                                    "type": "icon",
-                                                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/restaurant_large_32.png"
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "text": "$15.5",
-                                                    "weight": "bold",
-                                                    "margin": "sm",
-                                                    "flex": 0
-                                                },
-                                                {
-                                                    "type": "text",
-                                                    "text": "550kcl",
-                                                    "size": "sm",
-                                                    "align": "end",
-                                                    "color": "#aaaaaa"
-                                                }
-                                            ]
-                                        }
+                                    {
+                                        "type": "text",
+                                        "text": "促銷商品",
+                                        "weight": "bold",
+                                        "margin": "sm",
+                                        "flex": 0
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "2018/6/29~2018/7/11",
+                                        "size": "sm",
+                                        "align": "end",
+                                        "color": "#aaaaaa"
+                                    }
                                     ]
                                 },
                                 {
-                                    "type": "text",
-                                    "text": "Sauce, Onions, Pickles, Lettuce & Cheese",
-                                    "wrap": true,
-                                    "color": "#aaaaaa",
-                                    "size": "xxs"
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "促銷價",
+                                        "weight": "bold",
+                                        "margin": "sm",
+                                        "flex": 0
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "15,490元",
+                                        "size": "sm",
+                                        "align": "end",
+                                        "color": "#aaaaaa"
+                                    }
+                                    ]
                                 }
+                                ]
+                            },
+                            {
+                                "type": "text",
+                                "text": "．全自動NEURO & FUZZLY智慧型控制。 ．6種洗衣行程(標準、強洗、快洗、柔洗、毛毯、浸泡)。 ．五道立體噴射水流，洗淨力超強。 ．Air Bubble洗淨新概念。 ．噴淋式洗清，節水又清淨。 ．強化玻璃透明上蓋。 ．自動偵測洗衣無段式水位:手動六段。 ．不鏽鋼洗衣槽。 ．槽洗淨功能，防霉除菌一次搞定。 ．上蓋透明視窗，洗衣動作一目瞭然。 ．兒童安全鎖。",
+                                "wrap": true,
+                                "color": "#aaaaaa",
+                                "size": "xxs"
+                            }
                             ]
                         },
                         "footer": {
                             "type": "box",
                             "layout": "vertical",
                             "contents": [
-                                {
-                                    "type": "spacer",
-                                    "size": "xxl"
-                                },
-                                {
-                                    "type": "button",
-                                    "style": "primary",
-                                    "color": "#905c44",
-                                    "action": {
-                                        "type": "uri",
-                                        "label": "Add to Cart",
-                                        "uri": "https://linecorp.com"
-                                    }
+                            {
+                                "type": "spacer",
+                                "size": "xxl"
+                            },
+                            {
+                                "type": "button",
+                                "style": "primary",
+                                "color": "#905c44",
+                                "action": {
+                                "type": "uri",
+                                "label": "登入e同購",
+                                "uri": "https://www.etungo.com.tw/login.html"
                                 }
+                            }
                             ]
                         }
                     } //contents end
