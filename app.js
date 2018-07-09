@@ -117,7 +117,7 @@ function SendFlexMessage(userId, message, password, reply_token, callback) {
                             "spacing": "md",
                             "action": {
                                 "type": "uri",
-                                "uri": "https://linecorp.com"
+                                "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
                             },
                             "contents": [
                                 {
