@@ -111,13 +111,13 @@ function SendFlexMessage(userId, message, password, reply_token, callback) {
                                 "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
                             }
                         },
-                        "body": {
+                        "body": { //body位置
                             "type": "box",
                             "layout": "vertical",
                             "spacing": "md",
                             "action": {
                                 "type": "uri",
-                                "uri": "https://linecorp.com"
+                                "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
                             },
                             "contents": [
                                 {
