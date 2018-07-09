@@ -1,0 +1,35 @@
+<head>
+
+    <head>
+        <title>My LIFF app</title>
+        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    </head>
+    <script>
+        window.onload = function (e) {
+            liff.init(function(){
+                console.log('success');
+            }, function(err){
+                console.log('error');
+                console.log(err);
+            });
+        };
+
+        /*function windowonload() {
+            liff.init(function(){
+                console.log('success');
+            }, function(){
+                console.log('error');
+            });
+        };*/
+        function initializeApp(data) {
+            console.log('initializeApp');
+            console.log(data);
+        };
+    </script>
+
+<body>
+<h3>這是LIFF</h3>
+<p>這是LIFF</p>
+</body>
+
+</head>
