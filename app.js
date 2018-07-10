@@ -32,9 +32,9 @@ app.get('/api', function (request, response) {
     response.send('API is running');
 });
 
-app.get('/lifftest', function(request, response){
+app.get('/lifftest', function (request, response) {
     console.log('GET /lifftest');
-     request.header("Content-Type", 'text/html');
+    request.header("Content-Type", 'text/html');
     var fs = require('fs');
     fs.readFile(__dirname + '/lifftest.html', 'utf8', function (err, data) {
         if (err) {
@@ -66,10 +66,12 @@ app.post('/messages', function (request, response) {
             if (results[idx].message.type == 'text') {
                 /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                SendMessage(acct, 'https://tatungflextest01.herokuapp.com/lifftest', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendMessage(acct, 'line://app/1592804495-xE5qZBGO', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
                 SendFlexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
+                /*SendLIFF(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });*/
             }
         }
     }
@@ -88,6 +90,41 @@ var listener = server.listen(process.env.port || process.env.PORT || 3978, funct
 process.on('uncaughtException', function (err) {
     logger.error('uncaughtException occurred: ' + (err.stack ? err.stack : err));
 });
+
+function SendLIFF(userId, message, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
+        logger.info('SendLIFF');
+        var data = {
+                "view": {
+                    "type": "full",
+                    "url": "https://tatungflextest01.herokuapp.com/lifftest"
+                }
+            }
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/liff/v1/apps',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                //'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        };
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                logger.info('Response: ' + chunk);
+            });
+        });
+        req.write(JSON.stringify(data));
+        req.end();
+        try {
+            callback(true);
+        } catch (e) { };
+    }
+};
 
 // 傳送訊息給 LINE 使用者
 function SendFlexMessage(userId, message, password, reply_token, callback) {
