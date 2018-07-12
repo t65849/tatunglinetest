@@ -70,8 +70,6 @@ app.post('/messages', function (request, response) {
                 });
                 SendFlexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
-                /*SendLIFF(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                });*/
             }
         }
     }
