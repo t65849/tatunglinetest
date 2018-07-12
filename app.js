@@ -66,9 +66,11 @@ app.post('/messages', function (request, response) {
             if (results[idx].message.type == 'text') {
                 /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                SendMessage(acct, 'line://app/1592804495-xE5qZBGO', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendMessage(acct, 'line://app/1593612875-NwM4kER7', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
-                SendFlexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendBubbleMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
+                SendCarouselMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
         }
@@ -90,7 +92,294 @@ process.on('uncaughtException', function (err) {
 });
 
 // 傳送訊息給 LINE 使用者
-function SendFlexMessage(userId, message, password, reply_token, callback) {
+function SendCarouselMessage(userId, message, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [
+                {
+                    "type": "flex",
+                    "altText": "this is a flex message",
+                    "contents": {
+                        "type": "carousel",
+                        "contents": [
+                            {
+                                "type": "bubble",
+                                "hero": {
+                                    "type": "image",
+                                    "size": "full",
+                                    "aspectRatio": "20:13",
+                                    "aspectMode": "cover",
+                                    "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/WT-D176VG.jpg"
+                                },
+                                "body": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "LG樂金 高效率變頻洗衣機17KG (WT-D176VG)",
+                                            "wrap": true,
+                                            "weight": "bold",
+                                            "size": "xl"
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "spacing": "sm",
+                                            "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "baseline",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "促銷商品",
+                                                            "weight": "bold",
+                                                            "margin": "sm",
+                                                            "flex": 0
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": "2018/7/1~2018/7/31",
+                                                            "size": "sm",
+                                                            "align": "end",
+                                                            "color": "#aaaaaa"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "baseline",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "促銷價",
+                                                            "weight": "bold",
+                                                            "margin": "sm",
+                                                            "flex": 0
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": "20,990元",
+                                                            "size": "sm",
+                                                            "align": "end",
+                                                            "color": "#aaaaaa"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "․TURBOSHOT潔勁噴射",
+                                                    "wrap": true,
+                                                    "color": "#aaaaaa",
+                                                    "size": "xxs"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "․TURBOWASH勁速洗",
+                                                    "wrap": true,
+                                                    "color": "#aaaaaa",
+                                                    "size": "xxs"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "․TURBOWASH勁速洗",
+                                                    "wrap": true,
+                                                    "color": "#aaaaaa",
+                                                    "size": "xxs"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": ".6MOTION DD SMART媽媽手洗",
+                                                    "wrap": true,
+                                                    "color": "#aaaaaa",
+                                                    "size": "xxs"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "․NFC雲端客製洗衣行程",
+                                                    "wrap": true,
+                                                    "color": "#aaaaaa",
+                                                    "size": "xxs"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "footer": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "spacer",
+                                            "size": "xxl"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "style": "primary",
+                                            "color": "#905c44",
+                                            "action": {
+                                                "type": "uri",
+                                                "label": "登入e同購",
+                                                "uri": "https://www.etungo.com.tw/login.html"
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "type": "bubble",
+                                "hero": {
+                                    "type": "image",
+                                    "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/TAW-A150Ls.jpg",
+                                    "size": "full",
+                                    "aspectRatio": "20:13",
+                                    "aspectMode": "cover",
+                                    "action": {
+                                        "type": "uri",
+                                        "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
+                                    }
+                                },
+                                "body": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "spacing": "md",
+                                    "action": {
+                                        "type": "uri",
+                                        "uri": "https://linecorp.com"
+                                    },
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "TATUNG大同 15KG定頻洗衣機 (TAW-A150L)",
+                                            "size": "xl",
+                                            "weight": "bold"
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "spacing": "sm",
+                                            "contents": [
+                                                {
+                                                    "type": "box",
+                                                    "layout": "baseline",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "促銷商品",
+                                                            "weight": "bold",
+                                                            "margin": "sm",
+                                                            "flex": 0
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": "2018/6/29~2018/7/11",
+                                                            "size": "sm",
+                                                            "align": "end",
+                                                            "color": "#aaaaaa"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "baseline",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "促銷價",
+                                                            "weight": "bold",
+                                                            "margin": "sm",
+                                                            "flex": 0
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": "15,490元",
+                                                            "size": "sm",
+                                                            "align": "end",
+                                                            "color": "#aaaaaa"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": ".全自動NEURO & FUZZLY智慧型控制",
+                                            "wrap": true,
+                                            "color": "#aaaaaa",
+                                            "size": "xxs"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": ".6種洗衣行程(標準、強洗、快洗、柔洗、毛毯、浸泡)",
+                                            "wrap": true,
+                                            "color": "#aaaaaa",
+                                            "size": "xxs"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": ".五道立體噴射水流，洗淨力超強",
+                                            "wrap": true,
+                                            "color": "#aaaaaa",
+                                            "size": "xxs"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": ".Air Bubble洗淨新概念",
+                                            "wrap": true,
+                                            "color": "#aaaaaa",
+                                            "size": "xxs"
+                                        }
+                                    ]
+                                },
+                                "footer": {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "spacer",
+                                            "size": "xxl"
+                                        },
+                                        {
+                                            "type": "button",
+                                            "style": "primary",
+                                            "color": "#905c44",
+                                            "action": {
+                                                "type": "uri",
+                                                "label": "登入e同購",
+                                                "uri": "https://www.etungo.com.tw/login.html"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    } //contents end
+                }
+            ]
+        };
+        logger.info('傳送訊息給 ' + userId);
+        /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (!ret) {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            } 
+        });*/
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+}
+
+// 傳送訊息給 LINE 使用者
+function SendBubbleMessage(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
         var data = {
             'to': userId,
@@ -111,13 +400,13 @@ function SendFlexMessage(userId, message, password, reply_token, callback) {
                                 "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
                             }
                         },
-                        "body": { //body位置
+                        "body": {
                             "type": "box",
                             "layout": "vertical",
                             "spacing": "md",
                             "action": {
                                 "type": "uri",
-                                "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
+                                "uri": "https://linecorp.com"
                             },
                             "contents": [
                                 {
@@ -175,7 +464,28 @@ function SendFlexMessage(userId, message, password, reply_token, callback) {
                                 },
                                 {
                                     "type": "text",
-                                    "text": "．全自動NEURO & FUZZLY智慧型控制。 ．6種洗衣行程(標準、強洗、快洗、柔洗、毛毯、浸泡)。 ．五道立體噴射水流，洗淨力超強。 ．Air Bubble洗淨新概念。 ．噴淋式洗清，節水又清淨。 ．強化玻璃透明上蓋。 ．自動偵測洗衣無段式水位:手動六段。 ．不鏽鋼洗衣槽。 ．槽洗淨功能，防霉除菌一次搞定。 ．上蓋透明視窗，洗衣動作一目瞭然。 ．兒童安全鎖。",
+                                    "text": ".全自動NEURO & FUZZLY智慧型控制",
+                                    "wrap": true,
+                                    "color": "#aaaaaa",
+                                    "size": "xxs"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ".6種洗衣行程(標準、強洗、快洗、柔洗、毛毯、浸泡)",
+                                    "wrap": true,
+                                    "color": "#aaaaaa",
+                                    "size": "xxs"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ".五道立體噴射水流，洗淨力超強",
+                                    "wrap": true,
+                                    "color": "#aaaaaa",
+                                    "size": "xxs"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": ".Air Bubble洗淨新概念",
                                     "wrap": true,
                                     "color": "#aaaaaa",
                                     "size": "xxs"
