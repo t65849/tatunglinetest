@@ -42,19 +42,26 @@
         console.log(data);
     };
 
-    function openurl() {
+    function getuserprofile() {
         /*liff.openWindow({
             url: 'https://www.etungo.com.tw/inside/377/722/728/60127.html',
             external: true
         });*/
         liff.init(function () {
             console.log('success');
-            /*liff.getProfile().then(function (profile) {
+            liff.getProfile().then(function (profile) {
+                window.alert('userId: '+profile.userId);
+                /*var userId = JSON.stringify(profile.userId);
+                var data={
+                    userId : userId
+                }
+                $.post('/getlineuserid', data, function(){
 
+                });*/
             }).catch(function (error) {
                 window.alert("Error getting profile: " + error);
-            });*/
-            window.location="https://www.etungo.com.tw/inside/377/722/728/60127.html";
+            });
+            //window.location="https://www.etungo.com.tw/inside/377/722/728/60127.html";
         }, function (err) {
             console.log('error');
             console.log(err);
@@ -62,7 +69,7 @@
     };
 </script>
 
-<body onload="openurl()">
+<body onload="getuserprofile()">
     <!--<h1>TATUNG大同 15KG定頻洗衣機 (TAW-A150L)</h1>
     <img src="https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/TAW-A150Ls.jpg" alt="TATUNG大同 15KG定頻洗衣機 (TAW-A150L)" width="700"
         height="700"><br/>

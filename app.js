@@ -43,6 +43,12 @@ app.get('/lifftest', function (request, response) {
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
+app.post('/getlineuserid', function(request, response){
+    console.log('post /getlineuserid');
+    var userId = request.body.userId;
+    console.log(userId);
+    response.end(userId);
+});
 
 app.get('/logs', function (request, response) {
     var stream = require('fs').createReadStream('logs/messaging.log');
@@ -71,6 +77,8 @@ app.post('/messages', function (request, response) {
                 SendBubbleMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
                 SendCarouselMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
+                SendMessage(acct, 'line://app/1593612875-yavQm3XY', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
         }
