@@ -13,6 +13,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var hashtable = require(__dirname + '/hashtable.js');
 
+
 // Setup Express Server
 app.use(bodyParser.urlencoded({
     extended: true
@@ -43,7 +44,7 @@ app.get('/lifftest', function (request, response) {
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
-app.post('/getlineuserid', function(request, response){
+app.post('/getlineuserid', function (request, response) {
     console.log('post /getlineuserid');
     var userId = request.body.userId;
     console.log(userId);
@@ -71,7 +72,7 @@ app.post('/messages', function (request, response) {
         if (results[idx].type == 'message') {
             if (results[idx].message.type == 'text') {
                 /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                });*/
+                });
                 SendMessage(acct, 'line://app/1593612875-NwM4kER7', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
                 SendBubbleMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -79,6 +80,8 @@ app.post('/messages', function (request, response) {
                 SendCarouselMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
                 SendMessage(acct, 'line://app/1593612875-yavQm3XY', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });*/
+                SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
         }
@@ -98,6 +101,152 @@ var listener = server.listen(process.env.port || process.env.PORT || 3978, funct
 process.on('uncaughtException', function (err) {
     logger.error('uncaughtException occurred: ' + (err.stack ? err.stack : err));
 });
+
+// 傳送訊息給 LINE 使用者
+function SendLinePayMessage(userId, message, password, reply_token, callback) {
+    var date = new Date();
+    var gmt = parseInt(date.getTimezoneOffset()>0?"-":"+" +(date.getTimezoneOffset()+480/60));
+    var year = date.getFullYear().toString();
+    var month = (date.getMonth() + 1).toString();
+    var day = date.getDate().toString();
+    var hour = (date.getHours()+gmt).toString();
+    var min = date.getMinutes().toString();
+    var today = year + "." + month + "." + day + " " + hour + ":" + min + " (GMT + 0800)";
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [
+                {
+                    "type": "flex",
+                    "altText": "this is a flex message",
+                    "contents":
+                    {
+                        "type": "bubble",
+                        "styles": {
+                            "footer": {
+                                "separator": true
+                            }
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "付款",
+                                    "weight": "bold",
+                                    "color": "#1DB446",
+                                    "size": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "NT$ 54",
+                                    "weight": "bold",
+                                    "size": "xxl",
+                                    "margin": "md"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "LINE PAY",
+                                    "weight": "bold",
+                                    "size": "md",
+                                    "margin": "md"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": today,
+                                    "size": "xs",
+                                    "color": "#aaaaaa",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "付款完成。",
+                                    "weight": "bold",
+                                    "size": "xl",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "separator",
+                                    "margin": "xxl"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "margin": "xxl",
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "商店名稱",
+                                                    "size": "sm",
+                                                    "color": "#555555",
+                                                    "flex": 0
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "全家便利商店",
+                                                    "weight": "bold",
+                                                    "size": "sm",
+                                                    "color": "#111111",
+                                                    "align": "end"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "1",
+                                            "weight": "bold",
+                                            "size": "sm",
+                                            "color": "#ffffff"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "指定消費為排除繳稅、超商、全聯、分期等無法回饋LINE Points點數的消費。【完整不回饋消費項目清單，請參閱下方連結】LINE Pay聯名卡2%點數回饋資格將依中國信託LINE Pay聯名卡回饋計畫為準。【謹慎理財信用至上】信用卡循環年利率=中國信託ARMs+5.97%起，上限15%",
+                                            "size": "sm",
+                                            "color": "#555555",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "separator",
+                                    "margin": "xxl"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "聯絡中國信託",
+                                    "size": "xl",
+                                    "color": "#000077",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        };
+        logger.info('傳送訊息給 ' + userId);
+        /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (!ret) {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            } 
+        });*/
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+}
 
 // 傳送訊息給 LINE 使用者
 function SendCarouselMessage(userId, message, password, reply_token, callback) {
