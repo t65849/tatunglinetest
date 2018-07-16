@@ -31,6 +31,19 @@ config = JSON.parse(config); //字串轉物件
 
 app.get('/api', function (request, response) {
     response.send('API is running');
+    logger.info(request.body);
+    var results = request.body.events;
+    logger.info(JSON.stringify(results));
+});
+
+app.get('/linemap', function (request, response) {
+    response.redirect('line://nv/location');
+    /*logger.info('___________________________________________________________/linemap');
+    logger.info(request.body);
+    var results = request.body.events;
+    logger.info(JSON.stringify(results));
+    logger.info('緯度: '+results.latitude);
+    logger.info('經度: '+results.longitude);*/
 });
 
 app.get('/lifftest', function (request, response) {
@@ -83,6 +96,11 @@ app.post('/messages', function (request, response) {
                 });*/
                 SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
+            } else if (results[idx].message.type == 'location') {
+                logger.info('緯度: ' + results[idx].message.latitude);
+                logger.info('經度: ' + results[idx].message.longitude);
+                /*104台北市中山區104台北市中山區中山北路三段13號
+                25.064258, 121.522554 */
             }
         }
     }
@@ -105,11 +123,11 @@ process.on('uncaughtException', function (err) {
 // 傳送訊息給 LINE 使用者
 function SendLinePayMessage(userId, message, password, reply_token, callback) {
     var date = new Date();
-    var gmt = parseInt(date.getTimezoneOffset()>0?"-":"+" +(date.getTimezoneOffset()+480/60));
+    var gmt = parseInt(date.getTimezoneOffset() > 0 ? "-" : "+" + (date.getTimezoneOffset() + 480 / 60));
     var year = date.getFullYear().toString();
     var month = (date.getMonth() + 1).toString();
     var day = date.getDate().toString();
-    var hour = (date.getHours()+gmt).toString();
+    var hour = (date.getHours() + gmt).toString();
     var min = date.getMinutes().toString();
     var today = year + "." + month + "." + day + " " + hour + ":" + min + " (GMT + 0800)";
     if (password == 'tstiisacompanyfortatung') {
