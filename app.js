@@ -659,7 +659,12 @@ function SendAccountLink(userId, message, password, reply_token, callback) {
     }
     var https = require('https');
     var req = https.request(options, function (res) {
-        console.log(res);
+        console.log('statusCode:', res.statusCode);
+        console.log('headers:', res.headers);
+        res.on('data', function(chunk){
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+chunk);
+            console.log(chunk.linkToken);
+        });
     });
     req.end();
 };
