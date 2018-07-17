@@ -135,14 +135,14 @@ process.on('uncaughtException', function (err) {
     logger.error('uncaughtException occurred: ' + (err.stack ? err.stack : err));
 });
 
-function build_tatung3c(lat, lng, name, address) {
-    return [
-        {
+class build_tatung3c {
+    constructor(lat, lng, name, address) {
+        this.pos = {
             lat: lat,
             lng: lng,
             dis: 2147483647
         },
-        {
+        this.bubble = {
             "type": "bubble",
             "hero": {
                 "type": "image",
@@ -242,340 +242,15 @@ function build_tatung3c(lat, lng, name, address) {
                 "flex": 0
             }
         }
-    ];
+    }
 }
-var tatung3c = [];
-tatung3c.push(
-    [
-        build_tatung3c(25.064258, 121.522554, "台北中山門市", "台北市104中山區中山北路三段13號1樓"),
-        build_tatung3c(25.059610, 121.513416, "台北重慶北門市", "台北市103大同區重慶北路二段174-2、3號"),
-        build_tatung3c(25.042231, 121.543548, "台北復南門市", "台北市106大安區復興南路一段158")
-    ]
-);
-/*tatung3c.push(
-    [
-        {
-            lat: 25.064258,
-            lng: 121.522554,
-            dis: 2147483647
-        },
-        {
-            "type": "bubble",
-            "hero": {
-                "type": "image",
-                "url": "https://www.esunbank.com.tw/bank/-/media/esunbank/images/home/personal/discount/shops/0011.jpg?h=240&la=en&mh=240&mw=240&w=240",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "action": {
-                    "type": "uri",
-                    "uri": "http://linecorp.com/"
-                }
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "台北中山門市",
-                        "weight": "bold",
-                        "size": "xl"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "lg",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "地址: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "台北市104中山區中山北路三段13號1樓",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "距離: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "10.24km",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                    {
-                        "type": "button",
-                        "style": "link",
-                        "height": "sm",
-                        "action": {
-                            "type": "uri",
-                            "label": "WEBSITE",
-                            "uri": "http://tcpc.tatung.com/"
-                        }
-                    },
-                    {
-                        "type": "spacer",
-                        "size": "sm"
-                    }
-                ],
-                "flex": 0
-            }
-        }
-    ],
-    [
-        {
-            lat: 25.059610,
-            lng: 121.513416,
-            dis: 2147483647
-        },
-        {
-            "type": "bubble",
-            "hero": {
-                "type": "image",
-                "url": "https://www.esunbank.com.tw/bank/-/media/esunbank/images/home/personal/discount/shops/0011.jpg?h=240&la=en&mh=240&mw=240&w=240",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "action": {
-                    "type": "uri",
-                    "uri": "http://linecorp.com/"
-                }
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "台北重慶北門市",
-                        "weight": "bold",
-                        "size": "xl"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "lg",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "地址: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "台北市103大同區重慶北路二段174-2、3號",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "距離: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "10.24km",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                    {
-                        "type": "button",
-                        "style": "link",
-                        "height": "sm",
-                        "action": {
-                            "type": "uri",
-                            "label": "WEBSITE",
-                            "uri": "http://tcpc.tatung.com/"
-                        }
-                    },
-                    {
-                        "type": "spacer",
-                        "size": "sm"
-                    }
-                ],
-                "flex": 0
-            }
-        }
-    ],
-    [
-        {
-            lat: 25.042231,
-            lng: 121.543548,
-            dis: 2147483647
-        },
-        {
-            "type": "bubble",
-            "hero": {
-                "type": "image",
-                "url": "https://www.esunbank.com.tw/bank/-/media/esunbank/images/home/personal/discount/shops/0011.jpg?h=240&la=en&mh=240&mw=240&w=240",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "action": {
-                    "type": "uri",
-                    "uri": "http://linecorp.com/"
-                }
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "台北復南門市",
-                        "weight": "bold",
-                        "size": "xl"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "lg",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "地址: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "106台北市大安區復興南路一段158",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "距離: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "10.24km",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                    {
-                        "type": "button",
-                        "style": "link",
-                        "height": "sm",
-                        "action": {
-                            "type": "uri",
-                            "label": "WEBSITE",
-                            "uri": "http://tcpc.tatung.com/"
-                        }
-                    },
-                    {
-                        "type": "spacer",
-                        "size": "sm"
-                    }
-                ],
-                "flex": 0
-            }
-        }
-    ]
-);
-*/
+
+var tatung3c = [
+    new build_tatung3c(25.064258, 121.522554, "台北中山門市", "台北市104中山區中山北路三段13號1樓"),
+    new build_tatung3c(25.059610, 121.513416, "台北重慶北門市", "台北市103大同區重慶北路二段174-2、3號"),
+    new build_tatung3c(25.042231, 121.543548, "台北復南門市", "台北市106大安區復興南路一段158")
+];
+
 function distance(o, d) {
     var EARTH_RADIUS = 6378137.0;
     var lat1 = o.lat * Math.PI / 180.0;
@@ -595,16 +270,16 @@ function SendUrlPayMessage(userId, message, password, reply_token, callback) {
         }
         //算距離
         for (let i = 0; i < tatung3c.length; i++) {
-            tatung3c[i][0].dis = distance(location, tatung3c[i][0]);
+            tatung3c[i].pos.dis = distance(location, tatung3c[i].pos);
         }
         //排序
         tatung3c.sort(function (a, b) {
-            return a[0].dis - b[0].dis;
+            return a.pos.dis - b.pos.dis;
         });
         //更新
         for (let i = 0; i < tatung3c.length; i++) {
-            tatung3c[i][1].body.contents[1].contents[1].contents[1].text = "" + tatung3c[i][0].dis + " m";
-            tatung3c[i][1].footer.contents[0].action.uri = "https://www.google.com.tw/maps/dir/" + location.lat + "," + location.lng + "/" + tatung3c[i][0].lat + "," + tatung3c[i][0].lng + "/@" + location.lat + "," + location.lng + "z";
+            tatung3c[i].bubble.body.contents[1].contents[1].contents[1].text = "" + tatung3c[i].pos.dis + " m";
+            tatung3c[i].bubble.footer.contents[0].action.uri = "https://www.google.com.tw/maps/dir/" + location.lat + "," + location.lng + "/" + tatung3c[i].pos.lat + "," + tatung3c[i].pos.lng + "/@" + location.lat + "," + location.lng + "z";
         }
         var data = {
             'to': userId,
@@ -615,9 +290,9 @@ function SendUrlPayMessage(userId, message, password, reply_token, callback) {
                     "contents": {
                         "type": "carousel",
                         "contents": [
-                            tatung3c[0][1],
-                            tatung3c[1][1],
-                            tatung3c[2][1]
+                            tatung3c[0].bubble,
+                            tatung3c[1].bubble,
+                            tatung3c[2].bubble
                         ]
                     }
                 }
@@ -635,7 +310,7 @@ function SendUrlPayMessage(userId, message, password, reply_token, callback) {
             } else {
                 PostToLINE(data, config.channel_access_token, this.callback);
             }
-        }.bind({ callback: callback }));
+        }.bind({ callback: callback }))
     } else {
         callback(false);
     }
@@ -661,8 +336,8 @@ function SendAccountLink(userId, message, password, reply_token, callback) {
     var req = https.request(options, function (res) {
         console.log('statusCode:', res.statusCode);
         console.log('headers:', res.headers);
-        res.on('data', function(chunk){
-            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+chunk);
+        res.on('data', function (chunk) {
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' + chunk);
             console.log(chunk.linkToken);
         });
     });
