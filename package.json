@@ -9,9 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "log4js": "^1.1.1",
-    "log4js-extend": "^0.1.2",
+    "@google/maps": "^0.5.4",
+    "body-parser": "latest",
     "express": "latest",
-    "body-parser": "latest"
+    "log4js": "^1.1.1",
+    "log4js-extend": "^0.1.2"
   }
 }
