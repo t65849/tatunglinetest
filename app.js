@@ -61,7 +61,8 @@ app.post('/getlineuserid', function (request, response) {
     console.log('post /getlineuserid');
     var userId = request.body.userId;
     console.log(userId);
-    response.end(userId);
+    response.send('200');
+    postlinktoken(userId);
 });
 
 app.get('/logs', function (request, response) {
@@ -94,9 +95,15 @@ app.post('/messages', function (request, response) {
                 });
                 SendMessage(acct, 'line://app/1593612875-yavQm3XY', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                });
-                distance();
+
+                if (results[idx].message.text == '會員綁定作業中，請稍後!') {
+                    SendAccountLink(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
+                } else {
+                    SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
+                    distance();
+                }
             } else if (results[idx].message.type == 'location') {
                 logger.info('緯度: ' + results[idx].message.latitude);
                 logger.info('經度: ' + results[idx].message.longitude);
@@ -481,6 +488,29 @@ function SendUrlPayMessage(userId, message, password, reply_token, callback) {
         callback(false);
     }
 }
+
+function postlinktoken(userId) {
+    console.log('postlinktoken:  ' + userId);
+};
+
+function SendAccountLink(userId, message, password, reply_token, callback) {
+    //get linkToken
+    logger.info('linkToken: ' + userId);
+    var options = {
+        host: 'api.line.me',
+        port: '443',
+        path: '/v2/bot/user/' + userId + '/linkToken',
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer <' + config.channel_access_token + '>'
+        }
+    }
+    var https = require('https');
+    var req = https.request(options, function (res) {
+        console.log(res);
+    });
+    req.end();
+};
 
 // 傳送訊息給 LINE 使用者
 function SendLinePayMessage(userId, message, password, reply_token, callback) {
