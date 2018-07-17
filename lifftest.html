@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>TATUNG大同 15KG定頻洗衣機 (TAW-A150L)</title>
+    <title>請稍後</title>
     <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
     <style>
         body{
@@ -51,13 +51,13 @@
         liff.init(function () {
             console.log('success');
             liff.getProfile().then(function (profile) {
-                window.alert('userId: '+profile.userId);
+                //window.alert('userId: '+profile.userId);
                 var userId = JSON.stringify(profile.userId);
                 var data={
                     userId : userId
                 }
                 $.post('/getlineuserid', data, function(){
-
+                    
                 });
             }).catch(function (error) {
                 window.alert("Error getting profile: " + error);
