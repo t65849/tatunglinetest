@@ -135,7 +135,7 @@ process.on('uncaughtException', function (err) {
     logger.error('uncaughtException occurred: ' + (err.stack ? err.stack : err));
 });
 
-class build_tatung3c { //class
+class build_tatung3c {
     constructor(lat, lng, name, address) {
         this.pos = {
             lat: lat,
@@ -338,10 +338,15 @@ function SendAccountLink(userId, message, password, reply_token, callback) {
         console.log('headers:', res.headers);
         res.on('data', function (chunk) {
             console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' + chunk);
-            console.log(chunk.linkToken);
+            console.log(typeof (chunk));
+            var test = chunk.toString();
+            SendLinkingUrl(test);
         });
     });
     req.end();
+};
+function SendLinkingUrl(linkToken) {
+    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$' + linkToken);
 };
 
 // 傳送訊息給 LINE 使用者
