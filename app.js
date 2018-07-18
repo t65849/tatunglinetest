@@ -135,7 +135,7 @@ process.on('uncaughtException', function (err) {
     logger.error('uncaughtException occurred: ' + (err.stack ? err.stack : err));
 });
 
-class build_tatung3c {
+class build_tatung3c { //class
     constructor(lat, lng, name, address) {
         this.pos = {
             lat: lat,
