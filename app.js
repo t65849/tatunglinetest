@@ -336,6 +336,7 @@ function SendAccountLink(userId, message, password, reply_token, callback) {
     var req = https.request(options, function (res) {
         console.log('statusCode:', res.statusCode);
         console.log('headers:', res.headers);
+        var test = '';
         res.on('data', function (chunk) {
             console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+chunk);
             console.log(typeof(chunk));
