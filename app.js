@@ -337,10 +337,14 @@ function SendAccountLink(userId, message, password, reply_token, callback) {
         console.log('statusCode:', res.statusCode);
         console.log('headers:', res.headers);
         res.on('data', function (chunk) {
-            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~' + chunk);
-            console.log(typeof (chunk));
-            var test = chunk.toString();
-            SendLinkingUrl(test);
+            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+chunk);
+            console.log(typeof(chunk));
+            test += chunk;
+        });
+        res.on('end', function(){
+            var atest = test;
+            console.log('#########################################'+atest);
+            SendLinkingUrl(atest);
         });
     });
     req.end();
