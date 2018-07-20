@@ -60,12 +60,17 @@ app.get('/lifftest', function (request, response) {
 
 app.get('/tatunglogin', function (request, response) {
     console.log('GET /tatunglogin');
+    var linkToken = "";
+    if (request.query.linkToken) {
+        linkToken = request.query.linkToken;
+    }
     request.header("Content-Type", 'text/html');
     var fs = require('fs');
     fs.readFile(__dirname + '/tatunglogin.html', 'utf8', function (err, data) {
         if (err) {
             res.send(err);
         }
+        data = data + '<script type="text/javascript"> var linkToken = " ' + linkToken + ' ";</script>';
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
@@ -85,7 +90,7 @@ app.get('/logs', function (request, response) {
 
 app.get("/login", function (request, response) {
     //
- });
+});
 
 app.post('/messages', function (request, response) {
     response.send('');
@@ -146,13 +151,13 @@ app.post('/postmember', function (request, response) {
     var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkTopen左右會有空格，須把空格拿掉才能redirect
     linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
     var nonce = new Date().getTime();
+    var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken="+linkToken+"&nonce="+nonce;
     console.log('nonce: ' + nonce);
     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
     console.log(httpurl);
-
     try {
         console.log(httpurl);
-        response.location('https://www.google.com');
+        response.send({redirect: httpurl});
     } catch (err) {
         console.log(err);
         response.end('fail');
@@ -405,7 +410,7 @@ function SendLinkingUrl(userId, linkToken) {
                 'actions': [{
                     "type": 'uri',
                     'label': '登入e同購進行會員綁定',
-                    'uri': 'https://tatungflextest01.herokuapp.com/tatunglogin?linkToken='+linkToken.linkToken
+                    'uri': 'https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=' + linkToken.linkToken
                 }]
             }
         }]

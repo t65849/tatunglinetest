@@ -102,12 +102,14 @@
             var password = $('#password').val();
             var data = {
                 email: email,
-                password: password
+                password: password,
+                linkToken: linkToken
             }
-            $.post('/postmember', data, function(){
-
+            $.post('/postmember', data, function(data){
+                window.location = data.redirect;
             });
             //var nonce = new Date().getTime();
+            //window.location="https://access.line.me/dialog/bot/accountLink?linkToken={link token}&nonce={nonce}";
         }
     };
 </script>
