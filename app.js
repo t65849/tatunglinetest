@@ -57,6 +57,19 @@ app.get('/lifftest', function (request, response) {
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
+
+app.get('/tatunglogin', function (request, response) {
+    console.log('GET /tatunglogin');
+    request.header("Content-Type", 'text/html');
+    var fs = require('fs');
+    fs.readFile(__dirname + '/tatunglogin.html', 'utf8', function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        this.res.send(data);
+    }.bind({ req: request, res: response }));
+});
+
 app.post('/getlineuserid', function (request, response) {
     console.log('post /getlineuserid');
     var userId = request.body.userId;
@@ -69,6 +82,10 @@ app.get('/logs', function (request, response) {
     var stream = require('fs').createReadStream('logs/messaging.log');
     stream.pipe(response);
 });
+
+app.get("/login", function (request, response) {
+    //
+ });
 
 app.post('/messages', function (request, response) {
     response.send('');
@@ -97,7 +114,7 @@ app.post('/messages', function (request, response) {
                 });*/
 
                 if (results[idx].message.text == '會員綁定作業中，請稍後!') {
-                    SendAccountLink(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    IssuelinkToken(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -121,6 +138,28 @@ app.post('/messages', function (request, response) {
     }
 });
 
+app.post('/postmember', function (request, response) {
+    console.log('post /postmember');
+    var email = request.body.email;
+    var password = request.body.password;
+    var linkToken = request.body.linkToken;
+    var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkTopen左右會有空格，須把空格拿掉才能redirect
+    linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
+    var nonce = new Date().getTime();
+    console.log('nonce: ' + nonce);
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
+    console.log(httpurl);
+
+    try {
+        console.log(httpurl);
+        response.location('https://www.google.com');
+    } catch (err) {
+        console.log(err);
+        response.end('fail');
+    }
+    //response.end('OK');
+});
+
 var http = require('http');
 var server = http.Server(app);	// create express server
 var options = {
@@ -142,106 +181,106 @@ class build_tatung3c {
             lng: lng,
             dis: 2147483647
         },
-        this.bubble = {
-            "type": "bubble",
-            "hero": {
-                "type": "image",
-                "url": "https://www.esunbank.com.tw/bank/-/media/esunbank/images/home/personal/discount/shops/0011.jpg?h=240&la=en&mh=240&mw=240&w=240",
-                "size": "full",
-                "aspectRatio": "20:13",
-                "aspectMode": "cover",
-                "action": {
-                    "type": "uri",
-                    "uri": "http://tcpc.tatung.com/"
-                }
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": name,
-                        "weight": "bold",
-                        "size": "xl"
-                    },
-                    {
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "lg",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "地址: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": address,
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "box",
-                                "layout": "baseline",
-                                "spacing": "sm",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "距離: ",
-                                        "color": "#444444",
-                                        "size": "sm",
-                                        "flex": 1
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "10.24km",
-                                        "wrap": true,
-                                        "color": "#666666",
-                                        "size": "sm",
-                                        "flex": 5
-                                    }
-                                ]
-                            }
-                        ]
+            this.bubble = {
+                "type": "bubble",
+                "hero": {
+                    "type": "image",
+                    "url": "https://www.esunbank.com.tw/bank/-/media/esunbank/images/home/personal/discount/shops/0011.jpg?h=240&la=en&mh=240&mw=240&w=240",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "cover",
+                    "action": {
+                        "type": "uri",
+                        "uri": "http://tcpc.tatung.com/"
                     }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "vertical",
-                "spacing": "sm",
-                "contents": [
-                    {
-                        "type": "button",
-                        "style": "link",
-                        "height": "sm",
-                        "action": {
-                            "type": "uri",
-                            "label": "WEBSITE",
-                            "uri": "http://tcpc.tatung.com/"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": name,
+                            "weight": "bold",
+                            "size": "xl"
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "lg",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "地址: ",
+                                            "color": "#444444",
+                                            "size": "sm",
+                                            "flex": 1
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": address,
+                                            "wrap": true,
+                                            "color": "#666666",
+                                            "size": "sm",
+                                            "flex": 5
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "baseline",
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "距離: ",
+                                            "color": "#444444",
+                                            "size": "sm",
+                                            "flex": 1
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "10.24km",
+                                            "wrap": true,
+                                            "color": "#666666",
+                                            "size": "sm",
+                                            "flex": 5
+                                        }
+                                    ]
+                                }
+                            ]
                         }
-                    },
-                    {
-                        "type": "spacer",
-                        "size": "sm"
-                    }
-                ],
-                "flex": 0
+                    ]
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "spacing": "sm",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "style": "link",
+                            "height": "sm",
+                            "action": {
+                                "type": "uri",
+                                "label": "WEBSITE",
+                                "uri": "http://tcpc.tatung.com/"
+                            }
+                        },
+                        {
+                            "type": "spacer",
+                            "size": "sm"
+                        }
+                    ],
+                    "flex": 0
+                }
             }
-        }
     }
 }
 
@@ -320,9 +359,9 @@ function postlinktoken(userId) {
     console.log('postlinktoken:  ' + userId);
 };
 
-function SendAccountLink(userId, message, password, reply_token, callback) {
-    //get linkToken
-    logger.info('linkToken: ' + userId);
+function IssuelinkToken(userId, message, password, reply_token, callback) {
+    //Issue linkToken
+    logger.info('userId: ' + userId);
     var options = {
         host: 'api.line.me',
         port: '443',
@@ -336,22 +375,66 @@ function SendAccountLink(userId, message, password, reply_token, callback) {
     var req = https.request(options, function (res) {
         console.log('statusCode:', res.statusCode);
         console.log('headers:', res.headers);
-        var test = '';
+        var linkToken_chunk = '';
         res.on('data', function (chunk) {
-            console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+chunk);
-            console.log(typeof(chunk));
-            test += chunk;
+            console.log('chunk: ' + chunk);
+            console.log('chunk typeof: ' + typeof (chunk));
+            linkToken_chunk += chunk;
         });
-        res.on('end', function(){
-            var atest = test;
-            console.log('#########################################'+atest);
-            SendLinkingUrl(atest);
+        res.on('end', function () {
+            var linkToken = JSON.parse(linkToken_chunk);
+            console.log(typeof (linkToken));
+            SendLinkingUrl(userId, linkToken);
         });
     });
     req.end();
 };
-function SendLinkingUrl(linkToken) {
-    console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$' + linkToken);
+function SendLinkingUrl(userId, linkToken) {
+    console.log('linkToken: ' + linkToken);
+    console.log(typeof (linkToken));
+    console.log(typeof (linkToken.linkToken));
+    console.log('linkToken.linkToken: ' + linkToken.linkToken);
+    var data = {
+        'to': userId,
+        'messages': [{
+            'type': 'template',
+            'altText': '進行會員綁定',
+            'template': {
+                'type': 'buttons',
+                'text': '登入e同購',
+                'actions': [{
+                    "type": 'uri',
+                    'label': '登入e同購進行會員綁定',
+                    'uri': 'https://tatungflextest01.herokuapp.com/tatunglogin?linkToken='+linkToken.linkToken
+                }]
+            }
+        }]
+    }
+    logger.info('傳送訊息給 ' + userId);
+    logger.info('SendLinkingUrl 的 data: ' + JSON.stringify(data));
+    var options = {
+        host: 'api.line.me',
+        port: '443',
+        path: '/v2/bot/message/push',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+            'Authorization': 'Bearer <' + config.channel_access_token + '>'
+        }
+    }
+    var https = require('https');
+    var req = https.request(options, function (res) {
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            logger.info('Response: ' + chunk);
+        });
+    });
+    req.write(JSON.stringify(data));
+    req.end();
+    try {
+        callback(true);
+    } catch (e) { };
 };
 
 // 傳送訊息給 LINE 使用者
