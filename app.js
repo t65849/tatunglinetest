@@ -410,7 +410,7 @@ function SendLinkingUrl(userId, linkToken, password) {
         console.log(typeof (linkToken));
         console.log(typeof (linkToken.linkToken));
         console.log('linkToken.linkToken: ' + linkToken.linkToken);
-        var data = {
+        /*var data = {
             'to': userId,
             'messages': [{
                 'type': 'template',
@@ -424,6 +424,79 @@ function SendLinkingUrl(userId, linkToken, password) {
                         'uri': 'https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=' + linkToken.linkToken
                     }]
                 }
+            }]
+        }*/
+        var data = {
+            'to': userId,
+            'messages': [{
+                "type": "flex",
+                "altText": "e同購會員綁定",
+                "contents": {
+                    "type": "bubble",
+                    "hero": {
+                        "type": "image",
+                        "url": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
+                        "size": "5xl",
+                        "aspectRatio": "16:9",
+                        "aspectMode": "fit",
+                        "action": {
+                            "type": "uri",
+                            "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                        }
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "md",
+                        "action": {
+                            "type": "uri",
+                            "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                        },
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "e同購會員綁定",
+                                "size": "xl",
+                                "weight": "bold",
+                                "action": {
+                                    "type": "uri",
+                                    "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                                },
+                            },
+                            {
+                                "type": "text",
+                                "text": "請點選下方按鈕進行e同購會員綁定",
+                                "wrap": true,
+                                "color": "#aaaaaa",
+                                "size": "md",
+                                "action": {
+                                    "type": "uri",
+                                    "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                                },
+                            }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "spacer",
+                                "size": "xxl"
+                            },
+                            {
+                                "type": "button",
+                                "style": "primary",
+                                "color": "#905c44",
+                                "action": {
+                                    "type": "uri",
+                                    "label": "點我進行綁定",
+                                    "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                                }
+                            }
+                        ]
+                    }
+                }//contents end
             }]
         }
         logger.info('傳送訊息給 ' + userId);
@@ -456,7 +529,7 @@ function SendLinkingUrl(userId, linkToken, password) {
 
 function LinkrichmenuUsers(userId, password) {
     if (password == 'tstiisacompanyfortatung') {
-        logger.info('userId: ' + userId);
+        logger.info('LinkrichmenuUsers, userId: ' + userId);
         var options = {
             host: 'api.line.me',
             port: '443',
@@ -471,15 +544,15 @@ function LinkrichmenuUsers(userId, password) {
             console.log('statusCode:', res.statusCode);
             console.log('headers:', res.headers);
             if (res.statusCode == 200) {
-                console.log('Unlink to rich menu success');
+                console.log('Link to rich menu success');
             } else {
-                console.log('Unlink to rich menu fail');
+                console.log('Link to rich menu fail');
             }
         });
         req.end('end');
     }
 };
-function UnlinkrichmenuUsers(userId, password){
+function UnlinkrichmenuUsers(userId, password) {
     if (password == 'tstiisacompanyfortatung') {
         logger.info('userId: ' + userId);
         var options = {
