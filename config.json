@@ -4,5 +4,6 @@
     "channel_secret": "cf816cd6467ac85f20966a3eea05d69c",
     "login_channel_id": "1594485766",
     "login_channel_secret": "2cfc998ea122461f8a4bf9c174742956",
-    "login_redirect_uri": "http://172.31.7.163:7433"
+    "login_redirect_uri": "http://172.31.7.163:7433",
+    "rich_menu_id":"richmenu-de57fb17b87ee31e45d62dda40b05c20"
 }

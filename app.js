@@ -31,9 +31,7 @@ config = JSON.parse(config); //字串轉物件
 
 app.get('/api', function (request, response) {
     response.send('API is running');
-    logger.info(request.body);
-    var results = request.body.events;
-    logger.info(JSON.stringify(results));
+    console.log('API is running');
 });
 
 app.get('/linemap', function (request, response) {
@@ -88,10 +86,6 @@ app.get('/logs', function (request, response) {
     stream.pipe(response);
 });
 
-app.get("/login", function (request, response) {
-    //
-});
-
 app.post('/messages', function (request, response) {
     response.send('');
     logger.info(request.body);
@@ -121,6 +115,8 @@ app.post('/messages', function (request, response) {
                 if (results[idx].message.text == '會員綁定作業中，請稍後!') {
                     IssuelinkToken(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
+                } else if (results[idx].message.text == '解除') {
+                    UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
@@ -139,6 +135,18 @@ app.post('/messages', function (request, response) {
                 SendUrlPayMessage(acct, results[idx].message, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
+        } else if (results[idx].type == 'accountLink') {
+            /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });*/
+            if (results[idx].link.result == 'ok') {
+                SendMessage(acct, '會員綁定成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
+                LinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
+            } else if (results[idx].link.result == 'failed') {
+                SendMessage(acct, '會員綁定作業失敗', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
+            }
+
         }
     }
 });
@@ -148,16 +156,16 @@ app.post('/postmember', function (request, response) {
     var email = request.body.email;
     var password = request.body.password;
     var linkToken = request.body.linkToken;
-    var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkTopen左右會有空格，須把空格拿掉才能redirect
+    var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
     linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
     var nonce = new Date().getTime();
-    var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken="+linkToken+"&nonce="+nonce;
+    var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken=" + linkToken + "&nonce=" + nonce;
     console.log('nonce: ' + nonce);
     console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
     console.log(httpurl);
     try {
         console.log(httpurl);
-        response.send({redirect: httpurl});
+        response.send({ redirect: httpurl });
     } catch (err) {
         console.log(err);
         response.end('fail');
@@ -365,81 +373,136 @@ function postlinktoken(userId) {
 };
 
 function IssuelinkToken(userId, message, password, reply_token, callback) {
-    //Issue linkToken
-    logger.info('userId: ' + userId);
-    var options = {
-        host: 'api.line.me',
-        port: '443',
-        path: '/v2/bot/user/' + userId + '/linkToken',
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer <' + config.channel_access_token + '>'
-        }
-    }
-    var https = require('https');
-    var req = https.request(options, function (res) {
-        console.log('statusCode:', res.statusCode);
-        console.log('headers:', res.headers);
-        var linkToken_chunk = '';
-        res.on('data', function (chunk) {
-            console.log('chunk: ' + chunk);
-            console.log('chunk typeof: ' + typeof (chunk));
-            linkToken_chunk += chunk;
-        });
-        res.on('end', function () {
-            var linkToken = JSON.parse(linkToken_chunk);
-            console.log(typeof (linkToken));
-            SendLinkingUrl(userId, linkToken);
-        });
-    });
-    req.end();
-};
-function SendLinkingUrl(userId, linkToken) {
-    console.log('linkToken: ' + linkToken);
-    console.log(typeof (linkToken));
-    console.log(typeof (linkToken.linkToken));
-    console.log('linkToken.linkToken: ' + linkToken.linkToken);
-    var data = {
-        'to': userId,
-        'messages': [{
-            'type': 'template',
-            'altText': '進行會員綁定',
-            'template': {
-                'type': 'buttons',
-                'text': '登入e同購',
-                'actions': [{
-                    "type": 'uri',
-                    'label': '登入e同購進行會員綁定',
-                    'uri': 'https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=' + linkToken.linkToken
-                }]
+    if (password == 'tstiisacompanyfortatung') {
+        //Issue linkToken
+        logger.info('userId: ' + userId);
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/bot/user/' + userId + '/linkToken',
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
             }
-        }]
-    }
-    logger.info('傳送訊息給 ' + userId);
-    logger.info('SendLinkingUrl 的 data: ' + JSON.stringify(data));
-    var options = {
-        host: 'api.line.me',
-        port: '443',
-        path: '/v2/bot/message/push',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Content-Length': Buffer.byteLength(JSON.stringify(data)),
-            'Authorization': 'Bearer <' + config.channel_access_token + '>'
         }
-    }
-    var https = require('https');
-    var req = https.request(options, function (res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            logger.info('Response: ' + chunk);
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            console.log('statusCode:', res.statusCode);
+            console.log('headers:', res.headers);
+            var linkToken_chunk = '';
+            res.on('data', function (chunk) {
+                console.log('chunk: ' + chunk);
+                console.log('chunk typeof: ' + typeof (chunk));
+                linkToken_chunk += chunk;
+            });
+            res.on('end', function () {
+                var linkToken = JSON.parse(linkToken_chunk);
+                console.log(typeof (linkToken));
+                SendLinkingUrl(userId, linkToken, 'tstiisacompanyfortatung');
+            });
         });
-    });
-    req.write(JSON.stringify(data));
-    req.end();
-    try {
-        callback(true);
-    } catch (e) { };
+        req.end();
+    }
+};
+function SendLinkingUrl(userId, linkToken, password) {
+    if (password == 'tstiisacompanyfortatung') {
+        console.log('linkToken: ' + linkToken);
+        console.log(typeof (linkToken));
+        console.log(typeof (linkToken.linkToken));
+        console.log('linkToken.linkToken: ' + linkToken.linkToken);
+        var data = {
+            'to': userId,
+            'messages': [{
+                'type': 'template',
+                'altText': '進行會員綁定',
+                'template': {
+                    'type': 'buttons',
+                    'text': '登入e同購',
+                    'actions': [{
+                        "type": 'uri',
+                        'label': '登入e同購進行會員綁定',
+                        'uri': 'https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=' + linkToken.linkToken
+                    }]
+                }
+            }]
+        }
+        logger.info('傳送訊息給 ' + userId);
+        logger.info('SendLinkingUrl 的 data: ' + JSON.stringify(data));
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/bot/message/push',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        }
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                logger.info('Response: ' + chunk);
+            });
+        });
+        req.write(JSON.stringify(data));
+        req.end();
+        try {
+            callback(true);
+        } catch (e) { };
+    }
+};
+
+function LinkrichmenuUsers(userId, password) {
+    if (password == 'tstiisacompanyfortatung') {
+        logger.info('userId: ' + userId);
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/bot/user/' + userId + '/richmenu/' + config.rich_menu_id,
+            method: 'POST',
+            headers: {
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        }
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            console.log('statusCode:', res.statusCode);
+            console.log('headers:', res.headers);
+            if (res.statusCode == 200) {
+                console.log('Unlink to rich menu success');
+            } else {
+                console.log('Unlink to rich menu fail');
+            }
+        });
+        req.end('end');
+    }
+};
+function UnlinkrichmenuUsers(userId, password){
+    if (password == 'tstiisacompanyfortatung') {
+        logger.info('userId: ' + userId);
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/bot/user/' + userId + '/richmenu',
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        }
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            console.log('statusCode:', res.statusCode);
+            console.log('headers:', res.headers);
+            if (res.statusCode == 200) {
+                console.log('Unlink to rich menu success');
+            } else {
+                console.log('Unlink to rich menu fail');
+            }
+        });
+        req.end('end');
+    }
 };
 
 // 傳送訊息給 LINE 使用者
