@@ -73,6 +73,18 @@ app.get('/tatunglogin', function (request, response) {
     }.bind({ req: request, res: response }));
 });
 
+app.get('/mylifftest', function (request, response) {
+    console.log('GET /mylifftest');
+    request.header("Content-Type", 'text/html');
+    var fs = require('fs');
+    fs.readFile(__dirname + '/mytest.html', 'utf8', function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        this.res.send(data);
+    }.bind({ req: request, res: response }));
+});
+
 app.post('/getlineuserid', function (request, response) {
     console.log('post /getlineuserid');
     var userId = request.body.userId;
