@@ -131,7 +131,7 @@ app.post('/messages', function (request, response) {
                     });
                 } else if (results[idx].message.text == '大同寶寶，我想要解除會員綁定!') {
                     UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
-                } else if(results[idx].message.text == '廣告'){
+                } else if(results[idx].message.text == '大同寶寶，我想要看特價商品'){
                     SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else {
@@ -155,7 +155,7 @@ app.post('/messages', function (request, response) {
             /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
             if (results[idx].link.result == 'ok') {
-                SendMessage(acct, '會員綁定成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendMessage(acct, '大同寶寶：會員綁定成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
                 LinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
                 /*SendSticker(acct, results[idx].message.packageId, results[idx].message.stickerId, 'tstiisacompanyfortatung', reply_token, function (ret) {
