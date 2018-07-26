@@ -160,6 +160,10 @@ app.post('/messages', function (request, response) {
                 SendMessage(acct, '會員綁定成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
                 LinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
+                /*SendSticker(acct, results[idx].message.packageId, results[idx].message.stickerId, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });*/
+                SendSticker(acct, '52002745', '11537', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
             } else if (results[idx].link.result == 'failed') {
                 SendMessage(acct, '會員綁定作業失敗', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
@@ -1198,6 +1202,34 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
                 }
             ]
         };
+        logger.info('傳送訊息給 ' + userId);
+        /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (!ret) {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            } 
+        });*/
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+}
+
+// 傳送貼圖給 LINE 使用者
+function SendSticker(userId, package, sticker, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [
+                { 'type': 'sticker', 'packageId': package, 'stickerId': sticker }
+            ]
+        };
+        
         logger.info('傳送訊息給 ' + userId);
         /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (!ret) {
