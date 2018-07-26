@@ -126,14 +126,12 @@ app.post('/messages', function (request, response) {
                 });
                 SendMessage(acct, 'line://app/1593612875-yavQm3XY', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                console.log("--------------------------------------abc" + results[idx].message.text);
                 if (results[idx].message.text == '大同寶寶，我想要申請會員綁定!') {
                     IssuelinkToken(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else if (results[idx].message.text == '大同寶寶，我想要解除會員綁定!') {
                     UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
                 } else if(results[idx].message.text == '廣告'){
-                    console.log("--------------------------------------廣告");
                     SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else {
