@@ -130,7 +130,7 @@ app.post('/messages', function (request, response) {
                     IssuelinkToken(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else if (results[idx].message.text == '大同寶寶，我想要解除會員綁定!') {
-                    UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
+                    UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung', reply_token);
                 } else if (results[idx].message.text == '大同寶寶，我想要看特價商品') {
                     SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
@@ -572,7 +572,7 @@ function LinkrichmenuUsers(userId, password) {
         req.end('end');
     }
 };
-function UnlinkrichmenuUsers(userId, password) {
+function UnlinkrichmenuUsers(userId, password, reply_token) {
     if (password == 'tstiisacompanyfortatung') {
         logger.info('userId: ' + userId);
         var options = {
