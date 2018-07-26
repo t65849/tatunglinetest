@@ -1222,6 +1222,7 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
 
 // 傳送貼圖給 LINE 使用者
 function SendSticker(userId, package, sticker, password, reply_token, callback) {
+    console.log('SendSticker-----------------------------------------------------'+package+' '+sticker);
     if (password == 'tstiisacompanyfortatung') {
         var data = {
             'to': userId,
