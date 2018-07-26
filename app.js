@@ -590,7 +590,7 @@ function UnlinkrichmenuUsers(userId, password) {
             console.log('headers:', res.headers);
             if (res.statusCode == 200) {
                 console.log('Unlink to rich menu success');
-                 SendMessage(acct, '大同寶寶：會員解除綁定成功，大同寶寶謝謝您的使用', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                 SendMessage(userId, '大同寶寶：會員解除綁定成功，大同寶寶謝謝您的使用', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             } else {
                 console.log('Unlink to rich menu fail');
