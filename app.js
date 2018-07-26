@@ -131,7 +131,7 @@ app.post('/messages', function (request, response) {
                     });
                 } else if (results[idx].message.text == '大同寶寶，我想要解除會員綁定!') {
                     UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
-                } else if(results[idx].message.text == '大同寶寶，我想要看特價商品'){
+                } else if (results[idx].message.text == '大同寶寶，我想要看特價商品') {
                     SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else {
@@ -590,6 +590,8 @@ function UnlinkrichmenuUsers(userId, password) {
             console.log('headers:', res.headers);
             if (res.statusCode == 200) {
                 console.log('Unlink to rich menu success');
+                 SendMessage(acct, '大同寶寶：會員解除綁定成功，大同寶寶謝謝您的使用', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
             } else {
                 console.log('Unlink to rich menu fail');
             }
@@ -1220,7 +1222,7 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
 
 // 傳送貼圖給 LINE 使用者
 function SendSticker(userId, package, sticker, password, reply_token, callback) {
-    console.log('SendSticker-----------------------------------------------------'+package+' '+sticker);
+    console.log('SendSticker-----------------------------------------------------' + package + ' ' + sticker);
     if (password == 'tstiisacompanyfortatung') {
         var data = {
             'to': userId,
@@ -1228,7 +1230,7 @@ function SendSticker(userId, package, sticker, password, reply_token, callback) 
                 { 'type': 'sticker', 'packageId': package, 'stickerId': sticker }
             ]
         };
-        
+
         logger.info('傳送訊息給 ' + userId);
         /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (!ret) {
