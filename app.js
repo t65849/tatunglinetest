@@ -1034,7 +1034,11 @@ function SendflexMessage(userId, message, password, reply_token, callback) {
         var data = {
             'to': userId,
             'messages': [
-                carous
+                {
+                    "type": "flex",
+                    "altText": "this is a flex message",
+                    "contents": carous
+                }
             ]
         };
         logger.info('傳送訊息給 ' + userId);
