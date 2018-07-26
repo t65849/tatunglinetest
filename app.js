@@ -29,6 +29,9 @@ app.all('*', function (req, res, next) {
 var config = require('fs').readFileSync(__dirname + '/config.json');
 config = JSON.parse(config); //字串轉物件
 
+var carous = require('fs').readFileSync(__dirname + '/carousel.json');
+carous = JSON.parse(carous); //字串轉物件
+
 app.get('/api', function (request, response) {
     response.send('API is running');
     console.log('API is running');
@@ -129,10 +132,12 @@ app.post('/messages', function (request, response) {
                     });
                 } else if (results[idx].message.text == '解除') {
                     UnlinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
+                } else if(results[idx].message.text == '廣告'){
+                    SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
-                    distance();
                 }
             } else if (results[idx].message.type == 'location') {
                 logger.info('緯度: ' + results[idx].message.latitude);
@@ -1003,6 +1008,33 @@ function SendCarouselMessage(userId, message, password, reply_token, callback) {
                         ]
                     } //contents end
                 }
+            ]
+        };
+        logger.info('傳送訊息給 ' + userId);
+        /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (!ret) {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            } 
+        });*/
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+}
+
+//
+function SendflexMessage(userId, message, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [
+                carous
             ]
         };
         logger.info('傳送訊息給 ' + userId);
