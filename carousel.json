@@ -7,7 +7,7 @@
         "type": "image",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover",
+        "aspectMode": "fit",
         "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/PF-6374.jpg"
       },
       "body": {
@@ -94,7 +94,7 @@
         "type": "image",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover",
+        "aspectMode": "fit",
         "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/JL-090PDs.jpg"
       },
       "body": {
@@ -129,6 +129,7 @@
                   {
                     "type": "text",
                     "text": "$599",
+                    "weight": "bold",
                     "size": "md",
                     "align": "end",
                     "color": "#e60412"
@@ -173,7 +174,7 @@
         "type": "image",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover",
+        "aspectMode": "fit",
         "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/LMG008s.jpg"
       },
       "body": {
@@ -208,6 +209,7 @@
                   {
                     "type": "text",
                     "text": "$1580",
+                    "weight": "bold",
                     "size": "md",
                     "align": "end",
                     "color": "#e60412"
@@ -252,7 +254,7 @@
         "type": "image",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover",
+        "aspectMode": "fit",
         "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/ECO1L-GN.jpg"
       },
       "body": {
@@ -287,6 +289,7 @@
                   {
                     "type": "text",
                     "text": "$1780",
+                    "weight": "bold",
                     "size": "md",
                     "align": "end",
                     "color": "#e60412"
@@ -331,7 +334,7 @@
         "type": "image",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover",
+        "aspectMode": "fit",
         "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/TM-516.jpg"
       },
       "body": {
@@ -366,6 +369,7 @@
                   {
                     "type": "text",
                     "text": "$780",
+                    "weight": "bold",
                     "size": "md",
                     "align": "end",
                     "color": "#e60412"
@@ -410,7 +414,7 @@
         "type": "image",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover",
+        "aspectMode": "fit",
         "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/CLT-25As.jpg"
       },
       "body": {
@@ -445,6 +449,7 @@
                   {
                     "type": "text",
                     "text": "62折",
+                    "weight": "bold",
                     "size": "md",
                     "align": "end",
                     "color": "#e60412"
