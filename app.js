@@ -162,7 +162,7 @@ app.post('/messages', function (request, response) {
                 LinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
                 /*SendSticker(acct, results[idx].message.packageId, results[idx].message.stickerId, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                SendSticker(acct, '516', '2', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendSticker(acct, '2', '516', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             } else if (results[idx].link.result == 'failed') {
                 SendMessage(acct, '會員綁定作業失敗', 'tstiisacompanyfortatung', reply_token, function (ret) {
