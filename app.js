@@ -91,9 +91,13 @@ app.get('/mylifftest', function (request, response) {
 app.post('/getlineuserid', function (request, response) {
     console.log('post /getlineuserid');
     var userId = request.body.userId;
-    console.log(userId);
+    var displayName = request.body.displayName;
+    var pictureUrl = request.body.pictureUrl;
+    //console.log("1 " + userId);
+    //console.log("2 " + displayName);
+    //console.log("3 " + pictureUrl);
     response.send('200');
-    postlinktoken(userId);
+    SendGiftMessage(request.body, 'tstiisacompanyfortatung');
 });
 
 app.get('/logs', function (request, response) {
@@ -389,9 +393,144 @@ function SendUrlPayMessage(userId, message, password, reply_token, callback) {
     }
 }
 
-function postlinktoken(userId) {
-    console.log('postlinktoken:  ' + userId);
-};
+function SendGiftMessage(user, password) {
+    //console.log(JSON.stringify(user));
+    var userId = JSON.stringify(user.userId);
+    var pic = JSON.stringify(user.pictureUrl);
+    var name = JSON.stringify(user.displayName);
+    userId = userId.replace('\"\\"','').replace('\\"\"','');
+    pic = pic.replace('\"\\"','').replace('\\"\"','');
+    name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
+    //console.log(userId);
+    //console.log(pic);
+    //console.log(name);
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [{
+                "type": "flex",
+                "altText": "e同購會員綁定",
+                "contents": {
+                    "type": "bubble",
+                    "header": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "特獎",
+                                "weight": "bold",
+                                "color": "#444444",
+                                "size": "xl"
+                            }
+                        ]
+                    },
+                    "hero": {
+                        "type": "image",
+                        "url": "https://www.etungo.com.tw/files/TC_PSpec/PS_Pic/TAW-A150Ls.jpg",
+                        "size": "full",
+                        "aspectRatio": "20:13",
+                        "aspectMode": "fit",
+                        "action": {
+                            "type": "uri",
+                            "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
+                        }
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "md",
+                        "action": {
+                            "type": "uri",
+                            "uri": "https://linecorp.com"
+                        },
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "大同15KG定頻洗衣機",
+                                "size": "xl",
+                                "weight": "bold"
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "spacing": "md",
+                                "contents": [
+                                    {
+                                        "type": "image",
+                                        "url": pic,
+                                        "aspectMode": "cover",
+                                        "aspectRatio": "4:3",
+                                        "size": "sm",
+                                        "gravity": "bottom"
+                                    },
+                                    {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                                "type": "text",
+                                                "text": name,
+                                                "size": "sm",
+                                                "color": "#444444"
+                                            },
+                                            {
+                                                "type": "text",
+                                                "text": "抽到特獎",
+                                                "size": "sm",
+                                                "color": "#444444"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "style": "primary",
+                                "color": "#e60412",
+                                "action": {
+                                    "type": "uri",
+                                    "label": "登入",
+                                    "uri": "https://linecorp.com"
+                                }
+                            }
+                        ]
+                    }
+                }
+            }]
+        }
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/bot/message/push',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        }
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            console.log('statusCode:', res.statusCode);
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                logger.info('Response: ' + chunk);
+            });
+        });
+        req.write(JSON.stringify(data));
+        req.end();
+        try {
+            callback(true);
+        } catch (e) { };
+    }
+}
 
 function IssuelinkToken(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
