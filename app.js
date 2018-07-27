@@ -156,12 +156,13 @@ app.post('/messages', function (request, response) {
                 });*/
             if (results[idx].link.result == 'ok') {
                 SendMessage(acct, '大同寶寶：會員綁定成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    SendSticker(acct, '2', '516', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
                 });
                 LinkrichmenuUsers(acct, 'tstiisacompanyfortatung');
                 /*SendSticker(acct, results[idx].message.packageId, results[idx].message.stickerId, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                SendSticker(acct, '2', '516', 'tstiisacompanyfortatung', reply_token, function (ret) {
-                });
+
             } else if (results[idx].link.result == 'failed') {
                 SendMessage(acct, '會員綁定作業失敗', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
@@ -590,7 +591,7 @@ function UnlinkrichmenuUsers(userId, password, reply_token) {
             console.log('headers:', res.headers);
             if (res.statusCode == 200) {
                 console.log('Unlink to rich menu success');
-                 SendMessage(userId, '大同寶寶：會員解除綁定成功，大同寶寶謝謝您的使用', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendMessage(userId, '大同寶寶：會員解除綁定成功，大同寶寶謝謝您的使用', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             } else {
                 console.log('Unlink to rich menu fail');
