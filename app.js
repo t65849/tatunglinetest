@@ -409,7 +409,7 @@ function SendGiftMessage(user, password) {
             'to': userId,
             'messages': [{
                 "type": "flex",
-                "altText": "e同購會員綁定",
+                "altText": "e同購抽獎遊戲",
                 "contents": {
                     "type": "bubble",
                     "header": {
