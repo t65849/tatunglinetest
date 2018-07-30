@@ -590,7 +590,7 @@ function SendLinkingUrl(userId, linkToken, password) {
             'to': userId,
             'messages': [{
                 "type": "flex",
-                "altText": "e同購會員綁定",
+                "altText": "加入e同購LINE個人服務",
                 "contents": {
                     "type": "bubble",
                     "hero": {
@@ -615,7 +615,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "e同購會員綁定",
+                                "text": "e同購LINE個人服務",
                                 "size": "xl",
                                 "weight": "bold",
                                 "action": {
@@ -625,7 +625,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                             },
                             {
                                 "type": "text",
-                                "text": "請點選下方按鈕進行e同購會員綁定",
+                                "text": "請點選下方按鈕加入e同購LINE個人服務",
                                 "wrap": true,
                                 "color": "#aaaaaa",
                                 "size": "md",
@@ -647,10 +647,10 @@ function SendLinkingUrl(userId, linkToken, password) {
                             {
                                 "type": "button",
                                 "style": "primary",
-                                "color": "#905c44",
+                                "color": "#e60412",
                                 "action": {
                                     "type": "uri",
-                                    "label": "點我進行綁定",
+                                    "label": "點我加入e同購LINE個人服務",
                                     "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                                 }
                             }
