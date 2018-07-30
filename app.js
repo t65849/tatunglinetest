@@ -159,7 +159,7 @@ app.post('/messages', function (request, response) {
             /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
             if (results[idx].link.result == 'ok') {
-                SendMessage(acct, '大同寶寶：會員綁定成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendMessage(acct, '大同寶寶：加入LINE個人服務成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     SendSticker(acct, '2', '516', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 });
@@ -168,7 +168,7 @@ app.post('/messages', function (request, response) {
                 });*/
 
             } else if (results[idx].link.result == 'failed') {
-                SendMessage(acct, '會員綁定作業失敗', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                SendMessage(acct, '加入LINE個人服務作業失敗', 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
 
@@ -590,7 +590,7 @@ function SendLinkingUrl(userId, linkToken, password) {
             'to': userId,
             'messages': [{
                 "type": "flex",
-                "altText": "加入e同購LINE個人服務",
+                "altText": "加入LINE個人服務",
                 "contents": {
                     "type": "bubble",
                     "hero": {
@@ -615,7 +615,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                         "contents": [
                             {
                                 "type": "text",
-                                "text": "e同購LINE個人服務",
+                                "text": "加入LINE個人服務",
                                 "size": "xl",
                                 "weight": "bold",
                                 "action": {
@@ -625,7 +625,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                             },
                             {
                                 "type": "text",
-                                "text": "請點選下方按鈕加入e同購LINE個人服務",
+                                "text": "請點選下方按鈕加入LINE個人服務",
                                 "wrap": true,
                                 "color": "#aaaaaa",
                                 "size": "md",
@@ -650,7 +650,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                                 "color": "#e60412",
                                 "action": {
                                     "type": "uri",
-                                    "label": "點我加入e同購LINE個人服務",
+                                    "label": "點我加入LINE個人服務",
                                     "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                                 }
                             }
