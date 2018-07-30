@@ -37,16 +37,6 @@ app.get('/api', function (request, response) {
     console.log('API is running');
 });
 
-app.get('/linemap', function (request, response) {
-    response.redirect('line://nv/location');
-    /*logger.info('___________________________________________________________/linemap');
-    logger.info(request.body);
-    var results = request.body.events;
-    logger.info(JSON.stringify(results));
-    logger.info('緯度: '+results.latitude);
-    logger.info('經度: '+results.longitude);*/
-});
-
 app.get('/lifftest', function (request, response) {
     console.log('GET /lifftest');
     request.header("Content-Type", 'text/html');
@@ -1181,7 +1171,7 @@ function SendflexMessage(userId, message, password, reply_token, callback) {
             'messages': [
                 {
                     "type": "flex",
-                    "altText": "this is a flex message",
+                    "altText": "e同購特價商品",
                     "contents": carous
                 }
             ]
