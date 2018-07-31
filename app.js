@@ -33,7 +33,6 @@ var carous = require('fs').readFileSync(__dirname + '/carousel.json');
 carous = JSON.parse(carous); //字串轉物件
 
 var gift = require(__dirname + '/gift.js');
-gift = JSON.parse(gift); //字串轉物件
 
 app.get('/api', function (request, response) {
     response.send('API is running');
