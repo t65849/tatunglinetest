@@ -391,14 +391,14 @@ function SendGiftMessage(user, password) {
     var userId = JSON.stringify(user.userId);
     var pic = JSON.stringify(user.pictureUrl);
     var name = JSON.stringify(user.displayName);
-    //userId = userId.replace('\"\\"','').replace('\\"\"','');
-   // pic = pic.replace('\"\\"','').replace('\\"\"','');
-    //name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
+    userId = userId.replace('\"\\"','').replace('\\"\"','');
+    pic = pic.replace('\"\\"','').replace('\\"\"','');
+    name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
     //console.log(userId);
     //console.log(pic);
     //console.log(name);
     if (password == 'tstiisacompanyfortatung') {
-        var num = Math.floor((Math.random() * 6));
+       // var num = Math.floor((Math.random() * 6));
         var data = build_Gift(userId, pic, name, 0);
         var options = {
             host: 'api.line.me',
