@@ -391,9 +391,9 @@ function SendGiftMessage(user, password) {
     var userId = JSON.stringify(user.userId);
     var pic = JSON.stringify(user.pictureUrl);
     var name = JSON.stringify(user.displayName);
-    userId = userId.replace('\"\\"','').replace('\\"\"','');
-    pic = pic.replace('\"\\"','').replace('\\"\"','');
-    name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
+    //userId = userId.replace('\"\\"','').replace('\\"\"','');
+   // pic = pic.replace('\"\\"','').replace('\\"\"','');
+    //name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
     //console.log(userId);
     //console.log(pic);
     //console.log(name);
