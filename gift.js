@@ -524,3 +524,5 @@ function build_Gift(userId, pic, name, num) {
             };
     }
 }
+
+exports.build_Gift = build_Gift;
