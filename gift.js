@@ -1,4 +1,5 @@
 function build_Gift(userId, pic, name, num) {
+    console.log(userId);
     switch (num) {
         case 0:
             return {
