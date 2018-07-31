@@ -399,6 +399,7 @@ function SendGiftMessage(user, password) {
     //console.log(name);
     if (password == 'tstiisacompanyfortatung') {
         var num = Math.floor((Math.random() * 6));
+        console.log(typeof(num));
         console.log("------------------------" + num);
         var data = build_Gift(userId, pic, name, num);
         var options = {
