@@ -32,8 +32,8 @@ config = JSON.parse(config); //字串轉物件
 var carous = require('fs').readFileSync(__dirname + '/carousel.json');
 carous = JSON.parse(carous); //字串轉物件
 
-//var gift = require('fs').readFileSync(__dirname + '/gift.json');
-//gift = JSON.parse(gift); //字串轉物件
+var gift = require('fs').readFileSync(__dirname + '/gift.js');
+gift = JSON.parse(gift); //字串轉物件
 
 app.get('/api', function (request, response) {
     response.send('API is running');
@@ -398,8 +398,8 @@ function SendGiftMessage(user, password) {
     //console.log(pic);
     //console.log(name);
     if (password == 'tstiisacompanyfortatung') {
-       // var num = Math.floor((Math.random() * 6));
-        var data = build_Gift(userId, pic, name, 0);
+        var num = Math.floor((Math.random() * 6));
+        var data = gift.build_Gift(userId, pic, name, num);
         var options = {
             host: 'api.line.me',
             port: '443',
