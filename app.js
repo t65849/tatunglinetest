@@ -398,7 +398,8 @@ function SendGiftMessage(user, password) {
     //console.log(pic);
     //console.log(name);
     if (password == 'tstiisacompanyfortatung') {
-        var data = build_Gift(userId, pic, name, 0);
+        var num = Math.floor((Math.random() * 6));
+        var data = build_Gift(userId, pic, name, num);
         var options = {
             host: 'api.line.me',
             port: '443',
