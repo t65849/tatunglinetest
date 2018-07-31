@@ -515,7 +515,7 @@ function build_Gift(userId, pic, name, num) {
                     }
                 ]
             };
-        case 4:
+        case 5:
             return {
                 'to': userId,
                 'messages': [
