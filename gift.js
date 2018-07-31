@@ -519,7 +519,7 @@ function build_Gift(userId, pic, name, num) {
             return {
                 'to': userId,
                 'messages': [
-                    { 'type': 'text', 'text': "太可惜了，什麼都沒抽到，" + name + "，下次再試試吧!!" }
+                    { 'type': 'text', 'text': "太可惜了，什麼都沒抽到，下次再試試吧!!" }
                 ]
             };
     }
