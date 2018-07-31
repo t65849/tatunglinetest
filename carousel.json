@@ -82,7 +82,8 @@
             "action": {
               "type": "uri",
               "label": "點擊查看",
-              "uri": "https://www.etungo.com.tw/inside/377/723/739/67608.html?kw=LINE&utm_medium=Click&utm_campaign=20180720_KA-1457"
+              //"uri": "https://www.etungo.com.tw/inside/377/723/739/67608.html?kw=LINE&utm_medium=Click&utm_campaign=20180720_KA-1457"
+              "uri": "line://app/1593612875-l9rBKQ82"
             }
           }
         ]
