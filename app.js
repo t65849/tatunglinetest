@@ -486,8 +486,8 @@ function SendGiftMessage(user, password) {
                                 "color": "#e60412",
                                 "action": {
                                     "type": "uri",
-                                    "label": "登入",
-                                    "uri": "https://linecorp.com"
+                                    "label": "登入e同購",
+                                    "uri": "https://www.etungo.com.tw/inside/377/722/728/60127.html"
                                 }
                             }
                         ]
