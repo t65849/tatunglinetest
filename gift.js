@@ -1,8 +1,4 @@
 function build_Gift(userId, pic, name, num) {
-    userId = userId.replace('\"\\"','').replace('\\"\"','');
-    pic = pic.replace('\"\\"','').replace('\\"\"','');
-    name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
-    alert(userId + " " + pic + " " + name);
     switch (num) {
         case 0:
             return {
