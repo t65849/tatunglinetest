@@ -1321,22 +1321,22 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
             path: '/v2/botuser/'+userId+'/richmenu',
             method: 'GET',
             headers: {
-                 'Content-Type': 'application/json; charset=UTF-8',
-                'Content-Length': Buffer.byteLength(JSON.stringify(data)),
                 'Authorization': 'Bearer <' + config.channel_access_token + '>'
             }
         }
-        var https = require('https');
-        var responsemenuID = '';
         var req = https.request(options, function (res) {
-            res.setEncoding('utf8');
-            res.on('data', function (chunk) {
-                logger.info('------------------------------------------------------Response: ' + chunk);
-                //responsemenuID +=chunk;
-            });
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            logger.info('Response: ' + chunk);
+            if (res.statusCode == 200) {
+                callback(result);
+            } if (res.statusCode == 401) {
+                logger.info('IssueAccessToken');
+                IssueAccessToken();
+            }
         });
-        req.write(JSON.stringify(data));
-        req.end();
+    }).end();
+
         ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (ret) {
                 this.callback(true);
