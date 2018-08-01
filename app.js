@@ -130,6 +130,11 @@ app.post('/messages', function (request, response) {
                 } else if (results[idx].message.text == '大同寶寶，我想要看特價商品') {
                     SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
+                } else if (results[idx].message.text == '大同寶寶') {
+                    //SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    //});
+                    SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
@@ -390,9 +395,9 @@ function SendGiftMessage(user, password) {
     var userId = JSON.stringify(user.userId);
     var pic = JSON.stringify(user.pictureUrl);
     var name = JSON.stringify(user.displayName);
-    userId = userId.replace('\"\\"','').replace('\\"\"','');
-    pic = pic.replace('\"\\"','').replace('\\"\"','');
-    name = "恭喜" + name.replace('\"\\"','').replace('\\"\"','');
+    userId = userId.replace('\"\\"', '').replace('\\"\"', '');
+    pic = pic.replace('\"\\"', '').replace('\\"\"', '');
+    name = "恭喜" + name.replace('\"\\"', '').replace('\\"\"', '');
     //console.log(userId);
     //console.log(pic);
     //console.log(name);
@@ -1253,6 +1258,59 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
         callback(false);
     }
 }
+
+function SendQuickReplies(userId, message, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [
+                {
+                    "type": "text", // ①
+                    "text": "Select your favorite food category or send me your location!",
+                    "quickReply": { // ②
+                        "items": [
+                            {
+                                "type": "action", // ③
+                                "imageUrl": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
+                                "action": {
+                                    "type": "message",
+                                    "label": "Sushi",
+                                    "text": "Sushi"
+                                }
+                            },
+                            {
+                                "type": "action",
+                                "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
+                                "action": {
+                                    "type": "message",
+                                    "label": "Tempura",
+                                    "text": "Tempura"
+                                }
+                            },
+                            {
+                                "type": "action", // ④
+                                "action": {
+                                    "type": "location",
+                                    "label": "Send location"
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }; //end data
+        logger.info('傳送訊息給 ' + userId);
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+};
 
 // 傳送貼圖給 LINE 使用者
 function SendSticker(userId, package, sticker, password, reply_token, callback) {
