@@ -1332,11 +1332,9 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
         res.on('data', function (chunk) {
             logger.info('*************************************Response: ' + chunk);
             if (res.statusCode == 200) {
+                var result = JSON.parse(chunk);
                 callback(result);
-            } if (res.statusCode == 401) {
-                logger.info('IssueAccessToken');
-                IssueAccessToken();
-            }
+            } 
         });
     }).end();
 
