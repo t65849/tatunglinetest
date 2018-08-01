@@ -1285,7 +1285,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
             });
         });
         req.write(JSON.stringify(data));
-        req.end();
+        //req.end();
         var data = {
             'to': userId,
             'messages': [
