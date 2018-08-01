@@ -1326,10 +1326,11 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                 'Authorization': 'Bearer <' + config.channel_access_token + '>'
             }
         }
+        console.log('##########################################'+options.path);
         var req = https.request(options, function (res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
-            logger.info('Response: ' + chunk);
+            logger.info('*************************************Response: ' + chunk);
             if (res.statusCode == 200) {
                 callback(result);
             } if (res.statusCode == 401) {
