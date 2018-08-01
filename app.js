@@ -135,6 +135,18 @@ app.post('/messages', function (request, response) {
                     //});
                     SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
+                } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁1') {
+                    SendURI(acct, '查看大同同樂會主頁1', 'line://home/public/main?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
+                } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁2') {
+                    SendURI(acct, '查看大同同樂會主頁2', 'line://home/public/profile?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
+                } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會1') {
+                    SendURI(acct, '推薦大同同樂會1', 'line://ti/p/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
+                } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會2') {
+                    SendURI(acct, '推薦大同同樂會2', 'line://nv/recommendOA/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
@@ -1072,7 +1084,6 @@ function SendCarouselMessage(userId, message, password, reply_token, callback) {
     }
 }
 
-//
 function SendflexMessage(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
         var data = {
@@ -1273,9 +1284,9 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                                 "type": "action", // ③
                                 "imageUrl": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
                                 "action": {
-                                    "type": "uri",
-                                    "label": "查看大同同樂會主頁面",
-                                    "uri": "https://www.google.com.tw/"
+                                    "type": "message",
+                                    "label": "查看大同同樂會主頁1",
+                                    "text": "大同寶寶，我想查看大同同樂會主頁1"
                                 }
                             },
                             {
@@ -1283,8 +1294,26 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                                 "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
                                 "action": {
                                     "type": "message",
-                                    "label": "Tempura",
-                                    "text": "Tempura"
+                                    "label": "查看大同同樂會主頁2",
+                                    "text": "大同寶寶，我想查看大同同樂會主頁2"
+                                }
+                            },
+                            {
+                                "type": "action",
+                                "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
+                                "action": {
+                                    "type": "message",
+                                    "label": "推薦大同同樂會1",
+                                    "text": "大同寶寶，我想推薦大同同樂會1"
+                                }
+                            },
+                            {
+                                "type": "action",
+                                "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
+                                "action": {
+                                    "type": "message",
+                                    "label": "推薦大同同樂會2",
+                                    "text": "大同寶寶，我想推薦大同同樂會2"
                                 }
                             },
                             {
@@ -1340,6 +1369,31 @@ function SendSticker(userId, package, sticker, password, reply_token, callback) 
         callback(false);
     }
 }
+// 傳送URI給 LINE 使用者
+function SendURI(userId, label, uri, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            'to': userId,
+            'messages': [
+                {
+                    'type': 'uri',
+                    'label': label,
+                    'uri': uri
+                }
+            ]
+        }; //end data
+        logger.info('傳送訊息給 ' + userId);
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+            if (ret) {
+                this.callback(true);
+            } else {
+                PostToLINE(data, config.channel_access_token, this.callback);
+            }
+        }.bind({ callback: callback }));
+    } else {
+        callback(false);
+    }
+};
 
 // 傳送訊息給 LINE 使用者
 function SendMessage(userId, message, password, reply_token, callback) {
