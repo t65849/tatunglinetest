@@ -1376,10 +1376,17 @@ function SendURI(userId, label, uri, password, reply_token, callback) {
             'to': userId,
             'messages': [
                 {
-                    'type': 'uri',
-                    'label': label,
-                    'uri': uri
-                }
+                    'type': 'template',
+                    'altText': label,
+                    'template': {
+                        'type': 'buttons',
+                        'text': label,
+                        'actions': [{
+                            "type": 'uri',
+                            'label': label,
+                            'uri': uri
+                        }]
+                    }
             ]
         }; //end data
         logger.info('傳送訊息給 ' + userId);
