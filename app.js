@@ -1315,6 +1315,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
             ]
         }; //end data
         logger.info('傳送訊息給 ' + userId);
+         var https = require('https');
         var options = {
             host: 'api.line.me',
             port: '443',
