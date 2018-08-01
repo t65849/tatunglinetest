@@ -1377,14 +1377,14 @@ function SendURI(userId, label, uri, password, reply_token, callback) {
             'messages': [
                 {
                     'type': 'template',
-                    'altText': '進行會員綁定',
+                    'altText': label,
                     'template': {
                         'type': 'buttons',
-                        'text': '登入e同購',
+                        'text': label,
                         'actions': [{
                             "type": 'uri',
-                            'label': '登入e同購進行會員綁定',
-                            'uri': 'https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=' + linkToken.linkToken
+                            'label': label,
+                            'uri': uri
                         }]
                     }
                 }
