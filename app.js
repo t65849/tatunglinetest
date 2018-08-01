@@ -1315,11 +1315,12 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
             ]
         }; //end data
         logger.info('傳送訊息給 ' + userId);
-         var https = require('https');
+        var usermenuId = userId.replace(' ','').replace(' ','');
+        var https = require('https');
         var options = {
             host: 'api.line.me',
             port: '443',
-            path: '/v2/botuser/'+userId+'/richmenu',
+            path: '/v2/botuser/'+usermenuId+'/richmenu',
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer <' + config.channel_access_token + '>'
