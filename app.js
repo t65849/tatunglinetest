@@ -1266,16 +1266,16 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
             'messages': [
                 {
                     "type": "text", // ①
-                    "text": "Select your favorite food category or send me your location!",
+                    "text": "嗨!我在這，有什麼大同寶寶可以為您服務的嗎?",
                     "quickReply": { // ②
                         "items": [
                             {
                                 "type": "action", // ③
                                 "imageUrl": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
                                 "action": {
-                                    "type": "message",
-                                    "label": "Sushi",
-                                    "text": "Sushi"
+                                    "type": "uri",
+                                    "label": "查看大同同樂會主頁面",
+                                    "uri": "https://www.google.com.tw/"
                                 }
                             },
                             {
@@ -1291,7 +1291,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                                 "type": "action", // ④
                                 "action": {
                                     "type": "location",
-                                    "label": "Send location"
+                                    "label": "尋找附近門市"
                                 }
                             }
                         ]
