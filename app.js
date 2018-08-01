@@ -1284,7 +1284,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                 //responsemenuID +=chunk;
             });
         });
-        req.write(JSON.stringify(data));
+        //req.write(JSON.stringify(data));
         //req.end();
         var data = {
             'to': userId,
