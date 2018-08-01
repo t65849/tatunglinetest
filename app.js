@@ -1280,13 +1280,11 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
         var req = https.request(options, function (res) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
-                logger.info('Response: ' + chunk);
+                logger.info('------------------------------------------------------Response: ' + chunk);
                 //responsemenuID +=chunk;
             });
         });
-        req.write(JSON.stringify(data), function(){
-            console.log('data------------------------------------------------------'+data);
-        });
+        req.write(JSON.stringify(data));
         req.end();
         var data = {
             'to': userId,
