@@ -1321,6 +1321,8 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
             path: '/v2/botuser/'+userId+'/richmenu',
             method: 'GET',
             headers: {
+                 'Content-Type': 'application/json; charset=UTF-8',
+                'Content-Length': Buffer.byteLength(JSON.stringify(data)),
                 'Authorization': 'Bearer <' + config.channel_access_token + '>'
             }
         }
