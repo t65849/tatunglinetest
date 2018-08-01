@@ -1320,7 +1320,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
         var options = {
             host: 'api.line.me',
             port: '443',
-            path: '/v2/botuser/'+usermenuId+'/richmenu',
+            path: '/v2/bot/user/'+userId+'/richmenu',
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer <' + config.channel_access_token + '>'
