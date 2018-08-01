@@ -1266,7 +1266,29 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
 
 function SendQuickReplies(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
-        
+        logger.info('傳送訊息給 ' + userId);
+        var usermenuId = userId.replace(' ','').replace(' ','');
+        var https = require('https');
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/bot/user/'+userId+'/richmenu',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        }
+        console.log('##########################################'+options.path);
+        var req = https.request(options, function (res) {
+        res.setEncoding('utf8');
+        res.on('data', function (chunk) {
+            logger.info('*************************************Response: ' + chunk);
+            if (res.statusCode == 200) {
+                var result = JSON.parse(chunk);
+                callback(result);
+            } 
+        });
+    }).end();
         var data = {
             'to': userId,
             'messages': [
@@ -1314,29 +1336,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                 }
             ]
         }; //end data
-        logger.info('傳送訊息給 ' + userId);
-        var usermenuId = userId.replace(' ','').replace(' ','');
-        var https = require('https');
-        var options = {
-            host: 'api.line.me',
-            port: '443',
-            path: '/v2/bot/user/'+userId+'/richmenu',
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer <' + config.channel_access_token + '>'
-            }
-        }
-        console.log('##########################################'+options.path);
-        var req = https.request(options, function (res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            logger.info('*************************************Response: ' + chunk);
-            if (res.statusCode == 200) {
-                var result = JSON.parse(chunk);
-                callback(result);
-            } 
-        });
-    }).end();
+        
 
         ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (ret) {
