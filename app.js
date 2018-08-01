@@ -1266,6 +1266,28 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
 
 function SendQuickReplies(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/v2/botuser/'+userId+'/richmenu',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        }
+        var https = require('https');
+        var responsemenuID = '';
+        var req = https.request(options, function (res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                logger.info('Response: ' + chunk);
+                //responsemenuID +=chunk;
+            });
+        });
+        req.write(JSON.stringify(data), function(){
+            console.log('data------------------------------------------------------'+data);
+        });
+        req.end();
         var data = {
             'to': userId,
             'messages': [
