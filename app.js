@@ -135,17 +135,11 @@ app.post('/messages', function (request, response) {
                     //});
                     SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
-                } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁1') {
-                    SendURI(acct, '查看大同同樂會主頁1', 'line://home/public/main?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁') {
+                    SendURI(acct, '查看大同同樂會主頁', 'line://home/public/main?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
-                } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁2') {
-                    SendURI(acct, '查看大同同樂會主頁2', 'line://home/public/profile?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
-                    });
-                } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會1') {
-                    SendURI(acct, '推薦大同同樂會1', 'line://ti/p/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
-                    });
-                } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會2') {
-                    SendURI(acct, '推薦大同同樂會2', 'line://nv/recommendOA/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會給好友') {
+                    SendURI(acct, '推薦大同同樂會給好友', 'line://ti/p/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -1285,8 +1279,8 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                                 "imageUrl": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
                                 "action": {
                                     "type": "message",
-                                    "label": "查看大同同樂會主頁1",
-                                    "text": "大同寶寶，我想查看大同同樂會主頁1"
+                                    "label": "加入LINE個人服務",
+                                    "text": "大同寶寶，我想要加入LINE個人服務"
                                 }
                             },
                             {
@@ -1294,8 +1288,8 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                                 "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
                                 "action": {
                                     "type": "message",
-                                    "label": "查看大同同樂會主頁2",
-                                    "text": "大同寶寶，我想查看大同同樂會主頁2"
+                                    "label": "查看大同同樂會主頁",
+                                    "text": "大同寶寶，我想查看大同同樂會主頁"
                                 }
                             },
                             {
@@ -1303,17 +1297,8 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                                 "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
                                 "action": {
                                     "type": "message",
-                                    "label": "推薦大同同樂會1",
-                                    "text": "大同寶寶，我想推薦大同同樂會1"
-                                }
-                            },
-                            {
-                                "type": "action",
-                                "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
-                                "action": {
-                                    "type": "message",
-                                    "label": "推薦大同同樂會2",
-                                    "text": "大同寶寶，我想推薦大同同樂會2"
+                                    "label": "推薦大同同樂會給好友",
+                                    "text": "大同寶寶，我想推薦大同同樂會給好友"
                                 }
                             },
                             {
