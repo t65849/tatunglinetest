@@ -1283,9 +1283,9 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
                 logger.info('*************************************Response: ' + chunk);
+                logger.info('*************************************Response.message: ' + chunk.message);
                 if (res.statusCode == 200) {
                     var result = JSON.parse(chunk);
-                    logger.info('--------------------------------------------------------------------------'+result.message);
                     callback(result);
                 }
             });
