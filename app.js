@@ -1281,11 +1281,10 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
         console.log('##########################################' + options.path);
         var req = https.request(options, function (res) {
             res.setEncoding('utf8');
-            var result='';
             res.on('data', function (chunk) {
                 logger.info('*************************************Response: ' + chunk);
                 if (res.statusCode == 200) {
-                    result = JSON.parse(chunk);
+                    var result = JSON.parse(chunk);
                     console.log('--------------------------------------------------------------------------'+result);
                     console.log('--------------------------------------------------------------------------'+result.message);
                     callback(result);
