@@ -34,6 +34,11 @@ carous = JSON.parse(carous); //字串轉物件
 
 var gift = require(__dirname + '/gift.js');
 
+var linequickreply = require(__dirname + '/linequickreply.json');
+linequickreply = JSON.parse(config); //字串轉物件
+var quickreply = require(__dirname + '/quickreply.json');
+quickreply = JSON.parse(config); //字串轉物件
+
 app.get('/api', function (request, response) {
     response.send('API is running');
     console.log('API is running');
@@ -1301,67 +1306,36 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
 
 function SendQuickReplies(userId, richmenumessage, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
-
-        var data = {
-            'to': userId,
-            'messages': [
-                {
-                    "type": "text", // ①
-                    "text": "嗨!我在這，有什麼大同寶寶可以為您服務的嗎?",
-                    "quickReply": { // ②
-                        "items": [
-                            {
-                                "type": "action", // ③
-                                "imageUrl": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
-                                "action": {
-                                    "type": "message",
-                                    "label": "加入LINE個人服務",
-                                    "text": "大同寶寶，我想要加入LINE個人服務"
-                                }
-                            },
-                            {
-                                "type": "action",
-                                "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
-                                "action": {
-                                    "type": "message",
-                                    "label": "查看大同同樂會主頁",
-                                    "text": "大同寶寶，我想查看大同同樂會主頁"
-                                }
-                            },
-                            {
-                                "type": "action",
-                                "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
-                                "action": {
-                                    "type": "message",
-                                    "label": "推薦大同同樂會給好友",
-                                    "text": "大同寶寶，我想推薦大同同樂會給好友"
-                                }
-                            },
-                            {
-                                "type": "action", // ④
-                                "action": {
-                                    "type": "location",
-                                    "label": "尋找附近門市"
-                                }
-                            }
-                        ]
+        if (richmenumessage == 'the user has no richmenu') {
+            var data = {
+                'to': userId,
+                'messages': [
+                    {
+                        "type": "text", // ①
+                        "text": "嗨!我在這，有什麼大同寶寶可以為您服務的嗎?",
+                        "quickReply": quickreply
                     }
-                }
-            ]
-        }; //end data
-        if(richmenumessage == 'the user has no richmenu'){
-            console.log('未綁定');
-        }else{
-             console.log('綁定');
+                ]
+            }; //end data
+        } else {
+            var data = {
+                'to': userId,
+                'messages': [
+                    {
+                        "type": "text", // ①
+                        "text": "嗨!我在這，有什麼大同寶寶可以為您服務的嗎?",
+                        "quickReply": linequickreply
+                    }
+                ]
+            }; //end data
         }
-
-        /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (ret) {
                 this.callback(true);
             } else {
                 PostToLINE(data, config.channel_access_token, this.callback);
             }
-        }.bind({ callback: callback }));*/
+        }.bind({ callback: callback }));
     } else {
         callback(false);
     }
