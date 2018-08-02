@@ -1284,15 +1284,14 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
             var response_data = '';
             res.on('data', function (chunk) {
                 logger.info('*************************************Response: ' + chunk);
-                logger.info('*************************************Response.message: ' + chunk.message);
                 response_data += chunk;
             });
             res.on('end', function () {
-                var responserichmenu = JSON.parse(response_data);
-                console.log(typeof (responserichmenu));
-                console.log('------------------------------------------------------'+responserichmenu);
-                console.log('------------------------------------------------------'+responserichmenu.message);
+                var richmenu = JSON.parse(response_data);
+                var message = richmenu.message;
                 //SendLinkingUrl(userId, linkToken, 'tstiisacompanyfortatung');
+                SendQuickReplies(userId, message, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
             });
         }).end();
     } else {
@@ -1300,8 +1299,9 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
     }
 };
 
-function SendQuickReplies(userId, message, password, reply_token, callback) {
+function SendQuickReplies(userId, richmenumessage, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
+
         var data = {
             'to': userId,
             'messages': [
@@ -1349,15 +1349,19 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                 }
             ]
         }; //end data
+        if(richmenumessage == 'the user has no richmenu'){
+            console.log('未綁定');
+        }else{
+             console.log('綁定');
+        }
 
-
-        ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
+        /*ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (ret) {
                 this.callback(true);
             } else {
                 PostToLINE(data, config.channel_access_token, this.callback);
             }
-        }.bind({ callback: callback }));
+        }.bind({ callback: callback }));*/
     } else {
         callback(false);
     }
