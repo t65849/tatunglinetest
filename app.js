@@ -1285,10 +1285,8 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
                 logger.info('*************************************Response: ' + chunk);
                 if (res.statusCode == 200) {
                     var result = JSON.parse(chunk);
-                    logger.info('--------------------------------------------------------------------------'+result);
                     logger.info('--------------------------------------------------------------------------'+result.message);
                     callback(result);
-                    
                 }
             });
         }).end();
