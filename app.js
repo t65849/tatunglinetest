@@ -133,7 +133,9 @@ app.post('/messages', function (request, response) {
                 } else if (results[idx].message.text == '大同寶寶') {
                     //SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     //});
-                    SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    //SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    //});
+                    GetUserRichMenuId(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁') {
                     SendURI(acct, '查看大同同樂會主頁', 'line://home/public/main?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -1263,32 +1265,40 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
         callback(false);
     }
 }
-
-function SendQuickReplies(userId, message, password, reply_token, callback) {
+function GetUserRichMenuId(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
         logger.info('傳送訊息給 ' + userId);
-        var usermenuId = userId.replace(' ','').replace(' ','');
         var https = require('https');
         var options = {
             host: 'api.line.me',
             port: '443',
-            path: '/v2/bot/user/'+userId+'/richmenu',
+            path: '/v2/bot/user/' + userId + '/richmenu',
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer <' + config.channel_access_token + '>'
             }
         }
-        console.log('##########################################'+options.path);
+        console.log('##########################################' + options.path);
         var req = https.request(options, function (res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            logger.info('*************************************Response: ' + chunk);
-            if (res.statusCode == 200) {
-                var result = JSON.parse(chunk);
-                callback(result);
-            } 
-        });
-    }).end();
+            res.setEncoding('utf8');
+            var result='';
+            res.on('data', function (chunk) {
+                logger.info('*************************************Response: ' + chunk);
+                if (res.statusCode == 200) {
+                    result = JSON.parse(chunk);
+                    callback(result);
+                }
+            });
+            console.log('--------------------------------------------------------------------------'+chunk);
+            console.log('--------------------------------------------------------------------------'+result);
+        }).end();
+    } else {
+        callback(false);
+    }
+};
+
+function SendQuickReplies(userId, message, password, reply_token, callback) {
+    if (password == 'tstiisacompanyfortatung') {
         var data = {
             'to': userId,
             'messages': [
@@ -1336,7 +1346,7 @@ function SendQuickReplies(userId, message, password, reply_token, callback) {
                 }
             ]
         }; //end data
-        
+
 
         ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (ret) {
