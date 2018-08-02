@@ -35,9 +35,9 @@ carous = JSON.parse(carous); //字串轉物件
 var gift = require(__dirname + '/gift.js');
 
 var linequickreply = require(__dirname + '/linequickreply.json');
-linequickreply = JSON.parse(config); //字串轉物件
+linequickreply = JSON.parse(linequickreply); //字串轉物件
 var quickreply = require(__dirname + '/quickreply.json');
-quickreply = JSON.parse(config); //字串轉物件
+quickreply = JSON.parse(quickreply); //字串轉物件
 
 app.get('/api', function (request, response) {
     response.send('API is running');
