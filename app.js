@@ -1268,7 +1268,6 @@ function SendBubbleMessage(userId, message, password, reply_token, callback) {
 function GetUserRichMenuId(userId, message, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
         logger.info('傳送訊息給 ' + userId);
-        var https = require('https');
         var options = {
             host: 'api.line.me',
             port: '443',
@@ -1279,15 +1278,21 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
             }
         }
         console.log('##########################################' + options.path);
+        var https = require('https');
         var req = https.request(options, function (res) {
             res.setEncoding('utf8');
+            var response_data = '';
             res.on('data', function (chunk) {
                 logger.info('*************************************Response: ' + chunk);
                 logger.info('*************************************Response.message: ' + chunk.message);
-                if (res.statusCode == 200) {
-                    var result = JSON.parse(chunk);
-                    callback(result);
-                }
+                response_data += chunk;
+            });
+            res.on('end', function () {
+                var responserichmenu = JSON.parse(response_data);
+                console.log(typeof (responserichmenu));
+                console.log('------------------------------------------------------'+responserichmenu);
+                console.log('------------------------------------------------------'+responserichmenu.message);
+                //SendLinkingUrl(userId, linkToken, 'tstiisacompanyfortatung');
             });
         }).end();
     } else {
