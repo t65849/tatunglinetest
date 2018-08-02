@@ -146,7 +146,7 @@ app.post('/messages', function (request, response) {
                     SendURI(acct, '查看大同同樂會主頁', 'line://home/public/main?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會給好友') {
-                    SendURI(acct, '推薦大同同樂會給好友', 'line://ti/p/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    SendURI(acct, '推薦大同同樂會給好友', 'line://nv/recommendOA/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 } else {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
