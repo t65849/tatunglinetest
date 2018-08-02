@@ -1,7 +1,7 @@
-{ // ②
+{ 
     "items": [
         {
-            "type": "action", // ③
+            "type": "action", 
             "imageUrl": "https://pgw.udn.com.tw/gw/photo.php?u=https://uc.udn.com.tw/photo/2017/07/05/99/3719993.jpg&x=0&y=0&sw=0&sh=0&sl=W&fw=400",
             "action": {
                 "type": "message",
@@ -28,7 +28,7 @@
             }
         },
         {
-            "type": "action", // ④
+            "type": "action", 
             "action": {
                 "type": "location",
                 "label": "尋找附近門市"

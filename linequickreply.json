@@ -1,7 +1,7 @@
-{ // ②
+{ 
     "items": [
         {
-            "type": "action", // ③
+            "type": "action", 
             "imageUrl": "https://pic.pimg.tw/luck653/1382213665-4204725802.jpg",
             "action": {
                 "type": "message",
@@ -19,7 +19,7 @@
             }
         },
         {
-            "type": "action", // ④
+            "type": "action", 
             "action": {
                 "type": "location",
                 "label": "尋找附近門市"
