@@ -1309,6 +1309,7 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
 
 function SendQuickReplies(userId, richmenumessage, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
+        console.log('SendQuickReplies');
         if (richmenumessage == 'the user has no richmenu') {
             var data = {
                 'to': userId,
