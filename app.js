@@ -138,10 +138,10 @@ app.post('/messages', function (request, response) {
                 } else if (results[idx].message.text == '大同寶寶') {
                     //SendflexMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     //});
-                    SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                    });
-                    //GetUserRichMenuId(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    //SendQuickReplies(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                     //});
+                    GetUserRichMenuId(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
                 } else if (results[idx].message.text == '大同寶寶，我想查看大同同樂會主頁') {
                     SendURI(acct, '查看大同同樂會主頁', 'line://home/public/main?id=rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
@@ -1310,46 +1310,18 @@ function GetUserRichMenuId(userId, message, password, reply_token, callback) {
 function SendQuickReplies(userId, richmenumessage, password, reply_token, callback) {
     if (password == 'tstiisacompanyfortatung') {
         console.log('SendQuickReplies');
-        //if (richmenumessage == 'the user has no richmenu') {
+        if (richmenumessage == 'the user has no richmenu') {
         var data = {
-            'to': userId,
-            'messages': [
-                {
-                    "type": "text", // ①
-                    "text": "Select your favorite food category or send me your location!",
-                    "quickReply": { // ②
-                        "items": [
-                            {
-                                "type": "action", // ③
-                                "imageUrl": "https://example.com/sushi.png",
-                                "action": {
-                                    "type": "message",
-                                    "label": "Sushi",
-                                    "text": "Sushi"
-                                }
-                            },
-                            {
-                                "type": "action",
-                                "imageUrl": "https://example.com/tempura.png",
-                                "action": {
-                                    "type": "message",
-                                    "label": "Tempura",
-                                    "text": "Tempura"
-                                }
-                            },
-                            {
-                                "type": "action", // ④
-                                "action": {
-                                    "type": "location",
-                                    "label": "Send location"
-                                }
-                            }
-                        ]
+                'to': userId,
+                'messages': [
+                    {
+                        "type": "text", // ①
+                        "text": "嗨!我在這，有什麼大同寶寶可以為您服務的嗎?",
+                        "quickReply": quickreply
                     }
-                }
-            ]
-        }; //end data
-        /*} else {
+                ]
+            }; //end data
+        } else {
             var data = {
                 'to': userId,
                 'messages': [
@@ -1360,7 +1332,7 @@ function SendQuickReplies(userId, richmenumessage, password, reply_token, callba
                     }
                 ]
             }; //end data
-        }*/
+        }
         ReplyMessage(data, config.channel_access_token, reply_token, function (ret) {
             if (ret) {
                 this.callback(true);
