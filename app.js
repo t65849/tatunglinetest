@@ -1315,20 +1315,33 @@ function SendQuickReplies(userId, richmenumessage, password, reply_token, callba
             'to': userId,
             'messages': [
                 {
-                    "quickReply": {
+                    "type": "text", // ①
+                    "text": "Select your favorite food category or send me your location!",
+                    "quickReply": { // ②
                         "items": [
                             {
-                                "type": "action",
+                                "type": "action", // ③
+                                "imageUrl": "https://example.com/sushi.png",
                                 "action": {
-                                    "type": "cameraRoll",
-                                    "label": "Send photo"
+                                    "type": "message",
+                                    "label": "Sushi",
+                                    "text": "Sushi"
                                 }
                             },
                             {
                                 "type": "action",
+                                "imageUrl": "https://example.com/tempura.png",
                                 "action": {
-                                    "type": "camera",
-                                    "label": "Open camera"
+                                    "type": "message",
+                                    "label": "Tempura",
+                                    "text": "Tempura"
+                                }
+                            },
+                            {
+                                "type": "action", // ④
+                                "action": {
+                                    "type": "location",
+                                    "label": "Send location"
                                 }
                             }
                         ]
