@@ -148,8 +148,11 @@ app.post('/messages', function (request, response) {
                 } else if (results[idx].message.text == '大同寶寶，我想推薦大同同樂會給好友') {
                     SendURI(acct, '推薦大同同樂會給好友', 'line://nv/recommendOA/@rea8658u', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
-                } else {
+                } else if (results[idx].message.text == 'LINEPAY') {
                     SendLinePayMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                    });
+                } else {
+                    SendMessage(acct, '嗨!我是大同寶寶，如果有任何需求，可點選下面選單，讓我協助您。', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     });
                 }
             } else if (results[idx].message.type == 'location') {
