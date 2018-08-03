@@ -1315,15 +1315,20 @@ function SendQuickReplies(userId, richmenumessage, password, reply_token, callba
             'to': userId,
             'messages': [
                 {
-                    "quickReply": { // ②
+                    "quickReply": {
                         "items": [
                             {
-                                "type": "action", // ③
-                                "imageUrl": "https://example.com/sushi.png",
+                                "type": "action",
                                 "action": {
-                                    "type": "message",
-                                    "label": "Sushi",
-                                    "text": "Sushi"
+                                    "type": "cameraRoll",
+                                    "label": "Send photo"
+                                }
+                            },
+                            {
+                                "type": "action",
+                                "action": {
+                                    "type": "camera",
+                                    "label": "Open camera"
                                 }
                             }
                         ]
