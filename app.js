@@ -1320,10 +1320,12 @@ function SendQuickReplies(userId, richmenumessage, password, reply_token, callba
                     "quickReply": { // ②
                         "items": [
                             {
-                                "type": "action", // ④
+                                "type": "action", // ③
+                                "imageUrl": "https://example.com/sushi.png",
                                 "action": {
-                                    "type": "location",
-                                    "label": "Send location"
+                                    "type": "message",
+                                    "label": "Sushi",
+                                    "text": "Sushi"
                                 }
                             }
                         ]
