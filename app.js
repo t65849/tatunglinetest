@@ -1315,8 +1315,6 @@ function SendQuickReplies(userId, richmenumessage, password, reply_token, callba
             'to': userId,
             'messages': [
                 {
-                    "type": "text", // ①
-                    "text": "Select your favorite food category or send me your location!",
                     "quickReply": { // ②
                         "items": [
                             {
