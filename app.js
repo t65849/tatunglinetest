@@ -12,6 +12,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var hashtable = require(__dirname + '/hashtable.js');
+var sha256 = require('sha256'); // sha256
 
 
 // Setup Express Server
@@ -188,6 +189,26 @@ app.post('/messages', function (request, response) {
         }
     }
 });
+
+app.get('/phonenumber', function (request, response) {
+    console.log('GET /mylifftest');
+    request.header("Content-Type", 'text/html');
+    var fs = require('fs');
+    fs.readFile(__dirname + '/phonenumber.html', 'utf8', function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        this.res.send(data);
+    }.bind({ req: request, res: response }));
+});
+
+app.post('/sendphonenumber', function (request, response) {
+    var phonenumber = request.body.phonenumber;
+    console.log(phonenumber);
+    var hash = sha256('Hello');
+    console.log('*************************************************'+hash);
+});
+
 
 app.post('/postmember', function (request, response) {
     console.log('post /postmember');
