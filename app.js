@@ -204,8 +204,10 @@ app.get('/phonenumber', function (request, response) {
 
 app.post('/sendphonenumber', function (request, response) {
     var phonenumber = request.body.phonenumber;
+    console.log(typeof(phonenumber));
+    //var countrynumber = '+886'+phonenumber;
     console.log(phonenumber);
-    var hash = sha256('Hello');
+    var hash = sha256(phonenumber);
     console.log('*************************************************'+hash);
 });
 
