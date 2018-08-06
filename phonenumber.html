@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    </head>
+    <body>
+        <p>手機號碼+886
+        <input id="phonenumber" value="906777715"></input>
+        <button onclick = "phonenumberpush()">送出</button>
+        </p>
+    </body>
+    <script>
+        function phonenumberpush(){
+            var phonenumber = $('#phonenumber').val();
+            var data = {
+                phonenumber : phonenumber
+            }
+
+            $.post('/sendphonenumber', data, function(){
+                //
+            });
+        };
+    </script>
+</html>
