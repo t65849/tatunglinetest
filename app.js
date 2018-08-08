@@ -200,7 +200,7 @@ app.get('/phonenumber', function (request, response) {
         if (err) {
             res.send(err);
         }
-        data = data+textpnp;
+        data = data+'<script type="text/javascript"> var textpnp = " ' + textpnp + ' ";</script>';
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
