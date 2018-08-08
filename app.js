@@ -204,13 +204,13 @@ app.get('/phonenumber', function (request, response) {
 
 app.post('/sendphonenumber', function (request, response) {
     var phonenumber = request.body.phonenumber;
+    var password = request.body.password;
     if(phonenumber.length === 10){
         phonenumber = phonenumber.replace('0', '');
     }
     var countryphonenumber = '+886'+phonenumber;
-    console.log(countryphonenumber);
     var hash = sha256(countryphonenumber);
-    console.log('*************************************************'+hash);
+    console.log('**********************************************'+paassword);
 });
 
 
