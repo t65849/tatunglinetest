@@ -18,22 +18,16 @@
 <script type="text/javascript">
         var messages = '';
         $(document).ready(function(){
-            alert(JSON.stringify(textpnp));
             $('#textmessage').click(function(){
-                $('#textarea').val(textpnp);
+                $('#textarea').val(JSON.stringify(textpnp));
             });
         });
-        /*$(document).ready(function(){
+        $(document).ready(function(){
             $('#flexmessage').click(function(){
                 var flex = $('#flexmessage').val();
                 $('#textarea').val(flex);
             });
-        });*/
-        /*function textdata(){
-            var data = {
-                textpnp: textpnp
-            }
-        };*/
+        });
         function phonenumberpush() {
             var password = 'tstiisacompany';
             var phonenumber = $('#phonenumber').val();
