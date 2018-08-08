@@ -30,8 +30,12 @@
         });*/
         $(document).ready(function(){
             $('#texttype').change(function(){
-                alert('Hello');
                 $('#messages').addClass('hidden');
+                if($(this).val()==text){
+                    alert($(this).val());
+                }else if($(this).val()==flex){
+                    alert($(this).val());
+                }
             });
         });
         function phonenumberpush() {
