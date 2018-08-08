@@ -192,26 +192,61 @@ app.post('/messages', function (request, response) {
 
 app.get('/phonenumber', function (request, response) {
     console.log('GET /mylifftest');
+    var textpnp = require('fs').readFileSync(__dirname + '/textpnp.json');
+    textpnp = JSON.parse(textpnp); //字串轉物件
     request.header("Content-Type", 'text/html');
     var fs = require('fs');
     fs.readFile(__dirname + '/phonenumber.html', 'utf8', function (err, data) {
         if (err) {
             res.send(err);
         }
-        this.res.send(data);
+        this.res.send(data,textpnp);
     }.bind({ req: request, res: response }));
 });
 
 app.post('/sendphonenumber', function (request, response) {
     var phonenumber = request.body.phonenumber;
     var password = request.body.password;
-    if(phonenumber.length === 10){
+    if (phonenumber.length === 10) {
         phonenumber = phonenumber.replace('0', '');
     }
-    password = password+'fortatung';
-    var countryphonenumber = '+886'+phonenumber;
-    var hash = sha256(countryphonenumber);
-    console.log('**********************************************'+password);
+    password = password + 'fortatung';
+    var countryphonenumber = '+886' + phonenumber;
+    var hashnumber = sha256(countryphonenumber);
+    if (password == 'tstiisacompanyfortatung') {
+        var data = {
+            "to": "",
+            "messages": [
+                {
+                    "type": "text",
+                    "text": "文字訊息"
+                }
+            ]
+        } //end data
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/bot/pnp/push/verified',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        } //end options
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                logger.info('Response: ' + chunk);
+            });
+        });
+        req.write(JSON.stringify(data));
+        req.end();
+        try {
+            callback(true);
+        } catch (e) { };
+    }
 });
 
 
@@ -1337,7 +1372,7 @@ function SendQuickReplies(userId, richmenumessage, password, reply_token, callba
     if (password == 'tstiisacompanyfortatung') {
         console.log('SendQuickReplies');
         if (richmenumessage == 'the user has no richmenu') {
-        var data = {
+            var data = {
                 'to': userId,
                 'messages': [
                     {

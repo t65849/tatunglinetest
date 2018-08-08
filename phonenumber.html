@@ -1,26 +1,47 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>大世科PNP發送系統</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    </head>
-    <body>
-        <p>手機號碼+886
+<head>
+    <meta charset="utf-8"></meta>
+    <title>大世科PNP發送系統</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <p>手機號碼+886
         <input id="phonenumber" value="906777715"></input>
-        <button onclick = "phonenumberpush()">送出</button>
-        </p>
-    </body>
-    <script>
-        function phonenumberpush(){
+    </p>
+    <input id="textmessage" type="radio" name="message" value="textmessage" checked>文字訊息</input>
+    <input id="flexmessage" type="radio" name="message" value="flexmessage">Flex訊息</input>
+    <button type="button" onclick="phonenumberpush()">送出</button><br/>
+    <textarea id="textarea" rows="30" cols="100"></textarea>
+</body>
+<script>
+        alert(data.textpnp);
+        var messages = '';
+        $(document).ready(function(){
+            $('#textmessage').click(function(){
+                var text = $('#textmessage').val();
+                $('#textarea').val(text);
+            });
+        });
+        $(document).ready(function(){
+            $('#flexmessage').click(function(){
+                var flex = $('#flexmessage').val();
+                $('#textarea').val(flex);
+            });
+        });
+        function phonenumberpush() {
             var password = 'tstiisacompany';
             var phonenumber = $('#phonenumber').val();
             var data = {
-                password : password,
-                phonenumber : phonenumber
+                password: password,
+                phonenumber: phonenumber
             }
 
-            $.post('/sendphonenumber', data, function(){
+            $.post('/sendphonenumber', data, function () {
                 //
             });
         };
     </script>
+
 </html>
