@@ -21,7 +21,7 @@
         $(document).ready(function(){
             $('#textmessage').click(function(){
                 var text = $('#textmessage').val();
-                $('#textarea').val(data.textpnp);
+                $('#textarea').val(JSON.stringify(data.textpnp));
             });
         });
         $(document).ready(function(){
