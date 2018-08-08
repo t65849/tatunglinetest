@@ -193,7 +193,7 @@ app.post('/messages', function (request, response) {
 app.get('/phonenumber', function (request, response) {
     console.log('GET /mylifftest');
     var textpnp = require('fs').readFileSync(__dirname + '/textpnp.json');
-    textpnp = JSON.parse(textpnp); //字串轉物件
+    //textpnp = JSON.parse(textpnp); //字串轉物件
     request.header("Content-Type", 'text/html');
     var fs = require('fs');
     fs.readFile(__dirname + '/phonenumber.html', 'utf8', function (err, data) {
