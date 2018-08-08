@@ -210,7 +210,7 @@ app.post('/sendphonenumber', function (request, response) {
     }
     var countryphonenumber = '+886'+phonenumber;
     var hash = sha256(countryphonenumber);
-    console.log('**********************************************'+paassword);
+    console.log('**********************************************'+password);
 });
 
 
