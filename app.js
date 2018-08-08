@@ -192,18 +192,16 @@ app.post('/messages', function (request, response) {
 
 app.get('/phonenumber', function (request, response) {
     console.log('GET /mylifftest');
-    var textpnp = require('fs').readFileSync(__dirname + '/textpnp.json');
+    /*var textpnp = require('fs').readFileSync(__dirname + '/textpnp.json');
     textpnp = JSON.parse(textpnp); //字串轉物件
-    textpnp = JSON.stringify(textpnp);
-    console.log(textpnp);
-    console.log(typeof(textpnp));
+    textpnp = JSON.stringify(textpnp);*/
     request.header("Content-Type", 'text/html');
     var fs = require('fs');
     fs.readFile(__dirname + '/phonenumber.html', 'utf8', function (err, data) {
         if (err) {
             res.send(err);
         }
-        data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
+        //data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
@@ -218,8 +216,7 @@ app.post('/sendphonenumber', function (request, response) {
     password = password + 'fortatung';
     var countryphonenumber = '+886' + phonenumber;
     var hashnumber = sha256(countryphonenumber);
-    console.log(typeof(messages));
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'+messages);
+    
     /*if (password == 'tstiisacompanyfortatung') {
         var data = {
             "to": countryphonenumber,
