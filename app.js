@@ -208,6 +208,7 @@ app.post('/sendphonenumber', function (request, response) {
     if(phonenumber.length === 10){
         phonenumber = phonenumber.replace('0', '');
     }
+    password = password+'fortatung';
     var countryphonenumber = '+886'+phonenumber;
     var hash = sha256(countryphonenumber);
     console.log('**********************************************'+password);
