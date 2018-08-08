@@ -211,15 +211,18 @@ app.get('/phonenumber', function (request, response) {
 app.post('/sendphonenumber', function (request, response) {
     var phonenumber = request.body.phonenumber;
     var password = request.body.password;
+    var messages = request.body.messages;
     if (phonenumber.length === 10) {
         phonenumber = phonenumber.replace('0', '');
     }
     password = password + 'fortatung';
     var countryphonenumber = '+886' + phonenumber;
     var hashnumber = sha256(countryphonenumber);
-    if (password == 'tstiisacompanyfortatung') {
+    console.log(typeof(messages));
+    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'+messages);
+    /*if (password == 'tstiisacompanyfortatung') {
         var data = {
-            "to": "",
+            "to": countryphonenumber,
             "messages": [
                 {
                     "type": "text",
@@ -250,7 +253,7 @@ app.post('/sendphonenumber', function (request, response) {
         try {
             callback(true);
         } catch (e) { };
-    }
+}*/
 });
 
 

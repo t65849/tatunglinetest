@@ -11,7 +11,7 @@
         <input id="phonenumber" value="906777715"></input>
     </p>
     <input id="textmessage" type="radio" name="message" value="textmessage" checked>文字訊息</input>
-    <input id="flexmessage" type="radio" name="message" value="flexmessage">Flex訊息</input>
+    <!--<input id="flexmessage" type="radio" name="message" value="flexmessage">Flex訊息</input>-->
     <button type="button" onclick="phonenumberpush()">送出</button><br/>
     <textarea id="textarea" rows="30" cols="100"></textarea>
 </body>
@@ -22,20 +22,15 @@
                 $('#textarea').val(JSON.stringify(textpnp));
             });
         });
-        $(document).ready(function(){
-            $('#flexmessage').click(function(){
-                var flex = $('#flexmessage').val();
-                $('#textarea').val(flex);
-            });
-        });
         function phonenumberpush() {
             var password = 'tstiisacompany';
             var phonenumber = $('#phonenumber').val();
+            var messages = $('#textarea').val();
             var data = {
                 password: password,
-                phonenumber: phonenumber
+                phonenumber: phonenumber,
+                messages: messages
             }
-
             $.post('/sendphonenumber', data, function () {
                 //
             });
