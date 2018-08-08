@@ -13,7 +13,7 @@
     <!--<input id="textmessage" type="radio" name="message" value="textmessage" checked>文字訊息</input>-->
     <!--<input id="flexmessage" type="radio" name="message" value="flexmessage">Flex訊息</input>-->
     <form>選擇類型
-        <select class="type" name="typemessages">
+        <select id="texttype" class="type" name="typemessages">
             <option id="text" value="text">Text訊息</option>
             <option id="flex" value="flex">Flex訊息</option>
         </select>
@@ -29,7 +29,7 @@
             });
         });*/
         $(document).ready(function(){
-            $('.type').change(function(){
+            $('#texttype').change(function(){
                 $('#messages').addClass('hidden');
             });
         });
