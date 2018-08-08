@@ -6,7 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 </head>
 
-<body>
+<body onload="loadtext()">
     <p>手機號碼+886
         <input id="phonenumber" value="906777715"></input>
     </p>
@@ -17,11 +17,14 @@
 </body>
 <script type="text/javascript">
         var messages = '';
-        $(document).ready(function(){
+        /*$(document).ready(function(){
             $('#textmessage').click(function(){
                 $('#textarea').val(JSON.stringify(textpnp));
             });
-        });
+        });*/
+        function loadtext(){
+            $('#textarea').val(JSON.stringify(textpnp));
+        };
         function phonenumberpush() {
             var password = 'tstiisacompany';
             var phonenumber = $('#phonenumber').val();
