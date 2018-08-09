@@ -216,14 +216,15 @@ app.post('/sendphonenumber', function (request, response) {
     password = password + 'fortatung';
     var countryphonenumber = '+886' + phonenumber;
     var hashnumber = sha256(countryphonenumber);
-    
-    /*if (password == 'tstiisacompanyfortatung') {
+    console.log(hashnumber);
+
+   /* if (password == 'tstiisacompanyfortatung') {
         var data = {
-            "to": countryphonenumber,
+            "to": hashnumber,
             "messages": [
                 {
                     "type": "text",
-                    "text": "文字訊息"
+                    "text": messages
                 }
             ]
         } //end data

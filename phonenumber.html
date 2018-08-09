@@ -10,47 +10,45 @@
     <p>手機號碼+886
         <input id="phonenumber" value="906777715"></input>
     </p>
-    <!--<input id="textmessage" type="radio" name="message" value="textmessage" checked>文字訊息</input>-->
-    <!--<input id="flexmessage" type="radio" name="message" value="flexmessage">Flex訊息</input>-->
     <form>選擇類型
         <select id="texttype" class="type" name="typemessages">
             <option id="text" value="text">Text訊息</option>
-            <option id="flex" value="flex">Flex訊息</option>
+            <!--<option id="flex" value="flex">Flex訊息</option>-->
         </select>
     </form>
-    <p>傳送文字<input id="messages" type="text" value="傳送的文字訊息"></input></p>
+    <p>傳送文字<input id="messages" type="text" value="傳送的文字訊息"></input>
+    </p>
     <button type="button" onclick="phonenumberpush()">送出</button><br/>
-    <!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
+<!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
 </body>
 <script type="text/javascript">
-        /*$(document).ready(function(){
-            $('#textmessage').click(function(){
-                $('#textarea').val(JSON.stringify(textpnp));
-            });
-        });*/
-        $(document).ready(function(){
-            $('#texttype').change(function(){
-                $('#messages').addClass('hidden');
-                if($(this).val()=='text'){
-                    alert($(this).val());
-                }else if($(this).val()=='flex'){
-                    alert($(this).val());
-                }
-            });
+    /*$(document).ready(function(){
+        $('#textmessage').click(function(){
+            $('#textarea').val(JSON.stringify(textpnp));
         });
-        function phonenumberpush() {
-            var password = 'tstiisacompany';
-            var phonenumber = $('#phonenumber').val();
-            var messages = $('#messages').val();
-            var data = {
-                password: password,
-                phonenumber: phonenumber,
-                messages: messages
+    });*/
+    $(document).ready(function () {
+        $('#texttype').change(function () {
+            if ($(this).val() == 'text') {
+                //alert($(this).val());
+            } else if ($(this).val() == 'flex') {
+                //alert($(this).val());
             }
-            $.post('/sendphonenumber', data, function () {
-                //
-            });
-        };
-    </script>
+        });
+    });
+    function phonenumberpush() {
+        var password = 'tstiisacompany';
+        var phonenumber = $('#phonenumber').val();
+        var messages = $('#messages').val();
+        var data = {
+            password: password,
+            phonenumber: phonenumber,
+            messages: messages
+        }
+        $.post('/sendphonenumber', data, function () {
+            //
+        });
+    };
+</script>
 
 </html>
