@@ -218,7 +218,7 @@ app.post('/sendphonenumber', function (request, response) {
     var hashnumber = sha256(countryphonenumber);
     console.log(hashnumber);
 
-   /* if (password == 'tstiisacompanyfortatung') {
+   if (password == 'tstiisacompanyfortatung') {
         var data = {
             "to": hashnumber,
             "messages": [
@@ -241,6 +241,7 @@ app.post('/sendphonenumber', function (request, response) {
         } //end options
         var https = require('https');
         var req = https.request(options, function (res) {
+            console.log('statusCode:', res.statusCode);
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
                 logger.info('Response: ' + chunk);
@@ -251,7 +252,7 @@ app.post('/sendphonenumber', function (request, response) {
         try {
             callback(true);
         } catch (e) { };
-}*/
+}
 });
 
 
