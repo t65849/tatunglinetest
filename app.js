@@ -236,7 +236,7 @@ app.post('/sendphonenumber', function (request, response) {
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
                 'Content-Length': Buffer.byteLength(JSON.stringify(data)),
-                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+                'Authorization': 'Bearer <' + config.beacon_channel_access_token + '>'
             }
         } //end options
         var https = require('https');
