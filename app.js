@@ -218,7 +218,7 @@ app.post('/sendphonenumber', function (request, response) {
     var hashnumber = sha256(countryphonenumber);
     console.log(hashnumber);
 
-   if (password == 'tstiisacompanyfortatung') {
+    if (password == 'tstiisacompanyfortatung') {
         var data = {
             "to": hashnumber,
             "messages": [
@@ -252,7 +252,7 @@ app.post('/sendphonenumber', function (request, response) {
         try {
             callback(true);
         } catch (e) { };
-}
+    }
 });
 
 
