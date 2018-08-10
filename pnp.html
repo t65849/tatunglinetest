@@ -75,6 +75,7 @@
         }
         $.post('/pnp/send/' + phonenumber + '/' + messages, data, function (response_data) {
             console.log(response_data);
+            alert(response_data);
         });
     };
 </script>
