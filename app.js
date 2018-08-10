@@ -249,7 +249,7 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
             callback(true);
         } catch (e) { };
     }else {
-        callback(false);
+        response.send("密碼錯誤");
     }
 });
 
