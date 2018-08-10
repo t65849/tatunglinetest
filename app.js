@@ -207,6 +207,7 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     var phonenumber = request.params.phonenumber;
     var messages = request.params.messages;
     console.log(typeof(messages));
+    console.log(messages);
     var password = request.body.password;
     password = password + 'fortatung';
     var countryphonenumber = '+886' + phonenumber;
