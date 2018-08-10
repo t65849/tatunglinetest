@@ -74,9 +74,7 @@
             messages: messages
         }
         $.post('/pnp/send/' + phonenumber + '/' + messages, data, function (response_data) {
-            if(response_data=='測試'){
-                alert('success');
-            }
+            
         });
     };
 </script>
