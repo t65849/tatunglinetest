@@ -26,8 +26,8 @@
             <input type="password" class="input" id="password">
         </p>
         <button type="button" onclick="phonenumberpush()">送出</button>
-    </div>
-    <!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
+</div>
+<!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -43,38 +43,44 @@
         var phonenumber = $('#phonenumber').val();
         var messages = $('#messages').val();
         var password = $('#password').val();
-        
+
         if (phonenumber.indexOf("+886") >= 0) {
             if (phonenumber.indexOf("0") == 4) {
-                phonenumber = phonenumber.replace("+8860","+886");
+                phonenumber = phonenumber.replace("+8860", "+886");
             }
         }
         else if (phonenumber.indexOf("886") >= 0) {
             if (phonenumber.indexOf("0") == 3) {
-                phonenumber = phonenumber.replace("8860","+886");
+                phonenumber = phonenumber.replace("8860", "+886");
             }
             else {
-                phonenumber = phonenumber.replace("886","+886");
+                phonenumber = phonenumber.replace("886", "+886");
             }
         }
         else {
             if (phonenumber.indexOf("0") == 0) {
-                phonenumber = phonenumber.replace("0","+886");
+                phonenumber = phonenumber.replace("0", "+886");
             }
             else {
-                phonenumber = phonenumber.replace("9","+8869");
+                phonenumber = phonenumber.replace("9", "+8869");
             }
         }
         console.log(messages);
         console.log(phonenumber);
-        console.log(typeof(messages));
+        console.log(typeof (messages));
         var data = {
             password: password,
             phonenumber: phonenumber,
             messages: messages
         }
         $.post('/pnp/send/' + phonenumber + '/' + messages, data, function (response_data) {
-            console.log(response_data);
+            if (response_data == 'success') {
+                alert('傳送成功');
+                console.log(response_data);
+            } else {
+                alert('傳送成功');
+                console.log(response_data);
+            }
             alert(response_data);
         });
     };
