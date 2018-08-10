@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8"></meta>
     <title>大世科PNP發送系統</title>
@@ -17,13 +18,16 @@
             <!--<option id="flex" value="flex">Flex訊息</option>-->
         </select>
     </form>
-    <p>傳送文字<input id="messages" type="text" value="傳送的文字訊息"></input>
+    <p>傳送文字
+        <input id="messages" type="text" value="傳送的文字訊息"></input>
     </p>
     <div>
-        <p>輸入密碼:<input type="password" class="input" id="password"></p>
+        <p>輸入密碼:
+            <input type="password" class="input" id="password">
+        </p>
         <button type="button" onclick="phonenumberpush()">送出</button>
     </div>
-<!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
+    <!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
@@ -39,12 +43,33 @@
         var phonenumber = $('#phonenumber').val();
         var messages = $('#messages').val();
         var password = $('#password').val();
+        if (phonenumber.indexOf("+886") >= 0) {
+            if (phonenumber.indexOf("0") == 4) {
+                phonenumber = phonenumber.replace("+8860","+886");
+            }
+        }
+        else if (phonenumber.indexOf("886") >= 0) {
+            if (phonenumber.indexOf("0") == 3) {
+                phonenumber = phonenumber.replace("8860","+886");
+            }
+            else {
+                phonenumber = phonenumber.replace("886","+886");
+            }
+        }
+        else {
+            if (phonenumber.indexOf("0") == 0) {
+                phonenumber = phonenumber.replace("0","+886");
+            }
+            else {
+                phonenumber = phonenumber.replace("9","+8869");
+            }
+        }
         var data = {
             password: password,
             phonenumber: phonenumber,
             messages: messages
         }
-        $.post('/pnp/send/'+phonenumber+'/'+messages, data, function (response_data) {
+        $.post('/pnp/send/' + phonenumber + '/' + messages, data, function (response_data) {
             //if
         });
     };
