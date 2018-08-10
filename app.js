@@ -206,10 +206,8 @@ app.get('/pnp', function (request, response) {
 app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     var phonenumber = request.params.phonenumber;
     var messages = request.params.messages;
+    console.log(typeof(messages));
     var password = request.body.password;
-    if (phonenumber.length === 10) {
-        phonenumber = phonenumber.replace('0', '');
-    }
     password = password + 'fortatung';
     var countryphonenumber = '+886' + phonenumber;
     var hashnumber = sha256(countryphonenumber);
