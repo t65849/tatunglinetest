@@ -233,7 +233,12 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
         var https = require('https');
         var req = https.request(options, function (res) {
             console.log('statusCode:', res.statusCode);
-            
+            if(res.statusCode === 200){
+                res.send("測試");
+            }
+            else {
+                res.send("" + res.statusCode);
+            }
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
                 logger.info('Response: ' + chunk);
