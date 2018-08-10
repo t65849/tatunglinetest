@@ -206,11 +206,8 @@ app.get('/pnp', function (request, response) {
 app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     var phonenumber = request.params.phonenumber;
     var messages = request.params.messages;
-    console.log(typeof(messages));
-    console.log(messages);
     var password = request.body.password;
     password = password + 'fortatung';
-    var countryphonenumber = '+886' + phonenumber;
     var hashnumber = sha256(countryphonenumber);
     if (password == 'tstiisacompanyfortatung') {
         var data = {
@@ -236,6 +233,9 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
         var https = require('https');
         var req = https.request(options, function (res) {
             console.log('statusCode:', res.statusCode);
+            if(res.statusCode==200){
+                response.send('測試');
+            }
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
                 logger.info('Response: ' + chunk);
