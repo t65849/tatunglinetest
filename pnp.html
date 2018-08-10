@@ -43,6 +43,7 @@
         var phonenumber = $('#phonenumber').val();
         var messages = $('#messages').val();
         var password = $('#password').val();
+        
         if (phonenumber.indexOf("+886") >= 0) {
             if (phonenumber.indexOf("0") == 4) {
                 phonenumber = phonenumber.replace("+8860","+886");
@@ -64,6 +65,8 @@
                 phonenumber = phonenumber.replace("9","+8869");
             }
         }
+        console.log(messages);
+        console.log(phonenumber);
         var data = {
             password: password,
             phonenumber: phonenumber,
