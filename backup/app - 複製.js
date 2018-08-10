@@ -203,10 +203,10 @@ app.get('/pnp', function (request, response) {
     }.bind({ req: request, res: response }));
 });
 
-app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
-    var phonenumber = request.params.phonenumber;
-    var messages = request.params.messages;
+app.post('/sendphonenumber', function (request, response) {
+    var phonenumber = request.body.phonenumber;
     var password = request.body.password;
+    var messages = request.body.messages;
     if (phonenumber.length === 10) {
         phonenumber = phonenumber.replace('0', '');
     }
