@@ -208,7 +208,7 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     var messages = request.params.messages;
     var password = request.body.password;
     password = password + 'fortatung';
-    var hashnumber = sha256(countryphonenumber);
+    var hashnumber = sha256(phonenumber);
     if (password == 'tstiisacompanyfortatung') {
         var data = {
             "to": hashnumber,
