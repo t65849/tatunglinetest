@@ -772,7 +772,7 @@ function SendLinePayMessage(userId, message, password, reply_token, callback) {
                                 },
                                 {
                                     "type": "text",
-                                    "text": today,
+                                    "text": "today",
                                     "size": "xs",
                                     "color": "#aaaaaa",
                                     "wrap": true
