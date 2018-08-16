@@ -212,12 +212,7 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     if (password == 'tstiisacompanyfortatung') {
         var data = {
             "to": hashnumber,
-            "messages": [
-                {
-                    "type": "text",
-                    "text": messages
-                }
-            ]
+            "messages": messages
         } //end data
         var options = {
             host: 'api.line.me',

@@ -34,7 +34,11 @@
     $(document).ready(function () {
         $('#texttype').change(function () {
             if ($(this).val() == 'text') {
-                messages = $('#messages').val();
+                messages = [
+                    {
+                        "type": "text",
+                        "text": $('#messages').val()
+                    }];
             } else if ($(this).val() == 'flex') {
                 messages = [
                     {
