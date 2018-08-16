@@ -210,6 +210,7 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     password = password + 'fortatung';
     var hashnumber = sha256(phonenumber);
     if (password == 'tstiisacompanyfortatung') {
+        console.log("-----------------------------" + messages);
         var data = {
             "to": hashnumber,
             "messages": [
