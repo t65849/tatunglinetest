@@ -30,7 +30,7 @@
     <!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
 </body>
 <script type="text/javascript">
-    var messages;
+    var messages = $('#messages').val();
     $(document).ready(function () {
         $('#texttype').change(function () {
             if ($(this).val() == 'text') {
