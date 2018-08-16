@@ -34,13 +34,9 @@
     $(document).ready(function () {
         $('#texttype').change(function () {
             if ($(this).val() == 'text') {
-                messages = [
-                    {
-                        "type": "text",
-                        "text": "" + $('#messages').val()
-                    }];
+                messages = $('#messages').val();
             } else if ($(this).val() == 'flex') {
-                messages = [
+                messages = "flex";/*[
                     {
                         "type": "flex",
                         "altText": "this is a flex message",
@@ -153,7 +149,7 @@
                             }
                         }
                     }
-                ]
+                ]*/
             }
         });
     });

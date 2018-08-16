@@ -212,8 +212,129 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     if (password == 'tstiisacompanyfortatung') {
         var data = {
             "to": hashnumber,
-            "messages": messages
+            "messages": [
+                {
+                    "type": "text",
+                    "text": messages
+                }
+            ]
         } //end data
+        if(messages === "flex"){
+            data.messages=[
+                {
+                    "type": "flex",
+                    "altText": "this is a flex message",
+                    "contents":
+                    {
+                        "type": "bubble",
+                        "styles": {
+                            "footer": {
+                                "separator": true
+                            }
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "付款",
+                                    "weight": "bold",
+                                    "color": "#1DB446",
+                                    "size": "sm"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "NT$ 54",
+                                    "weight": "bold",
+                                    "size": "xxl",
+                                    "margin": "md"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "LINE PAY",
+                                    "weight": "bold",
+                                    "size": "md",
+                                    "margin": "md"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "today",
+                                    "size": "xs",
+                                    "color": "#aaaaaa",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "付款完成。",
+                                    "weight": "bold",
+                                    "size": "xl",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "separator",
+                                    "margin": "xxl"
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "margin": "xxl",
+                                    "spacing": "sm",
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "商店名稱",
+                                                    "size": "sm",
+                                                    "color": "#555555",
+                                                    "flex": 0
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": "全家便利商店",
+                                                    "weight": "bold",
+                                                    "size": "sm",
+                                                    "color": "#111111",
+                                                    "align": "end"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "1",
+                                            "weight": "bold",
+                                            "size": "sm",
+                                            "color": "#ffffff"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "指定消費為排除繳稅、超商、全聯、分期等無法回饋LINE Points點數的消費。【完整不回饋消費項目清單，請參閱下方連結】LINE Pay聯名卡2%點數回饋資格將依中國信託LINE Pay聯名卡回饋計畫為準。【謹慎理財信用至上】信用卡循環年利率=中國信託ARMs+5.97%起，上限15%",
+                                            "size": "sm",
+                                            "color": "#555555",
+                                            "wrap": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "separator",
+                                    "margin": "xxl"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "聯絡中國信託",
+                                    "size": "xl",
+                                    "color": "#000077",
+                                    "wrap": true
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
         var options = {
             host: 'api.line.me',
             port: '443',
@@ -767,7 +888,7 @@ function SendLinePayMessage(userId, message, password, reply_token, callback) {
                                 },
                                 {
                                     "type": "text",
-                                    "text": "today",
+                                    "text": today,
                                     "size": "xs",
                                     "color": "#aaaaaa",
                                     "wrap": true
