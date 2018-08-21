@@ -106,13 +106,9 @@
                 linkToken: linkToken
             }
             $.post('/postmember', data, function (data) {
-                if (data == 'wrong') {
-                    alert('密碼錯誤');
-                } else {
                     setTimeout(function () {
                         window.location = data.redirect;
                     }, 1000);
-                }
             });
             //var nonce = new Date().getTime();
             //window.location="https://access.line.me/dialog/bot/accountLink?linkToken={link token}&nonce={nonce}";
