@@ -220,8 +220,8 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
                 }
             ]
         } //end data
-        if(messages === "flex"){
-            data.messages=[
+        if (messages === "flex") {
+            data.messages = [
                 {
                     "type": "flex",
                     "altText": "this is a flex message",
@@ -350,10 +350,10 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
         var https = require('https');
         var req = https.request(options, function (res) {
             console.log('statusCode:', res.statusCode);
-            if(res.statusCode==200){
+            if (res.statusCode == 200) {
                 response.send("success");
-            }else{
-                response.send("fail"+res.statusCode);
+            } else {
+                response.send("fail" + res.statusCode);
             }
             res.setEncoding('utf8');
             res.on('data', function (chunk) {
@@ -365,7 +365,7 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
         try {
             callback(true);
         } catch (e) { };
-    }else {
+    } else {
         response.send("密碼錯誤");
     }
 });
@@ -375,21 +375,27 @@ app.post('/postmember', function (request, response) {
     console.log('post /postmember');
     var email = request.body.email;
     var password = request.body.password;
-    var linkToken = request.body.linkToken;
-    var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
-    linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
-    var nonce = new Date().getTime();
-    var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken=" + linkToken + "&nonce=" + nonce;
-    console.log('nonce: ' + nonce);
-    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
-    console.log(httpurl);
-    try {
+    if (password == '1234567890') {
+        var linkToken = request.body.linkToken;
+        var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
+        linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
+        var nonce = new Date().getTime();
+        var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken=" + linkToken + "&nonce=" + nonce;
+        console.log('nonce: ' + nonce);
+        console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
         console.log(httpurl);
-        response.send({ redirect: httpurl });
-    } catch (err) {
-        console.log(err);
-        response.end('fail');
+        try {
+            console.log(httpurl);
+            response.send({ redirect: httpurl });
+        } catch (err) {
+            console.log(err);
+            response.end('fail');
+        }
+    }else{
+        console.log('---------------------------------------------------------------------------------------------wrong');
+        response.send('wrong');
     }
+
     //response.end('OK');
 });
 

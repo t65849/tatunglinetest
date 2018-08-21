@@ -89,31 +89,30 @@
             </div>
             <div>
                 <button class="button" style="background-color: #C1272D" onclick="logintatung()">登入</button>
-                <button class="button" style="background-color: #EEB229">忘記密碼</button>
-            </div>
-        </div>
-    </div>
+<button class="button" style="background-color: #EEB229">忘記密碼</button>
+</div>
+</div>
+</div>
 <script>
-    function logintatung(){
-        if($('input').val()===''){
+    function logintatung() {
+        if ($('input').val() === '') {
             alert('請輸入信箱或者密碼，謝謝');
-        }else if($('#password').val() !== '1234567890'){
-            console.log($('#password').val());
-            alert('帳密輸入有誤，請重新輸入謝謝!');
-        }else{
+        } else {
             var email = $('#email').val();
             var password = $('#password').val();
-            console.log($('#password').val());
-            console.log(typeof($('#password').val()));
             var data = {
                 email: email,
                 password: password,
                 linkToken: linkToken
             }
-            $.post('/postmember', data, function(data){
-                setTimeout(function(){
-                    window.location = data.redirect;
-                },1000);
+            $.post('/postmember', data, function (data) {
+                if (data == 'wrong') {
+                    alert('密碼錯誤');
+                } else {
+                    setTimeout(function () {
+                        window.location = data.redirect;
+                    }, 1000);
+                }
             });
             //var nonce = new Date().getTime();
             //window.location="https://access.line.me/dialog/bot/accountLink?linkToken={link token}&nonce={nonce}";
