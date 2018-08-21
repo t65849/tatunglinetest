@@ -375,29 +375,21 @@ app.post('/postmember', function (request, response) {
     console.log('post /postmember');
     var email = request.body.email;
     var password = request.body.password;
-    console.log('--------------------------------------------------------------------------------------------'+password);
-    console.log(typeof(password));
-    if (password == '1234567890') {
-        var linkToken = request.body.linkToken;
-        var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
-        linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
-        var nonce = new Date().getTime();
-        var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken=" + linkToken + "&nonce=" + nonce;
-        console.log('nonce: ' + nonce);
-        console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
+    var linkToken = request.body.linkToken;
+    var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
+    linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
+    var nonce = new Date().getTime();
+    var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken=" + linkToken + "&nonce=" + nonce;
+    console.log('nonce: ' + nonce);
+    console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
+    console.log(httpurl);
+    try {
         console.log(httpurl);
-        try {
-            console.log(httpurl);
-            response.send({ redirect: httpurl });
-        } catch (err) {
-            console.log(err);
-            response.end('fail');
-        }
-    }else{
-        console.log('---------------------------------------------------------------------------------------------wrong');
-        response.send('wrong');
+        response.send({ redirect: httpurl });
+    } catch (err) {
+        console.log(err);
+        response.end('fail');
     }
-
     //response.end('OK');
 });
 
