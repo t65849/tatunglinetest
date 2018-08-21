@@ -375,6 +375,8 @@ app.post('/postmember', function (request, response) {
     console.log('post /postmember');
     var email = request.body.email;
     var password = request.body.password;
+    console.log('--------------------------------------------------------------------------------------------'+password);
+    console.log(typeof(password));
     if (password == '1234567890') {
         var linkToken = request.body.linkToken;
         var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
