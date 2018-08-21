@@ -97,6 +97,8 @@
     function logintatung(){
         if($('input').val()===''){
             alert('請輸入信箱或者密碼，謝謝');
+        }else if($('#password').val() != '1234567890'){
+            alert('帳密輸入有誤，謝謝!');
         }else{
             var email = $('#email').val();
             var password = $('#password').val();
