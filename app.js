@@ -698,7 +698,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                         "aspectMode": "fit",
                         "action": {
                             "type": "uri",
-                            "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                            "uri": "https://tatungflextest01.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                         }
                     },
                     "body": {
@@ -707,7 +707,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                         "spacing": "md",
                         "action": {
                             "type": "uri",
-                            "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                            "uri": "https://tatungflextest01.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                         },
                         "contents": [
                             {
@@ -717,7 +717,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                                 "weight": "bold",
                                 "action": {
                                     "type": "uri",
-                                    "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                                    "uri": "https://tatungflextest01.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                                 },
                             },
                             {
@@ -728,7 +728,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                                 "size": "md",
                                 "action": {
                                     "type": "uri",
-                                    "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                                    "uri": "https://tatungflextest01.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                                 },
                             }
                         ]
@@ -748,7 +748,7 @@ function SendLinkingUrl(userId, linkToken, password) {
                                 "action": {
                                     "type": "uri",
                                     "label": "點我加入LINE個人服務",
-                                    "uri": "https://tatungloginaccount.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
+                                    "uri": "https://tatungflextest01.herokuapp.com/tatunglogin?linkToken=" + linkToken.linkToken
                                 }
                             }
                         ]
