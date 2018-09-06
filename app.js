@@ -102,7 +102,7 @@ app.get('/logs', function (request, response) {
     var stream = require('fs').createReadStream('logs/messaging.log');
     stream.pipe(response);
 });
-
+var useremail=0;
 app.post('/messages', function (request, response) {
     response.send('');
     logger.info(request.body);
@@ -172,7 +172,6 @@ app.post('/messages', function (request, response) {
         } else if (results[idx].type == 'accountLink') {
             /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
-                logger.info('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+JSON.stringify(request.body));
             if (results[idx].link.result == 'ok') {
                 SendMessage(acct, '大同寶寶：加入LINE個人服務成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     SendSticker(acct, '2', '516', 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -373,10 +372,12 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
 
 
 app.post('/postmember', function (request, response) {
+    
     console.log('post /postmember');
     var email = request.body.email;
     var password = request.body.password;
     if (email=='andy@hotmail.com' && password == '1234567890') {
+        useremail=1;
         var linkToken = request.body.linkToken;
         var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
         linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
@@ -792,6 +793,7 @@ function SendLinkingUrl(userId, linkToken, password) {
 
 function LinkrichmenuUsers(userId, password) {
     if (password == 'tstiisacompanyfortatung') {
+        console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu'+useremail);
         logger.info('LinkrichmenuUsers, userId: ' + userId);
         var options = {
             host: 'api.line.me',
