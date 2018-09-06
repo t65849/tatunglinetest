@@ -172,6 +172,7 @@ app.post('/messages', function (request, response) {
         } else if (results[idx].type == 'accountLink') {
             /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
+                logger.info('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'+JSON.stringify(request.body));
             if (results[idx].link.result == 'ok') {
                 SendMessage(acct, '大同寶寶：加入LINE個人服務成功!', 'tstiisacompanyfortatung', reply_token, function (ret) {
                     SendSticker(acct, '2', '516', 'tstiisacompanyfortatung', reply_token, function (ret) {
