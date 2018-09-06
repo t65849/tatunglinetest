@@ -102,7 +102,7 @@ app.get('/logs', function (request, response) {
     var stream = require('fs').createReadStream('logs/messaging.log');
     stream.pipe(response);
 });
-var useremail=0;
+var useremail = 0;
 app.post('/messages', function (request, response) {
     response.send('');
     logger.info(request.body);
@@ -372,12 +372,11 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
 
 
 app.post('/postmember', function (request, response) {
-    
     console.log('post /postmember');
     var email = request.body.email;
     var password = request.body.password;
-    if (email=='andy@hotmail.com' && password == '1234567890') {
-        useremail=1;
+    if (email == 'andy@hotmail.com' && password == '1234567890') {
+        useremail = 1;
         var linkToken = request.body.linkToken;
         var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
         linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
@@ -393,7 +392,24 @@ app.post('/postmember', function (request, response) {
             console.log(err);
             response.end('fail');
         }
-    }else{
+    } else if (email == 'peter@gmail.com' && password == '1234567890') {
+        useremail = 0;
+        var linkToken = request.body.linkToken;
+        var linkTokenreplace = linkToken.replace(' ', '');//因為得到的linkToken左右會有空格，須把空格拿掉才能redirect
+        linkToken = linkTokenreplace.replace(' ', ''); //去掉右邊的空格
+        var nonce = new Date().getTime();
+        var httpurl = "https://access.line.me/dialog/bot/accountLink?linkToken=" + linkToken + "&nonce=" + nonce;
+        console.log('nonce: ' + nonce);
+        console.log('^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^linkToken:' + linkToken);
+        console.log(httpurl);
+        try {
+            console.log(httpurl);
+            response.send({ redirect: httpurl });
+        } catch (err) {
+            console.log(err);
+            response.end('fail');
+        }
+    } else {
         response.send('wrong');
     }
 
@@ -793,27 +809,54 @@ function SendLinkingUrl(userId, linkToken, password) {
 
 function LinkrichmenuUsers(userId, password) {
     if (password == 'tstiisacompanyfortatung') {
-        console.log('uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu'+useremail);
-        logger.info('LinkrichmenuUsers, userId: ' + userId);
-        var options = {
-            host: 'api.line.me',
-            port: '443',
-            path: '/v2/bot/user/' + userId + '/richmenu/' + config.rich_menu_id,
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer <' + config.channel_access_token + '>'
-            }
+        switch (useremail) {
+            case 1:
+                logger.info('LinkrichmenuUsers, userId: ' + userId);
+                var options = {
+                    host: 'api.line.me',
+                    port: '443',
+                    path: '/v2/bot/user/' + userId + '/richmenu/' + config.rich_menu_id,
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer <' + config.channel_access_token + '>'
+                    }
+                }
+                var https = require('https');
+                var req = https.request(options, function (res) {
+                    console.log('statusCode:', res.statusCode);
+                    console.log('headers:', res.headers);
+                    if (res.statusCode == 200) {
+                        console.log('Link to rich menu success');
+                    } else {
+                        console.log('Link to rich menu fail');
+                    }
+                });
+                break;
+
+            default:
+                logger.info('LinkrichmenuUsers, userId: ' + userId);
+                var options = {
+                    host: 'api.line.me',
+                    port: '443',
+                    path: '/v2/bot/user/' + userId + '/richmenu/' + config.vip_rich_menu_id,
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer <' + config.channel_access_token + '>'
+                    }
+                }
+                var https = require('https');
+                var req = https.request(options, function (res) {
+                    console.log('statusCode:', res.statusCode);
+                    console.log('headers:', res.headers);
+                    if (res.statusCode == 200) {
+                        console.log('Link to rich menu success');
+                    } else {
+                        console.log('Link to rich menu fail');
+                    }
+                });
+                break;
         }
-        var https = require('https');
-        var req = https.request(options, function (res) {
-            console.log('statusCode:', res.statusCode);
-            console.log('headers:', res.headers);
-            if (res.statusCode == 200) {
-                console.log('Link to rich menu success');
-            } else {
-                console.log('Link to rich menu fail');
-            }
-        });
+
         req.end('end');
     }
 };
