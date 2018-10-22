@@ -424,7 +424,7 @@ app.post('/api/liff/add', function (request, response) {
             console.log('statusCode:', res.statusCode);
             if (res.statusCode == 200) {
                 response.send("success");
-                console.log(res);
+                //console.log(res);
             } else {
                 //response.send("fail" + res.statusCode);
                 console.log(res.statusCode);
