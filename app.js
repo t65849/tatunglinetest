@@ -433,8 +433,8 @@ app.post('/api/liff/add', function (request, response) {
                 
             } else {
                 //response.send("fail" + res.statusCode);
-                console.log(res.statusCode);
-                console.log(JSON.stringify(res));
+                logger.info(res.statusCode);
+                logger.info(JSON.stringify(res));
             }
         });
         req.write(JSON.stringify(data));
