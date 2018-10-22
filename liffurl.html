@@ -52,7 +52,7 @@
             urltoliff: urltoliff,
             lifftype: lifftype
         }
-        $.post('/liff/add', data, function (response_data) {
+        $.post('/api/liff/add', data, function (response_data) {
             if (response_data == 'success') {
                 alert('傳送成功');
                 console.log(response_data);

@@ -382,18 +382,64 @@ app.get('/liff', function (request, response) {
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
-
-app.post('/liff/add', function (request, response) {
+app.get('/liffprofile', function (request, response) {
+    console.log('GET /liff');
+    request.header("Content-Type", 'text/html');
+    var fs = require('fs');
+    fs.readFile(__dirname + '/liffprofile.html', 'utf8', function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        //data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
+        this.res.send(data);
+    }.bind({ req: request, res: response }));
+});
+app.post('/api/liff/add', function (request, response) {
     var urltoliff = request.body.urltoliff;
     var lifftype = request.body.lifftype;
     var password = request.body.password;
     password = password + 'fortatung';
-    console.log('-------------------------------------------------------'+urltoliff);
-    console.log('-------------------------------------------------------'+lifftype);
     if (password == 'tstiisacompanyfortatung') {
-        response.send("success");
         console.log('-------------------------------------------------------'+urltoliff);
         console.log('-------------------------------------------------------'+lifftype);
+        var data = {
+            "view": {
+                "type": lifftype,
+                "url": urltoliff
+            }
+        } //end data
+        var options = {
+            host: 'api.line.me',
+            port: '443',
+            path: '/liff/v1/apps',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+                'Authorization': 'Bearer <' + config.channel_access_token + '>'
+            }
+        } //end options
+        var https = require('https');
+        var req = https.request(options, function (res) {
+            console.log('statusCode:', res.statusCode);
+            if (res.statusCode == 200) {
+                response.send("success");
+                console.log(JSON.stringify(res));
+            } else {
+                //response.send("fail" + res.statusCode);
+                console.log(res.statusCode);
+                console.log(JSON.stringify(res));
+            }
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                logger.info('Response: ' + chunk);
+            });
+        });
+        req.write(JSON.stringify(data));
+        req.end();
+        try {
+            callback(true);
+        } catch (e) { };
     } else {
         response.send("密碼錯誤");
     }
