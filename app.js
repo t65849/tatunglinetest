@@ -423,17 +423,24 @@ app.post('/api/liff/add', function (request, response) {
         var req = https.request(options, function (res) {
             console.log('statusCode:', res.statusCode);
             if (res.statusCode == 200) {
-                response.send("success");
-                //console.log(res);
+                //response.send("密碼錯誤");
+                
+                res.setEncoding('utf8');
+                var data_chunk = '';
+                res.on('data', function (chunk) {
+                    data_chunk += chunk;
+                });
+                res.one('end', function () {
+                    //var data = JSON.parse(data_chunk);
+                    console.log(data_chunk);
+                });
             } else {
                 //response.send("fail" + res.statusCode);
                 console.log(res.statusCode);
                 console.log(JSON.stringify(res));
             }
-            res.setEncoding('utf8');
-            res.on('data', function (chunk) {
-                logger.info('Response: ' + chunk);
-            });
+            
+            
         });
         req.write(JSON.stringify(data));
         req.end();
