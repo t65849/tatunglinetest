@@ -430,7 +430,7 @@ app.post('/api/liff/add', function (request, response) {
                 res.on('data', function (chunk) {
                     data_chunk += chunk;
                 });
-                res.one('end', function () {
+                res.on('end', function () {
                     //var data = JSON.parse(data_chunk);
                     console.log(data_chunk);
                 });
