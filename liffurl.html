@@ -53,9 +53,8 @@
             lifftype: lifftype
         }
         $.post('/api/liff/add', data, function (response_data) {
-            if (response_data == 'success') {
-                alert('傳送成功');
-                console.log(response_data);
+            if (response_data.liffId != '') {
+                alert(JSON.stringify(response_data));
             } else if (response_data == '密碼錯誤') {
                 alert('密碼錯誤');
             } else {

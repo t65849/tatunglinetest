@@ -400,8 +400,6 @@ app.post('/api/liff/add', function (request, response) {
     var password = request.body.password;
     password = password + 'fortatung';
     if (password == 'tstiisacompanyfortatung') {
-        console.log('-------------------------------------------------------'+urltoliff);
-        console.log('-------------------------------------------------------'+lifftype);
         var data = {
             "view": {
                 "type": lifftype,
@@ -423,24 +421,21 @@ app.post('/api/liff/add', function (request, response) {
         var req = https.request(options, function (res) {
             console.log('statusCode:', res.statusCode);
             if (res.statusCode == 200) {
-                //response.send("密碼錯誤");
-                
                 res.setEncoding('utf8');
                 var data_chunk = '';
                 res.on('data', function (chunk) {
                     data_chunk += chunk;
                 });
                 res.on('end', function () {
-                    //var data = JSON.parse(data_chunk);
-                    console.log(data_chunk);
+                    var data = JSON.parse(data_chunk);
+                    response.send(data);
                 });
+                
             } else {
                 //response.send("fail" + res.statusCode);
                 console.log(res.statusCode);
                 console.log(JSON.stringify(res));
             }
-            
-            
         });
         req.write(JSON.stringify(data));
         req.end();
