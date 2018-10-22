@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"></meta>
+    <title>大世科建立LIFF測試頁面</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>大世科建立LIFF測試頁面</h1>
+    <p>網址: 
+        <!--<input id="phonenumber" type="text" value="+886912345678" placeholder="例如:+886912345678">-->
+        <input id="urltoliff" type="text" placeholder="例如:http://www.google.com.tw/" style="width:370px">
+    </p>
+    <form>選擇LIFF類型
+        <select id="lifftype" class="type" name="typemessages" value="text">
+            <option id="tall" value="tall">tall (4/5高度)</option>
+            <option id="full" value="full">full (100%高度)</option>
+            <option id="compact" value="compact">compact (1/2高度)</option>
+        </select>
+    </form>
+    <div>
+        <p>輸入密碼:
+            <input type="password" class="input" id="password">
+        </p>
+        <button type="button" onclick="liffpush()">送出</button>
+    </div>
+    <p>產生的LIFF網址: 
+        <!--<input id="phonenumber" type="text" value="+886912345678" placeholder="例如:+886912345678"></input>-->
+        <input id="urltoliff" type="text" style="width:370px">
+     </p>
+    <!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#lifftype').change(function () {
+            /*if ($(this).val() == 'text') {
+                messages = $('#messages').val();
+            } else if ($(this).val() == 'flex') {
+                messages = "flex";
+            }*/
+        });
+    });
+    function liffpush() {
+        var urltoliff = $('#urltoliff').val();
+        var lifftype = $('#lifftype').val();
+        var password = $('#password').val();
+
+        var data = {
+            password: password,
+            urltoliff: urltoliff,
+            lifftype: lifftype
+        }
+        $.post('/liff/add', data, function (response_data) {
+            if (response_data == 'success') {
+                alert('傳送成功');
+                console.log(response_data);
+            } else if (response_data == '密碼錯誤') {
+                alert('密碼錯誤');
+            } else {
+                alert('傳送失敗');
+                console.log(response_data);
+            }
+        });
+    };
+</script>
+
+</html>

@@ -370,6 +370,35 @@ app.post('/pnp/send/:phonenumber/:messages', function (request, response) {
     }
 });
 
+app.get('/liff', function (request, response) {
+    console.log('GET /liff');
+    request.header("Content-Type", 'text/html');
+    var fs = require('fs');
+    fs.readFile(__dirname + '/liffurl.html', 'utf8', function (err, data) {
+        if (err) {
+            res.send(err);
+        }
+        //data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
+        this.res.send(data);
+    }.bind({ req: request, res: response }));
+});
+
+app.post('/liff/add', function (request, response) {
+    var urltoliff = request.body.urltoliff;
+    var lifftype = request.body.lifftype;
+    var password = request.body.password;
+    password = password + 'fortatung';
+    console.log('-------------------------------------------------------'+urltoliff);
+    console.log('-------------------------------------------------------'+lifftype);
+    if (password == 'tstiisacompanyfortatung') {
+        response.send("success");
+        console.log('-------------------------------------------------------'+urltoliff);
+        console.log('-------------------------------------------------------'+lifftype);
+    } else {
+        response.send("密碼錯誤");
+    }
+});
+
 
 app.post('/postmember', function (request, response) {
     console.log('post /postmember');
