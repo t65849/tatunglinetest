@@ -49,7 +49,7 @@
                         var displayName = JSON.stringify(profile.displayName);
                         var pictureUrl = JSON.stringify(profile.pictureUrl);
                         var statusMessage = JSON.stringify(profile.statusMessage);
-                        alert(typeof(pictureUrl));
+                        alert(pictureUrl);
 							$('#membersdata')
 					 			.append(
 						 			$('<tr>')
@@ -76,7 +76,14 @@
                                 .append(
 									$('<tr>').append(
 										$('<td>').append(
-											$('<p style="font-size:27px;">status'+statusMessage+'</p>')
+											$('<p style="font-size:27px;">status'+pictureUrl+'</p>')
+										)
+									)
+                                )
+                                .append(
+									$('<tr>').append(
+										$('<td>').append(
+											$('<p style="font-size:27px;">pic'+statusMessage+'</p>')
 										)
 									)
                                 )
