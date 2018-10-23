@@ -49,8 +49,7 @@
                         var displayName = JSON.stringify(profile.displayName);
                         var pictureUrl = JSON.stringify(profile.pictureUrl);
                         var statusMessage = JSON.stringify(profile.statusMessage);
-                        pictureUrl = pictureUrl.replace('"','').replace('"','')
-                        alert(pictureUrl);
+                        pictureUrl = pictureUrl.replace('"','').replace('"','') //去除圖片url 旁的左右雙引號
 							$('#membersdata')
 					 			.append(
 						 			$('<tr>')
@@ -84,11 +83,10 @@
                                 .append(
 									$('<tr>').append(
 										$('<td>').append(
-											$('<p style="font-size:27px;">pic'+pictureUrl+'</p>')
+											//$('<p style="font-size:27px;">pic'+pictureUrl+'</p>')
 										)
 									)
                                 )
-                                $('#lineimg').attr('src',pictureUrl);
                 	}).catch(function (error) {
                     	window.alert("Error getting profile: " + error);
                 	});
