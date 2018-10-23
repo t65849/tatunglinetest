@@ -196,7 +196,7 @@ app.get('/pnp', function (request, response) {
     var fs = require('fs');
     fs.readFile(__dirname + '/pnp.html', 'utf8', function (err, data) {
         if (err) {
-            res.send(err);
+            this.res.send(err);
         }
         //data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
         this.res.send(data);
@@ -376,7 +376,7 @@ app.get('/liff', function (request, response) {
     var fs = require('fs');
     fs.readFile(__dirname + '/liffurl.html', 'utf8', function (err, data) {
         if (err) {
-            res.send(err);
+            this.res.send(err);
         }
         //data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
         this.res.send(data);
@@ -388,7 +388,7 @@ app.get('/liffprofile', function (request, response) {
     var fs = require('fs');
     fs.readFile(__dirname + '/liffprofile.html', 'utf8', function (err, data) {
         if (err) {
-            res.send(err);
+            this.res.send(err);
         }
         //data = data+'<script type="text/javascript"> var textpnp =  ' + textpnp + ' ;</script>';
         this.res.send(data);

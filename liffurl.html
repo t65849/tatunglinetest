@@ -5,13 +5,40 @@
     <meta charset="utf-8"></meta>
     <title>大世科建立LIFF測試頁面</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <style>
+            body{
+                margin:0px;
+                height: 100%;
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            h1{
+                font-size: 37px;
+            }
+            p{
+                font-size: 32px;
+            }
+            form{
+                font-size: 32px;
+            }
+            select{
+                font-size: 32px;
+            }
+            input{
+                font-size: 32px;
+            }
+            button{
+                font-size: 32px;
+            }
+        </style>
 </head>
 
 <body>
     <h1>大世科建立LIFF測試頁面</h1>
-    <p>網址: 
+    <p>網址: <br/>
         <!--<input id="phonenumber" type="text" value="+886912345678" placeholder="例如:+886912345678">-->
-        <input id="urltoliff" type="text" placeholder="例如:https://www.google.com.tw/" style="width:370px">
+        <input id="urltoliff" type="text" placeholder="例如:https://www.google.com.tw/" style="width:80%">
     </p>
     <form>選擇LIFF類型
         <select id="lifftype" class="type" name="typemessages" value="text">
@@ -26,9 +53,9 @@
         </p>
         <button type="button" onclick="liffpush()">送出</button>
     </div>
-    <p>產生的LIFF網址: 
+    <p>產生的LIFF網址: <br/>
         <!--<input id="phonenumber" type="text" value="+886912345678" placeholder="例如:+886912345678"></input>-->
-        <input id="liffresult" type="text" style="width:370px">
+        <input id="liffresult" type="text" style="width:80%">
      </p>
     <!--<textarea id="textarea" rows="30" cols="100"></textarea>-->
 </body>
@@ -42,10 +69,31 @@
             }*/
         });
     });
+    
+
     function liffpush() {
         var urltoliff = $('#urltoliff').val();
         var lifftype = $('#lifftype').val();
         var password = $('#password').val();
+        
+        /*if (urltoliff.indexOf("+886") >= 0) {
+            if (urltoliff.indexOf("0") == 4) {
+                urltoliff = urltoliff.replace("+8860", "+886");
+            }
+        }else if (urltoliff.indexOf("886") >= 0) {
+            if (urltoliff.indexOf("0") == 3) {
+                urltoliff = urltoliff.replace("8860", "+886");
+            }else {
+                urltoliff = urltoliff.replace("886", "+886");
+            }
+        }else {
+            if (urltoliff.indexOf("0") == 0) {
+                urltoliff = urltoliff.replace("0", "+886");
+            }else {
+                urltoliff = urltoliff.replace("9", "+8869");
+            }
+        }*/
+
         var data = {
             password: password,
             urltoliff: urltoliff,
