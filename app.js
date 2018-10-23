@@ -434,7 +434,6 @@ app.post('/api/liff/add', function (request, response) {
             } else {
                 //response.send("fail" + res.statusCode);
                 logger.info(res.statusCode);
-                logger.info(typeof(res));
                 logger.info(res);
             }
         });
