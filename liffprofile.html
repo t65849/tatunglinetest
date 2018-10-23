@@ -49,7 +49,7 @@
                         var displayName = JSON.stringify(profile.displayName);
                         var pictureUrl = JSON.stringify(profile.pictureUrl);
                         var statusMessage = JSON.stringify(profile.statusMessage);
-                        pictureUrl = pictureUrl.replace(' " ','').replace(' " ','')
+                        pictureUrl = pictureUrl.replace('"','').replace('"','')
                         alert(pictureUrl);
 							$('#membersdata')
 					 			.append(
