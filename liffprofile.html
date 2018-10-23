@@ -55,7 +55,7 @@
 						 			$('<tr>')
 						  				.append(
 							  				$('<td>').append(
-								  				$('<img>').attr('src','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHPPEcQg7pgHlUIvgp5EliVbwZsd3eFA5ru5t6gaCvrX06v0PPrg')
+								  				$('<img id="lineimg">').attr('src',pictureUrl)
 							  				)
 						  				)
 								)
@@ -79,7 +79,8 @@
 											$('<p style="font-size:27px;">status'+statusMessage+'</p>')
 										)
 									)
-								)
+                                )
+                                $('#lineimg').attr('src',pictureUrl);
                 	}).catch(function (error) {
                     	window.alert("Error getting profile: " + error);
                 	});
