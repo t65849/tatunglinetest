@@ -14,12 +14,19 @@
 			margin-right: auto;
 			background-size: cover;
 		}
+        h2{
+            color: #FFFF00;
+        }
+        p{
+            color: #FFFF00;
+            font-size: 32px
+        }
     </style>
 </head>
 <body onload="fixw()">
     <div id="browserwidth">
         <div>
-            <h3>user畫面</h3>
+            <h2>user畫面</h2>
         </div>
         <div>
             <table id="membersdata"  #ffffff solid;></table>
@@ -32,7 +39,7 @@
 			var wid = screen.width;
 			if(wid>=760){
 				//$('#browserwidth').css('width', '750px');
-			}
+            }
 			getprofile();
         };
         function getprofile(){
@@ -42,6 +49,7 @@
                         var displayName = JSON.stringify(profile.displayName);
                         var pictureUrl = JSON.stringify(profile.pictureUrl);
                         var statusMessage = JSON.stringify(profile.statusMessage);
+                        alert(typeof(pictureUrl));
 							$('#membersdata')
 					 			.append(
 						 			$('<tr>')
