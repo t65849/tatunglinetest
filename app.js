@@ -408,7 +408,7 @@ app.post('/api/liff/add', function (request, response) {
         } //end data
         var options = {
             host: 'api.line.me',
-            port: '243',
+            port: '443',
             path: '/liff/v1/apps',
             method: 'POST',
             headers: {
