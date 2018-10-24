@@ -386,6 +386,7 @@ app.get('/liff', function (request, response) {
 app.get('/images/Starsinthesky.jpg', function (request, response) {
     console.log('GET /images/Starsinthesky.jpg');
     request.header("Content-Type", 'image/jpeg');
+    var fs = require('fs');
     fs.readFile(__dirname + '/images/Starsinthesky.jpg', function (err, data) {
         if (err) {
             this.res.send(err);
