@@ -76,23 +76,15 @@
         var lifftype = $('#lifftype').val();
         var password = $('#password').val();
         
-        /*if (urltoliff.indexOf("+886") >= 0) {
-            if (urltoliff.indexOf("0") == 4) {
-                urltoliff = urltoliff.replace("+8860", "+886");
-            }
-        }else if (urltoliff.indexOf("886") >= 0) {
-            if (urltoliff.indexOf("0") == 3) {
-                urltoliff = urltoliff.replace("8860", "+886");
-            }else {
-                urltoliff = urltoliff.replace("886", "+886");
+        if (urltoliff.indexOf("http") >= 0) {
+            if (urltoliff.indexOf("s") != 4) {
+                urltoliff = urltoliff.replace("http", "https");
+            }else if (urltoliff.indexOf("//") <= 0) {
+                urltoliff = urltoliff.replace("/", "//");
             }
         }else {
-            if (urltoliff.indexOf("0") == 0) {
-                urltoliff = urltoliff.replace("0", "+886");
-            }else {
-                urltoliff = urltoliff.replace("9", "+8869");
-            }
-        }*/
+            urltoliff = 'https://'+urltoliff
+        }
 
         var data = {
             password: password,
@@ -105,7 +97,7 @@
             } else if (response_data == '密碼錯誤') {
                 alert('密碼錯誤');
             } else if (response_data == 'notsuccess'){
-                alert('傳送網址失敗');
+                alert('傳送網址失敗，可能輸入的網址有錯誤');
                 console.log(response_data);
             }
         });

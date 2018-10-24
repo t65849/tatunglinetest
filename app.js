@@ -382,6 +382,18 @@ app.get('/liff', function (request, response) {
         this.res.send(data);
     }.bind({ req: request, res: response }));
 });
+
+app.get('/images/Starsinthesky.jpg', function (request, response) {
+    console.log('GET /images/Starsinthesky.jpg');
+    request.header("Content-Type", 'image/jpeg');
+    fs.readFile(__dirname + '/images/Starsinthesky.jpg', function (err, data) {
+        if (err) {
+            this.res.send(err);
+        }
+        this.res.send(data);
+    }.bind({ req: request, res: response }));
+});
+
 app.get('/liffprofile', function (request, response) {
     console.log('GET /liff');
     request.header("Content-Type", 'text/html');
