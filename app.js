@@ -767,7 +767,7 @@ function IssuelinkToken(userId, message, password, reply_token, callback) {
             });
             res.on('end', function () {
                 var linkToken = JSON.parse(linkToken_chunk);
-                console.log(typeof (linkToken));
+                console.log('--------------------------------------------------------------------------------'+linkToken);
                 SendLinkingUrl(userId, linkToken, 'tstiisacompanyfortatung');
             });
         });
