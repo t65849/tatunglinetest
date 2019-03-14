@@ -33,17 +33,6 @@
                 "type": "location",
                 "label": "尋找附近門市"
             }
-        },
-        {
-            "type": "action", 
-            "action": {
-                "type": "uri",
-                "label": "api is running",
-                "uri":"https://tatungflextest01.herokuapp.com/api",
-                "altUri": {
-                    "desktop" : "https://tatungflextest01.herokuapp.com/api"
-                }
-            }
         }
     ]
 }
