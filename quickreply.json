@@ -38,10 +38,10 @@
             "type": "action", 
             "action": {
                 "type": "uri",
-                "label": "google",
-                "uri":"https://www.google.com.tw/",
+                "label": "api is running",
+                "uri":"https://tatungflextest01.herokuapp.com/api",
                 "altUri": {
-                    "desktop" : "https://www.google.com.tw/"
+                    "desktop" : "https://tatungflextest01.herokuapp.com/api"
                 }
             }
         }
