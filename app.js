@@ -181,15 +181,7 @@ app.post('/messages', function (request, response) {
                 };
                 var https = require('https');
                 var req = https.request(options, function (res) {
-                    var data = [];
-                    var imagedata = '';
-                    res.setEncoding('binary');
-                    res.on('data', function(chunk){
-                        imagedata += chunk
-                    })
-                    res.on('end', function(){
-                        console.log(imagedata);
-                    })
+                    console.log( Buffer.isBuffer(res));
                     //
                 });
                 SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
