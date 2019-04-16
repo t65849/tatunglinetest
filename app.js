@@ -169,7 +169,8 @@ app.post('/messages', function (request, response) {
                 SendUrlPayMessage(acct, results[idx].message, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }else if (results[idx].message.type == 'image') {
-                SendMessage(acct, '我收到圖片了', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                var image_id = results[idx].message.id;
+                SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
         } else if (results[idx].type == 'accountLink') {
