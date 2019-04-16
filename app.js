@@ -186,6 +186,9 @@ app.post('/messages', function (request, response) {
                 });
             }
 
+        }else if (results[idx].type == 'image') {
+            SendMessage(acct, '我收到圖片了', 'tstiisacompanyfortatung', reply_token, function (ret) {
+            });
         }
     }
 });
