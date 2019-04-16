@@ -176,7 +176,7 @@ app.post('/messages', function (request, response) {
                     path: '/v2/bot/message/'+image_id+'content',
                     method: 'GET',
                     headers: {
-                        'Authorization': 'Bearer <' + channel_access_token + '>'
+                        'Authorization': 'Bearer <' + config.channel_access_token + '>'
                     }
                 };
                 var https = require('https');
