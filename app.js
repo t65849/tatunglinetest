@@ -182,16 +182,14 @@ app.post('/messages', function (request, response) {
                 var https = require('https');
                 var req = https.request(options, function (res) {
                     var data = [];
-
-                    res.on('data', function (chunk) {
-                        data.push(chunk);
-                    }).on('end', function () {
-                        //at this point data is an array of Buffers
-                        //so Buffer.concat() can make us a new Buffer
-                        //of all of them together
-                        var buffer = Buffer.concat(data);
-                        console.log(buffer.toString('base64'));
-                    });
+                    var imagedata = '';
+                    res.setEncoding('binary');
+                    res.on('data', function(chunk){
+                        imagedata += chunk
+                    })
+                    res.on('end', function(){
+                        console.log(imagedata);
+                    })
                     //
                 });
                 SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
