@@ -177,7 +177,6 @@ app.post('/messages', function (request, response) {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8',
-                        'Content-Length': Buffer.byteLength(JSON.stringify(data)),
                         'Authorization': 'Bearer <' + channel_access_token + '>'
                     }
                 };
