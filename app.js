@@ -185,7 +185,8 @@ app.post('/messages', function (request, response) {
                 var req = https.request(options, function (res) {
                     console.log('---------------');
                     console.log('statusCode:', res.statusCode);
-                    //console.log(typeof(res));
+                    console.log(typeof(res));
+                    console.log(JSON.stringify(res));
                     //
                 });
                 req.end();
