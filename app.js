@@ -176,7 +176,6 @@ app.post('/messages', function (request, response) {
                     path: '/v2/bot/message/'+image_id+'content',
                     method: 'GET',
                     headers: {
-                        'Content-Type': 'application/json; charset=UTF-8',
                         'Authorization': 'Bearer <' + channel_access_token + '>'
                     }
                 };
