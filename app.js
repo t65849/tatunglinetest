@@ -184,8 +184,8 @@ app.post('/messages', function (request, response) {
                     console.log( Buffer.isBuffer(res));
                     //
                 });
-                SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                });
+                /*SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });*/
             }
         } else if (results[idx].type == 'accountLink') {
             /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
