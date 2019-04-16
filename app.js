@@ -186,9 +186,7 @@ app.post('/messages', function (request, response) {
                     console.log('---------------');
                     console.log('statusCode:', res.statusCode);
                     console.log(typeof(res));
-                    var testres = res.toJSON();
-                    console.log(res.toJSON());
-                    console.log(JSON.stringify(testres));
+                    console.log(res);
                     console.log("是否Buffer物件？", Buffer.isBuffer(res));
                     //
                 });
