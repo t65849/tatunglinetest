@@ -188,6 +188,7 @@ app.post('/messages', function (request, response) {
                     //console.log(typeof(res));
                     //
                 });
+                req.end();
                 /*SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
             }
