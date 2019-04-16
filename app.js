@@ -168,6 +168,9 @@ app.post('/messages', function (request, response) {
                 */
                 SendUrlPayMessage(acct, results[idx].message, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
+            }else if (results[idx].message.type == 'image') {
+                SendMessage(acct, '我收到圖片了', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                });
             }
         } else if (results[idx].type == 'accountLink') {
             /*SendMessage(acct, results[idx].message.text, 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -186,9 +189,6 @@ app.post('/messages', function (request, response) {
                 });
             }
 
-        }else if (results[idx].message.type == 'image') {
-            SendMessage(acct, '我收到圖片了', 'tstiisacompanyfortatung', reply_token, function (ret) {
-            });
         }
     }
 });
