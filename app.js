@@ -170,6 +170,7 @@ app.post('/messages', function (request, response) {
                 });
             } else if (results[idx].message.type == 'image') {
                 var image_id = results[idx].message.id;
+                console.log(image_id);
                 var options = {
                     host: 'api.line.me',
                     port: '443',
