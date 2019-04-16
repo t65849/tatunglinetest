@@ -170,6 +170,22 @@ app.post('/messages', function (request, response) {
                 });
             }else if (results[idx].message.type == 'image') {
                 var image_id = results[idx].message.id;
+                var options = {
+                    host: 'api.line.me',
+                    port: '443',
+                    path: '/v2/bot/message/'+image_id+'content',
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                        'Content-Length': Buffer.byteLength(JSON.stringify(data)),
+                        'Authorization': 'Bearer <' + channel_access_token + '>'
+                    }
+                };
+                var https = require('https');
+                var req = https.request(options, function (res) {
+                    console.log(typeof(res));
+                    //
+                });
                 SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             }
