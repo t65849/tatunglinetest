@@ -181,7 +181,10 @@ app.post('/messages', function (request, response) {
                 };
                 var https = require('https');
                 var req = https.request(options, function (res) {
+                    console.log('---------------');
+                    console.log(res);
                     console.log(typeof(res));
+                    console.log('---------------');
                     //
                 });
                 SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
