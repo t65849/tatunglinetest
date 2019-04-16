@@ -169,7 +169,7 @@ app.post('/messages', function (request, response) {
                 SendUrlPayMessage(acct, results[idx].message, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
             } else if (results[idx].message.type == 'image') {
-                var image_id = results[idx].message.id;
+                var image_id = JSON.stringify(results[idx].message.id);
                 console.log(image_id);
                 var options = {
                     host: 'api.line.me',
