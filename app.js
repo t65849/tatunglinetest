@@ -173,7 +173,7 @@ app.post('/messages', function (request, response) {
                 var options = {
                     host: 'api.line.me',
                     port: '443',
-                    path: '/v2/bot/message/' + image_id + 'content',
+                    path: '/v2/bot/message/' + image_id + '/content',
                     method: 'GET',
                     headers: {
                         'Authorization': 'Bearer <' + config.channel_access_token + '>'
