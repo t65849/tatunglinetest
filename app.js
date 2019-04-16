@@ -170,6 +170,7 @@ app.post('/messages', function (request, response) {
                 });
             } else if (results[idx].message.type == 'image') {
                 var image_id = JSON.stringify(results[idx].message.id);
+                image_id = image_id.replace('"','').replace('"','');
                 console.log(image_id);
                 var options = {
                     host: 'api.line.me',
@@ -182,7 +183,7 @@ app.post('/messages', function (request, response) {
                 };
                 var https = require('https');
                 var req = https.request(options, function (res) {
-                    console.log( Buffer.isBuffer(res));
+                    console.log(Buffer.isBuffer(res));
                     //
                 });
                 /*SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
