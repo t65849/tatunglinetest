@@ -168,12 +168,12 @@ app.post('/messages', function (request, response) {
                 */
                 SendUrlPayMessage(acct, results[idx].message, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });
-            }else if (results[idx].message.type == 'image') {
+            } else if (results[idx].message.type == 'image') {
                 var image_id = results[idx].message.id;
                 var options = {
                     host: 'api.line.me',
                     port: '443',
-                    path: '/v2/bot/message/'+image_id+'content',
+                    path: '/v2/bot/message/' + image_id + 'content',
                     method: 'GET',
                     headers: {
                         'Authorization': 'Bearer <' + config.channel_access_token + '>'
@@ -181,10 +181,17 @@ app.post('/messages', function (request, response) {
                 };
                 var https = require('https');
                 var req = https.request(options, function (res) {
-                    console.log('---------------');
-                    console.log(res);
-                    console.log(typeof(res));
-                    console.log('---------------');
+                    var data = [];
+
+                    res.on('data', function (chunk) {
+                        data.push(chunk);
+                    }).on('end', function () {
+                        //at this point data is an array of Buffers
+                        //so Buffer.concat() can make us a new Buffer
+                        //of all of them together
+                        var buffer = Buffer.concat(data);
+                        console.log(buffer.toString('base64'));
+                    });
                     //
                 });
                 SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
@@ -464,7 +471,7 @@ app.post('/api/liff/add', function (request, response) {
                     var data = JSON.parse(data_chunk);
                     response.send(data);
                 });
-                
+
             } else {
                 //response.send("fail" + res.statusCode);
                 logger.info(res.statusCode);
@@ -788,7 +795,7 @@ function IssuelinkToken(userId, message, password, reply_token, callback) {
             });
             res.on('end', function () {
                 var linkToken = JSON.parse(linkToken_chunk);
-                console.log('--------------------------------------------------------------------------------'+linkToken);
+                console.log('--------------------------------------------------------------------------------' + linkToken);
                 SendLinkingUrl(userId, linkToken, 'tstiisacompanyfortatung');
             });
         });
