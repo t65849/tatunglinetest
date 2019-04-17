@@ -203,6 +203,7 @@ app.post('/messages', function (request, response) {
                                 'filename': image_id+'jpg'
                             }
                         };
+                        var https = require('https');
                         https.post(options, function(response){
                             console.log('---------------');
                             console.log('statusCode:', response.statusCode);
