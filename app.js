@@ -195,7 +195,7 @@ app.post('/messages', function (request, response) {
                         fs.writeFile(__dirname + '\\image.png', binaryData);*/
                         console.log('endx');
                         var binaryData = new Buffer(result.toString('binary'), 'binary');
-                        //var req = require("request");
+                        var request = require("request");
                         var options = {
                             url: 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/binary/qbe',
                             method: 'POST',
@@ -204,13 +204,11 @@ app.post('/messages', function (request, response) {
                             },
                             body:binaryData
                         };
-
-                        var req = https.request(options, function (res) {
-                            console.log('---------------');
-                            console.log('statusCode:', res.statusCode);
-                            console.log(JSON.stringify(res));
-                        });
-                        req.end();
+                        request(options, function (error, response, body) {
+                            if (error) throw new Error(error);
+                          
+                            console.log(body);
+                          });
 
 
 
