@@ -196,7 +196,7 @@ app.post('/messages', function (request, response) {
                         console.log('endx');
                         var options = {
                             host: 'https://tsti-qa-blob-storage.azurewebsites.net',
-                            port: '443',
+                            port: '80',
                             path: '/attachment/binary/qbe',
                             method: 'POST',
                             headers: {
