@@ -189,6 +189,13 @@ app.post('/messages', function (request, response) {
                     console.log("是否Buffer物件？", Buffer.isBuffer(res));
                     var CircularJSON = require('circular-json');
                     console.log(CircularJSON.stringify(res));
+                    var result = new Buffer('');
+                    res.on('data', function (chunk) {
+                        result = Buffer.concat([result, new Buffer(chunk)]);
+                    });
+                    res.on('end', function(){
+                        console.log('end');
+                    })
                     //
                 });
                 req.end();
