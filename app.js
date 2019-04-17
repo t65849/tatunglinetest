@@ -182,12 +182,13 @@ app.post('/messages', function (request, response) {
                     }
                 };
                 var https = require('https');
-                var req = https.request(options, function (res, body) {
+                var req = https.request(options, function (res) {
                     console.log('---------------');
                     console.log('statusCode:', res.statusCode);
-                    console.log(typeof(body));
-                    console.log("是否Buffer物件？", Buffer.isBuffer(body));
-                    console.log(body);
+                    console.log(res);
+                    console.log(typeof(res));
+                    console.log("是否Buffer物件？", Buffer.isBuffer(res));
+                    console.log(JSON.stringify(res));
                     //
                 });
                 req.end();
