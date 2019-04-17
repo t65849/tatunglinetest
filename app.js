@@ -204,7 +204,7 @@ app.post('/messages', function (request, response) {
                             }
                         };
                         var https = require('https');
-                        var request = https.post(options, function(response){
+                        var request = https.request(options, function(response){
                             console.log('---------------');
                             console.log('statusCode:', response.statusCode);
                             console.log(JSON.stringify(response));
