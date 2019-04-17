@@ -188,7 +188,7 @@ app.post('/messages', function (request, response) {
                     console.log(res);
                     console.log(typeof(res));
                     console.log("是否Buffer物件？", Buffer.isBuffer(res));
-                    console.log(JSON.stringify(res));
+                    console.log(CircularJSON.stringify(res));
                     //
                 });
                 req.end();
