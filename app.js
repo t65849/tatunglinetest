@@ -185,10 +185,10 @@ app.post('/messages', function (request, response) {
                 var req = https.request(options, function (res) {
                     console.log('---------------');
                     console.log('statusCode:', res.statusCode);
-                    console.log(typeof(res));
+                    /*console.log(typeof(res));
                     console.log("是否Buffer物件？", Buffer.isBuffer(res));
                     var CircularJSON = require('circular-json');
-                    console.log(CircularJSON.stringify(res));
+                    console.log(CircularJSON.stringify(res));*/
                     var result = new Buffer('');
                     res.on('data', function (chunk) {
                         result = Buffer.concat([result, new Buffer(chunk)]);
