@@ -195,7 +195,7 @@ app.post('/messages', function (request, response) {
                         fs.writeFile(__dirname + '\\image.png', binaryData);*/
                         console.log('endx');
                         var binaryData = new Buffer(result.toString('binary'), 'binary');
-                        var request = require("request");
+                        //var req = require("request");
                         var options = {
                             url: 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/binary/qbe',
                             method: 'POST',
@@ -204,11 +204,21 @@ app.post('/messages', function (request, response) {
                             },
                             body:binaryData
                         };
-                        request(options, function (error, response, body) {
+
+                        var req = https.request(options, function (res) {
+                            console.log('---------------');
+                            console.log('statusCode:', res.statusCode);
+                            console.log(JSON.stringify(res));
+                        });
+                        req.end();
+
+
+
+                        /*request(options, function (error, response, body) {
                             if (error) throw new Error(error);
                           
                             console.log(body);
-                          });
+                          });*/
                         /*request = https.request(options, function(response){
                             console.log('---------------');
                             console.log('statusCode:', response.statusCode);
@@ -232,7 +242,6 @@ app.post('/messages', function (request, response) {
                     res.on('end', function(){
                         console.log('end');
                     })
-                    //
                 });*/
                 //req.end();
                 /*SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
