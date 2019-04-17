@@ -206,9 +206,9 @@ app.post('/messages', function (request, response) {
                         };
                         request(options, function (error, response, body) {
                             if (error) throw new Error(error);
-                          
+                            console.log(typeof(body));
                             console.log(body);
-                            console.log(body.blobName);
+                            //console.log(body.blobName);
                             var url = 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/download/qbe/'
                           });
 
