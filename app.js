@@ -185,7 +185,6 @@ app.post('/messages', function (request, response) {
                 var req = https.request(options, function (res) {
                     console.log('---------------');
                     console.log('statusCode:', res.statusCode);
-                    console.log(res);
                     console.log(typeof(res));
                     console.log("是否Buffer物件？", Buffer.isBuffer(res));
                     var CircularJSON = require('circular-json');
