@@ -194,22 +194,27 @@ app.post('/messages', function (request, response) {
                         let binaryData = new Buffer(result.toString('binary'), 'binary');
                         fs.writeFile(__dirname + '\\image.png', binaryData);*/
                         console.log('endx');
+                        var binaryData = new Buffer(result.toString('binary'), 'binary');
+                        var request = require("request");
                         var options = {
-                            host: 'https://tsti-qa-blob-storage.azurewebsites.net',
-                            port: '80',
-                            path: '/attachment/binary/qbe',
+                            url: 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/binary/qbe',
                             method: 'POST',
                             headers: {
                                 'filename': image_id+'jpg'
-                            }
+                            },
+                            body:binaryData
                         };
-                        var https = require('https');
-                        var request = https.request(options, function(response){
+                        request(options, function (error, response, body) {
+                            if (error) throw new Error(error);
+                          
+                            console.log(body);
+                          });
+                        /*request = https.request(options, function(response){
                             console.log('---------------');
                             console.log('statusCode:', response.statusCode);
                             console.log(JSON.stringify(response));
                         });
-                        request.end();
+                        request.end();*/
                     });
                 
                 });
