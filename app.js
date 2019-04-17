@@ -200,7 +200,7 @@ app.post('/messages', function (request, response) {
                             url: 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/binary/qbe',
                             method: 'POST',
                             headers: {
-                                'filename': image_id+'jpg'
+                                'filename': image_id+'.jpg'
                             },
                             body:binaryData
                         };
@@ -208,6 +208,8 @@ app.post('/messages', function (request, response) {
                             if (error) throw new Error(error);
                           
                             console.log(body);
+                            console.log(body.blobName);
+                            var url = 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/download/qbe/'
                           });
 
 
