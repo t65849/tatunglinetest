@@ -213,7 +213,7 @@ app.post('/messages', function (request, response) {
 
                             var req = require("request");
                             var options = {
-                                url: 'https://tsticomputervisionocrapp.azurewebsites.net/api/OcrOnline?key=99b0cb0379b84e3890663c604279eed3',
+                                url: 'https://tsticomputervisionocrapp.azurewebsites.net/api/OcrOnline?key=87978a6ac7554c11ac65d5a460d3ed39',
                                 method: 'POST',
                                 headers: {
                                     'x-functions-key': 'WXFunMe4piO3z/9ed0TlGS8nsfzpEIcVwxonYGKwGacH4KncUhl6Cg=='
