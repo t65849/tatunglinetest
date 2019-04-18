@@ -172,6 +172,7 @@ app.post('/messages', function (request, response) {
                 var image_id = JSON.stringify(results[idx].message.id);
                 image_id = image_id.replace('"','').replace('"','');
                 console.log(image_id);
+                var url = "";
                 var options = {
                     host: 'api.line.me',
                     port: '443',
@@ -208,43 +209,27 @@ app.post('/messages', function (request, response) {
                             if (error) throw new Error(error);
                             var parsetoJson = JSON.parse(body);
                             var blobName = parsetoJson.blobName;
-                            console.log(blobName);
-                            var url = 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/download/qbe/'+blobName;
-                            console.log(url);
-                          });
+                            url = 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/download/qbe/'+blobName;
 
+                            var req = require("request");
+                            var options = {
+                                url: 'https://tsticomputervisionocrapp.azurewebsites.net/api/OcrOnline?key=99b0cb0379b84e3890663c604279eed3',
+                                method: 'POST',
+                                headers: {
+                                    'x-functions-key': 'WXFunMe4piO3z/9ed0TlGS8nsfzpEIcVwxonYGKwGacH4KncUhl6Cg=='
+                                },
+                                body:url
+                            };
+                            req(options, function (error, response, body) {
+                                if (error) throw new Error(error);
+                                console.log(typeof(body));
+                                console.log(body);
+                            });
 
-
-                        /*request(options, function (error, response, body) {
-                            if (error) throw new Error(error);
-                          
-                            console.log(body);
-                          });*/
-                        /*request = https.request(options, function(response){
-                            console.log('---------------');
-                            console.log('statusCode:', response.statusCode);
-                            console.log(JSON.stringify(response));
                         });
-                        request.end();*/
                     });
-                
+
                 });
-                /*var req = https.request(options, function (res) {
-                    console.log('---------------');
-                    console.log('statusCode:', res.statusCode);
-                    console.log(typeof(res));
-                    console.log("是否Buffer物件？", Buffer.isBuffer(res));
-                    var CircularJSON = require('circular-json');
-                    console.log(CircularJSON.stringify(res));
-                    var result = new Buffer('');
-                    res.on('data', function (chunk) {
-                        result = Buffer.concat([result, new Buffer(chunk)]);
-                    });
-                    res.on('end', function(){
-                        console.log('end');
-                    })
-                });*/
-                //req.end();
                 /*SendMessage(acct, image_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                 });*/
             }
