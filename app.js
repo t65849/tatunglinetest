@@ -226,7 +226,7 @@ app.post('/messages', function (request, response) {
                                 /*console.log(typeof(body));
                                 console.log(body);*/
                                 var regions = text_to_Json.regions;
-                                console.log(regions.length);
+                                //console.log(regions.length);
                                 console.log(JSON.stringify(regions));
                             });
 
