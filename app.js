@@ -227,7 +227,12 @@ app.post('/messages', function (request, response) {
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 console.log(regions);
-                                console.log(regions.length);
+                                for(var i = 0; i < regions.length;i++){
+                                    for(var j =0; j < regions[i].words.length;j++){
+                                        console.log(regions[i].words[j].text);
+                                    }
+                                    //console.log(regions[i].words.length);
+                                }
                             });
 
                         });
