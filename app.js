@@ -224,9 +224,9 @@ app.post('/messages', function (request, response) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
                                 console.log(body);
-                                var regions = text_to_Json.regions;
+                                var regions = text_to_Json.language;
                                 //console.log(regions.length);
-                                console.log(text_to_Json);
+                                console.log(regions);
                             });
 
                         });
