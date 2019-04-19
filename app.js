@@ -226,11 +226,16 @@ app.post('/messages', function (request, response) {
                                 console.log(body);
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
-                                console.log(regions);
+                                //console.log(regions);
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
-                                        console.log(lines[j]);
+                                        //console.log(lines[j]);
+                                        var words = lines[j].words;
+                                        for(var k=0; k<words.length;k++){
+                                            var text = words[k].text;
+                                            console.log(text);
+                                        }
                                     }
                                     //console.log(regions[i].words.length);
                                 }
