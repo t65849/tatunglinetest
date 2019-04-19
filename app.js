@@ -230,7 +230,7 @@ app.post('/messages', function (request, response) {
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
-                                        console.log(line[j]);
+                                        console.log(lines[j]);
                                     }
                                     //console.log(regions[i].words.length);
                                 }
