@@ -243,6 +243,10 @@ app.post('/messages', function (request, response) {
                                     }
                                     //console.log(regions[i].words.length);
                                 }
+                                
+                                SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                });
+
                             });
 
                         });
