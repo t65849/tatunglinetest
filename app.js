@@ -227,17 +227,19 @@ app.post('/messages', function (request, response) {
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
+                                var all_text = '';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
                                         //console.log(lines[j]);
-                                        //console.log('j:  '+j);
+                                        console.log('j:  '+j);
                                         var words = lines[j].words;
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
-                                            console.log('j:  '+j)
                                             console.log(text);
                                         }
+                                        all_text = all_text+text+' ';
+                                        console.log(all_text);
                                     }
                                     //console.log(regions[i].words.length);
                                 }
