@@ -228,9 +228,10 @@ app.post('/messages', function (request, response) {
                                 //console.log(regions.length);
                                 console.log(regions);
                                 for(var i = 0; i < regions.length;i++){
-                                    /*for(var j =0; j < regions[i].words.length;j++){
-                                        console.log(regions[i].words[j].text);
-                                    }*/
+                                    var lines = regions[i].lines;
+                                    for(var j =0; j < lines.length;j++){
+                                        console.log(line[j]);
+                                    }
                                     //console.log(regions[i].words.length);
                                 }
                             });
