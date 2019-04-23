@@ -237,9 +237,12 @@ app.post('/messages', function (request, response) {
                                         var words = lines[j].words;
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
-                                            all_text = all_text+text+' ';
+                                            if(text == '司'){
+                                                console.log(words);
+                                            }
+                                            //all_text = all_text+text+' ';
                                             //console.log(text);
-                                            console.log(all_text);
+                                            //console.log(all_text);
                                         }
                                     }
                                     //console.log(regions[i].words.length);
