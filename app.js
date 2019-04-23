@@ -238,7 +238,7 @@ app.post('/messages', function (request, response) {
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text == '司'){
-                                                console.log(words);
+                                                console.log(JSON.stringify(words));
                                             }
                                             //all_text = all_text+text+' ';
                                             //console.log(text);
