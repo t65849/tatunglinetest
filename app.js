@@ -233,12 +233,19 @@ app.post('/messages', function (request, response) {
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
                                         //console.log(lines[j]);
-                                        console.log('j:  '+j);
                                         var words = lines[j].words;
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text == '司'){
-                                                console.log(JSON.stringify(words));
+                                                var print_text = '';
+                                                for(var p=0; p<words.length;p++){
+                                                    var text = words[p].text;
+                                                    print_text = print_text + text;
+                                                }
+                                                if(print_text.indexOf("公司") !=-1){
+                                                    SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                                    });
+                                                }
                                             }
                                             //all_text = all_text+text+' ';
                                             //console.log(text);
