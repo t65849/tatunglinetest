@@ -236,7 +236,7 @@ app.post('/messages', function (request, response) {
                                         var words = lines[j].words;
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
-                                            if(text == '司'){
+                                            /*if(text == '司'){
                                                 var print_text = '';
                                                 for(var p=0; p<words.length;p++){
                                                     var text = words[p].text;
@@ -246,6 +246,15 @@ app.post('/messages', function (request, response) {
                                                     SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                                     });
                                                 }
+                                            }*/
+                                            if(text.indexOf('@') != -1){
+                                                var print_text = '';
+                                                for(var p=0; p<words.length;p++){
+                                                    var text = words[p].text;
+                                                    print_text = print_text + text;
+                                                }
+                                                SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                                });
                                             }
                                             //all_text = all_text+text+' ';
                                             //console.log(text);
