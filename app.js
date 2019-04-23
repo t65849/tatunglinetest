@@ -262,6 +262,7 @@ app.post('/messages', function (request, response) {
                                                     var text = words[m].text;
                                                     print_text = print_text + text;
                                                 }
+                                                print_text = print_text.replace("一", "-");
                                                 SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                                 });
                                             }
