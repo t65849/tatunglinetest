@@ -249,8 +249,17 @@ app.post('/messages', function (request, response) {
                                             }*/
                                             if(text.indexOf('@') != -1){
                                                 var print_text = '';
-                                                for(var p=0; p<words.length;p++){
-                                                    var text = words[p].text;
+                                                for(var e=0; e<words.length;e++){
+                                                    var text = words[e].text;
+                                                    print_text = print_text + text;
+                                                }
+                                                SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                                });
+                                            }
+                                            if(text.indexOf('09') != -1){
+                                                var print_text = '';
+                                                for(var m=0; m<words.length;m++){
+                                                    var text = words[m].text;
                                                     print_text = print_text + text;
                                                 }
                                                 SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
