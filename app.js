@@ -222,6 +222,7 @@ app.post('/messages', function (request, response) {
                             };
                             req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
+                                console.log(body);
                                 var text_to_Json = JSON.parse(body);
                                 //console.log(body);
                                 var regions = text_to_Json.regions;
@@ -246,7 +247,6 @@ app.post('/messages', function (request, response) {
                                 
                                 SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                 });
-
                             });
 
                         });
