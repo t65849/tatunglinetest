@@ -238,8 +238,12 @@ app.post('/messages', function (request, response) {
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
-                                                if(!isNaN(Number(words[k-1].text))){ //如果一的lines前面沒有字，會出錯卡住，先記錄這問題
-                                                    text = text.replace('一', '-');
+                                                if(k == 0){
+                                                    continue;
+                                                } else {
+                                                    if(!isNaN(Number(words[k-1].text))){ //如果一的lines前面沒有字，會出錯卡住，先記錄這問題
+                                                        text = text.replace('一', '-');
+                                                    }
                                                 }
                                             }
                                             line_text = line_text+text;
