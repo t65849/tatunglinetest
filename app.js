@@ -230,6 +230,7 @@ app.post('/messages', function (request, response) {
                                 var all_text = '';
                                 var line_text='';
                                 var email='';
+                                var line_id='';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
@@ -250,6 +251,10 @@ app.post('/messages', function (request, response) {
                                                 for(var e=0; e<words.length;e++){
                                                     email = email+words[e].text;
                                                 }
+                                            } else if(text.indexOf('LINE').toLowerCase() != -1){
+                                                for(var lid=0; lid<words.length;lid++){
+                                                    line_id = line_id+words[lid].text;
+                                                }
                                             }
                                             line_text = line_text+text;
                                             //all_text = all_text+text;
@@ -266,8 +271,10 @@ app.post('/messages', function (request, response) {
                                     });
                                 } else {
                                     SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                    });
-                                    SendMessage(acct, email, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        SendMessage(acct, email, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        });
+                                        SendMessage(acct, line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        });
                                     });
                                 }
                             });
