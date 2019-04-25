@@ -251,7 +251,7 @@ app.post('/messages', function (request, response) {
                                                 for(var e=0; e<words.length;e++){
                                                     email = email+words[e].text;
                                                 }
-                                            } else if(text.indexOf('LINE').toLowerCase() != -1){
+                                            } else if(text.indexOf('Line') != -1){
                                                 for(var lid=0; lid<words.length;lid++){
                                                     line_id = line_id+words[lid].text;
                                                 }
