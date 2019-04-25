@@ -238,12 +238,9 @@ app.post('/messages', function (request, response) {
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
-                                                if(words[k-1].text != undefined){
-                                                    console.log(words[k-1].text);
-                                                } else {
-                                                    console.log(words[k].text);
-                                                    console.log(words[k+1].text);
-                                                }
+                                                //if(words[k-1].text != undefined){
+                                                    console.log(typeof(words[k-1].text));
+                                                //}
                                             }
                                             line_text = line_text+text;
                                             //all_text = all_text+text;
