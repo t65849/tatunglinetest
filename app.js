@@ -241,7 +241,7 @@ app.post('/messages', function (request, response) {
                                                 if(k == 0){
                                                     continue;
                                                 } else {
-                                                    if(!isNaN(Number(words[k-1].text))){ //如果一的lines前面沒有字，會出錯卡住，先記錄這問題
+                                                    if(!isNaN(Number(words[k-1].text))){
                                                         text = text.replace('一', '-');
                                                     }
                                                 }
@@ -256,9 +256,13 @@ app.post('/messages', function (request, response) {
                                     }
                                     //console.log(regions[i].words.length);
                                 }
-                                
-                                SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                });
+                                if(all_text == ''){
+                                    SendMessage(acct, '對不起此照片我無法辨識，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                    });
+                                } else {
+                                    SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                    });
+                                }
                             });
 
                         });
