@@ -229,6 +229,7 @@ app.post('/messages', function (request, response) {
                                 //console.log(regions);
                                 var all_text = '';
                                 var line_text='';
+                                var email='';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
@@ -245,6 +246,8 @@ app.post('/messages', function (request, response) {
                                                         text = text.replace('一', '-');
                                                     }
                                                 }
+                                            } else if(text.indexOf('@') != -1){
+                                                console.log(words);
                                             }
                                             line_text = line_text+text;
                                             //all_text = all_text+text;
