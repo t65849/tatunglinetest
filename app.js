@@ -223,7 +223,7 @@ app.post('/messages', function (request, response) {
                             req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
-                                //console.log(body);
+                                console.log(body);
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
