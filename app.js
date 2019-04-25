@@ -247,7 +247,9 @@ app.post('/messages', function (request, response) {
                                                     }
                                                 }
                                             } else if(text.indexOf('@') != -1){
-                                                console.log(words);
+                                                for(var e=0; e<words.length;e++){
+                                                    email = email+words[e].text;
+                                                }
                                             }
                                             line_text = line_text+text;
                                             //all_text = all_text+text;
@@ -264,6 +266,8 @@ app.post('/messages', function (request, response) {
                                     });
                                 } else {
                                     SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                    });
+                                    SendMessage(acct, email, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                     });
                                 }
                             });
