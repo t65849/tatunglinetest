@@ -222,60 +222,34 @@ app.post('/messages', function (request, response) {
                             };
                             req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
-                                console.log(body);
                                 var text_to_Json = JSON.parse(body);
                                 //console.log(body);
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
                                 var all_text = '';
+                                var line_text='';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
                                         //console.log(lines[j]);
+                                        console.log('j:  '+j);
                                         var words = lines[j].words;
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
-                                            /*if(text == '司'){
-                                                var print_text = '';
-                                                for(var p=0; p<words.length;p++){
-                                                    var text = words[p].text;
-                                                    print_text = print_text + text;
-                                                }
-                                                if(print_text.indexOf("公司") !=-1){
-                                                    SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                                    });
-                                                }
-                                            }*/
-                                            if(text.indexOf('@') != -1){
-                                                var print_text = '';
-                                                for(var e=0; e<words.length;e++){
-                                                    var text = words[e].text;
-                                                    print_text = print_text + text;
-                                                }
-                                                SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                                });
-                                            }
-                                            if(text.indexOf('09') != -1){
-                                                var print_text = '';
-                                                for(var m=0; m<words.length;m++){
-                                                    var text = words[m].text;
-                                                    print_text = print_text + text;
-                                                }
-                                                print_text = print_text.replace("一", "-");
-                                                SendMessage(acct, print_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                                });
-                                            }
-                                            //all_text = all_text+text+' ';
+                                            line_text = line_text+text;
+                                            //all_text = all_text+text;
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
+                                        all_text = all_text+line_text+'\n';
+                                        line_text = '';
                                     }
                                     //console.log(regions[i].words.length);
                                 }
                                 
-                                /*SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                });*/
+                                SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                });
                             });
 
                         });
