@@ -280,8 +280,9 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("公司電話") != -1){
+                                        } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
                                             line_text = (line_text.toLowerCase()).replace("tel", "");
+                                            line_text = line_text.replace("市話", "");
                                             line_text = line_text.replace(":", "");
                                             tel = line_text;
                                         } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
@@ -304,9 +305,9 @@ app.post('/messages', function (request, response) {
                                         });
                                         SendMessage(acct, mobilephone, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
-                                        SendMessage(acct, tel, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        SendMessage(acct, '這是市話'+tel, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
-                                        SendMessage(acct, fax, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        SendMessage(acct, '這是傳真'+fax, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
                                         if(line_id != ''){
                                             SendMessage(acct, line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
