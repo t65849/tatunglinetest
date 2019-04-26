@@ -230,7 +230,7 @@ app.post('/messages', function (request, response) {
                                 var all_text = '';
                                 var line_text='';
                                 var email='';
-                                var mobile = '';
+                                var mobilephone = '';
                                 var line_id='';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
@@ -265,7 +265,11 @@ app.post('/messages', function (request, response) {
                                             //console.log(all_text);
                                         }
                                         if(line_text.length>=10 && line_text.indexOf('09') != -1){
-                                            var check_mobile = line_text;
+                                            var check_mobile = line_text.split("09")[1];
+                                            if(check_mobile.length <= 10){
+                                                check_mobile = '09'+check_mobile;
+                                                mobilephone = check_mobile;
+                                            }
                                             //check_mobile.replace(":","");
                                             console.log(line_text);
                                             console.log(line_text.split("09")[1]);
@@ -281,6 +285,8 @@ app.post('/messages', function (request, response) {
                                 } else {
                                     SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         SendMessage(acct, email, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        });
+                                        SendMessage(acct, mobilephone, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
                                         SendMessage(acct, line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
