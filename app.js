@@ -266,7 +266,7 @@ app.post('/messages', function (request, response) {
                                         }
                                         if(line_text.length>=10 && line_text.indexOf('09') != -1){
                                             var check_mobile = line_text.split("09")[1];
-                                            if(check_mobile.length <= 10){
+                                            if(check_mobile.length >=8 &&check_mobile.length <= 10 ){
                                                 check_mobile = '09'+check_mobile;
                                                 mobilephone = check_mobile;
                                             }
