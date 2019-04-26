@@ -223,13 +223,14 @@ app.post('/messages', function (request, response) {
                             req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
-                                console.log(body);
+                                //console.log(body);
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
                                 var all_text = '';
                                 var line_text='';
                                 var email='';
+                                var mobile = '';
                                 var line_id='';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
@@ -259,6 +260,9 @@ app.post('/messages', function (request, response) {
                                                 }
                                             }
                                             line_text = line_text+text;
+                                            if(line_text.length>=10){
+                                                console.log(line_text);
+                                            }
                                             //all_text = all_text+text;
                                             //console.log(text);
                                             //console.log(all_text);
