@@ -231,6 +231,8 @@ app.post('/messages', function (request, response) {
                                 var line_text='';
                                 var email='';
                                 var mobilephone = '';
+                                var tel = '';
+                                var fax = '';
                                 var line_id='';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
@@ -272,9 +274,11 @@ app.post('/messages', function (request, response) {
                                             mobilephone = line_text;
                                         }else if(line_text.length>=10 && line_text.indexOf('09') != -1){
                                             var check_mobile = line_text.split("09")[1];
-                                            if(check_mobile.length >=8 &&check_mobile.length <= 10 ){
-                                                check_mobile = '09'+check_mobile;
-                                                mobilephone = check_mobile;
+                                            if(!isNaN(Number(check_mobile.slice(0,1)))){
+                                                if(check_mobile.length >=8 &&check_mobile.length <= 10 ){
+                                                    check_mobile = '09'+check_mobile;
+                                                    mobilephone = check_mobile;
+                                                }
                                             }
                                         }
                                         all_text = all_text+line_text+'\n';
