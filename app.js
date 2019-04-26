@@ -268,10 +268,11 @@ app.post('/messages', function (request, response) {
                                             //console.log(all_text);
                                         }
                                         if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("行動電話") != -1){
-                                            line_text = (line_text.toLowerCase()).replace("mobile", "");
-                                            line_text = line_text.replace("手機", "").replace("行動電話", "");
-                                            line_text = line_text.replace(":", "");
-                                            mobilephone = line_text;
+                                            var check_mobilephone = line_text;
+                                            check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
+                                            check_mobilephone = check_mobilephone.replace("手機", "").replace("行動電話", "");
+                                            check_mobilephone = check_mobilephone.replace(":", "");
+                                            mobilephone = check_mobilephone;
                                         }else if(line_text.length>=10 && line_text.indexOf('09') != -1){ //判斷長度大於10且包含09的string
                                             var check_mobile = line_text.split("09")[1]; //把09之後的string切出來
                                             if(!isNaN(Number(check_mobile.slice(0,1)))){ //判斷切出來的string後面一位是否是數字
@@ -281,15 +282,17 @@ app.post('/messages', function (request, response) {
                                                 }
                                             }
                                         } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
-                                            line_text = (line_text.toLowerCase()).replace("tel", "");
-                                            line_text = line_text.replace("市話", "");
-                                            line_text = line_text.replace(":", "");
+                                            var check_tel = line_text;
+                                            check_tel = (check_tel.toLowerCase()).replace("tel", "");
+                                            check_tel = check_tel.replace("市話", "");
+                                            check_tel = check_tel.replace(":", "");
                                             tel = line_text;
                                         } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
-                                            line_text = (line_text.toLowerCase()).replace("fax", "");
-                                            line_text = line_text.replace("傳真", "");
-                                            line_text = line_text.replace(":", "");
-                                            fax = line_text;
+                                            var check_fax = line_text;
+                                            check_fax = (check_fax.toLowerCase()).replace("fax", "");
+                                            check_fax = check_fax.replace("傳真", "");
+                                            check_fax = check_fax.replace(":", "");
+                                            fax = check_fax;
                                         } 
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
