@@ -305,10 +305,14 @@ app.post('/messages', function (request, response) {
                                         });
                                         SendMessage(acct, mobilephone, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
-                                        SendMessage(acct, '這是市話'+tel, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                        });
-                                        SendMessage(acct, '這是傳真'+fax, 'tstiisacompanyfortatung', reply_token, function (ret) {
-                                        });
+                                        if(tel != ''){
+                                            SendMessage(acct, '這是市話'+tel, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            });
+                                        }
+                                        if(fax != ''){
+                                            SendMessage(acct, '這是傳真'+fax, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            });
+                                        }
                                         if(line_id != ''){
                                             SendMessage(acct, line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
