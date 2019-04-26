@@ -248,8 +248,10 @@ app.post('/messages', function (request, response) {
                                                     }
                                                 }
                                             } else if(text.indexOf('@') != -1){
-                                                for(var e=0; e<words.length;e++){
-                                                    email = email+words[e].text;
+                                                if(text.slice(0,1) != '@'){ //排除LINE ID前面的@
+                                                    for(var e=0; e<words.length;e++){
+                                                        email = email+words[e].text;
+                                                    }
                                                 }
                                             } else if((text.toLowerCase()).indexOf('line') != -1){
                                                 for(var lid=0; lid<words.length;lid++){
