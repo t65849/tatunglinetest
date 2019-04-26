@@ -243,7 +243,7 @@ app.post('/messages', function (request, response) {
                                                 if(k == 0){
                                                     continue;
                                                 } else {
-                                                    if(!isNaN(Number(words[k-1].text))){
+                                                    if(!isNaN(Number(words[k-1].text)) || (words[k-1].text).indexOf('-') != -1){
                                                         text = text.replace('一', '-');
                                                     }
                                                 }
