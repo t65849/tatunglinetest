@@ -265,7 +265,10 @@ app.post('/messages', function (request, response) {
                                             //console.log(all_text);
                                         }
                                         if(line_text.length>=10 && line_text.indexOf('09') != -1){
+                                            var check_mobile = line_text;
+                                            //check_mobile.replace(":","");
                                             console.log(line_text);
+                                            console.log(line_text.split("09")[1]);
                                         }
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
