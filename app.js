@@ -272,15 +272,24 @@ app.post('/messages', function (request, response) {
                                             line_text = line_text.replace("手機", "").replace("行動電話", "");
                                             line_text = line_text.replace(":", "");
                                             mobilephone = line_text;
-                                        }else if(line_text.length>=10 && line_text.indexOf('09') != -1){
-                                            var check_mobile = line_text.split("09")[1];
-                                            if(!isNaN(Number(check_mobile.slice(0,1)))){
-                                                if(check_mobile.length >=8 &&check_mobile.length <= 10 ){
-                                                    check_mobile = '09'+check_mobile;
+                                        }else if(line_text.length>=10 && line_text.indexOf('09') != -1){ //判斷長度大於10且包含09的string
+                                            var check_mobile = line_text.split("09")[1]; //把09之後的string切出來
+                                            if(!isNaN(Number(check_mobile.slice(0,1)))){ //判斷切出來的string後面一位是否是數字
+                                                if(check_mobile.length >=8 &&check_mobile.length <= 10 ){ //判斷長度是否介於8到10之間
+                                                    check_mobile = '09'+check_mobile; //補上前面09
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        }
+                                        } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("公司電話") != -1){
+                                            line_text = (line_text.toLowerCase()).replace("tel", "");
+                                            line_text = line_text.replace(":", "");
+                                            tel = line_text;
+                                        } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
+                                            line_text = (line_text.toLowerCase()).replace("fax", "");
+                                            line_text = line_text.replace("傳真", "");
+                                            line_text = line_text.replace(":", "");
+                                            fax = line_text;
+                                        } 
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
@@ -295,8 +304,14 @@ app.post('/messages', function (request, response) {
                                         });
                                         SendMessage(acct, mobilephone, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
-                                        SendMessage(acct, line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        SendMessage(acct, tel, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         });
+                                        SendMessage(acct, fax, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                        });
+                                        if(line_id != ''){
+                                            SendMessage(acct, line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            });
+                                        }
                                     });
                                 }
                             });
