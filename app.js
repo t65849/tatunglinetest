@@ -250,9 +250,10 @@ app.post('/messages', function (request, response) {
                                                 }
                                             } else if(text.indexOf('@') != -1){
                                                 if(text.slice(0,1) != '@' && text.indexOf('.') != -1){ //排除LINE ID前面的@
-                                                    for(var e=0; e<words.length;e++){
+                                                    email = text;
+                                                    /*for(var e=0; e<words.length;e++){
                                                         email = email+words[e].text;
-                                                    }
+                                                    }*/
                                                 }
                                             } else if((text.toLowerCase()).indexOf('line') != -1){
                                                 for(var lid=0; lid<words.length;lid++){
@@ -264,15 +265,17 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        if(line_text.length>=10 && line_text.indexOf('09') != -1){
+                                        if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("行動電話") != -1){
+                                            line_text = (line_text.toLowerCase()).replace("mobile", "");
+                                            line_text = line_text.replace("手機", "").replace("行動電話", "");
+                                            line_text = line_text.replace(":", "");
+                                            mobilephone = line_text;
+                                        }else if(line_text.length>=10 && line_text.indexOf('09') != -1){
                                             var check_mobile = line_text.split("09")[1];
                                             if(check_mobile.length >=8 &&check_mobile.length <= 10 ){
                                                 check_mobile = '09'+check_mobile;
                                                 mobilephone = check_mobile;
                                             }
-                                            //check_mobile.replace(":","");
-                                            console.log(line_text);
-                                            console.log(line_text.split("09")[1]);
                                         }
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
