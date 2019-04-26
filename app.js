@@ -260,7 +260,7 @@ app.post('/messages', function (request, response) {
                                                 }
                                             }
                                             line_text = line_text+text;
-                                            if(line_text.length>=10){
+                                            if(line_text.length>=10 && line_text.indexOf('09') != -1){
                                                 console.log(line_text);
                                             }
                                             //all_text = all_text+text;
