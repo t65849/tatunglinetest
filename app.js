@@ -223,7 +223,7 @@ app.post('/messages', function (request, response) {
                             req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
-                                //console.log(body);
+                                console.log(body);
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
@@ -251,7 +251,7 @@ app.post('/messages', function (request, response) {
                                                 for(var e=0; e<words.length;e++){
                                                     email = email+words[e].text;
                                                 }
-                                            } else if(text.indexOf('Line') != -1){
+                                            } else if((text.toLowerCase()).indexOf('line') != -1){
                                                 for(var lid=0; lid<words.length;lid++){
                                                     line_id = line_id+words[lid].text;
                                                 }
