@@ -250,14 +250,14 @@ app.post('/messages', function (request, response) {
                                                         text = text.replace('一', '-');
                                                     }
                                                 }
-                                            } else if(text.indexOf('@') != -1){
+                                            } /*else if(text.indexOf('@') != -1){
                                                 if(text.slice(0,1) != '@' && text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                     email = text;
-                                                    /*for(var e=0; e<words.length;e++){
-                                                        email = email+words[e].text;
-                                                    }*/
+                                                    //for(var e=0; e<words.length;e++){
+                                                        //email = email+words[e].text;
+                                                    //}
                                                 }
-                                            } else if((text.toLowerCase()).indexOf('line') != -1){
+                                            }*/ else if((text.toLowerCase()).indexOf('line') != -1){
                                                 for(var lid=0; lid<words.length;lid++){
                                                     line_id = line_id+words[lid].text;
                                                 }
@@ -267,10 +267,17 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("行動電話") != -1){
+                                        if((line_text.indexOf('@') != -1)){
+                                            if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
+                                                var check_email = line_text.toLowerCase();
+                                                check_email = check_email.replace("email", "").replace(":", "");
+                                                email = line_text;
+                                            }
+                                        }
+                                        if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行動") != -1){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
-                                            check_mobilephone = check_mobilephone.replace("手機", "").replace("行動電話", "");
+                                            check_mobilephone = check_mobilephone.replace("手機", "").replace("行動電話", "").replace("行動", "");
                                             check_mobilephone = check_mobilephone.replace(":", "");
                                             mobilephone = check_mobilephone;
                                         }else if(line_text.length>=10 && line_text.indexOf('09') != -1){ //判斷長度大於10且包含09的string
@@ -308,7 +315,6 @@ app.post('/messages', function (request, response) {
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
-                                    //console.log(regions[i].words.length);
                                 }
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
