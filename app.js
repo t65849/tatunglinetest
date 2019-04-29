@@ -286,11 +286,13 @@ app.post('/messages', function (request, response) {
                                             console.log(check_tel);
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 check_tel = check_tel.split("fax")[0];
+                                                console.log(check_tel);
                                             }
-                                            check_tel = (check_tel.toLowerCase()).replace("tel", "");
+                                            console.log(check_tel);
+                                            /*check_tel = (check_tel.toLowerCase()).replace("tel", "");
                                             check_tel = check_tel.replace("市話", "");
                                             check_tel = check_tel.replace(":", "");
-                                            tel = line_text;
+                                            tel = line_text;*/
                                         } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
                                             var check_fax = line_text;
                                             check_fax = (check_fax.toLowerCase()).replace("fax", "");
