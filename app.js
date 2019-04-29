@@ -294,7 +294,8 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        } else if(line_text.length>=13 && line_text.indexOf('886') != -1){
+                                        } else if(line_text.indexOf('886') != -1){
+                                            console.log('----------------------------------------------------------'+line_text);
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
                                             //if(check_phone_number.slice(0,1) == "9"){ //判斷切出來的string後面一位是否是數字
                                                 console.log('----------------------------------------------------------'+check_phone_number);
