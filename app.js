@@ -267,17 +267,17 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        if((line_text.indexOf('@') != -1)){
+                                        if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
                                                 check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
                                                 email = check_email;
                                             }
                                         }
-                                        if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行動") != -1){
+                                        if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
-                                            check_mobilephone = check_mobilephone.replace("手機", "").replace("行動電話", "").replace("行動", "");
+                                            check_mobilephone = check_mobilephone.replace("手機", "").replace("手机", "").replace("行動電話", "").replace("行动电话", "").replace("行動", "").replace("行动", "");
                                             check_mobilephone = check_mobilephone.replace(":", "");
                                             mobilephone = check_mobilephone;
                                         }else if(line_text.length>=10 && line_text.indexOf('09') != -1){ //判斷長度大於10且包含09的string
@@ -288,7 +288,7 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
+                                        } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
                                             var check_tel = line_text.toLowerCase();
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 var splitfax = check_tel.split("fax")[1];
@@ -298,6 +298,8 @@ app.post('/messages', function (request, response) {
                                             }
                                             check_tel = check_tel.replace("telphone", "");
                                             check_tel = check_tel.replace("tel", "");
+                                            check_tel = check_tel.replace("電話", "");
+                                            check_tel = check_tel.replace("电话", "");
                                             check_tel = check_tel.replace("市話", "");
                                             check_tel = check_tel.replace(":", "");
                                             check_tel = check_tel.replace("/", "");
@@ -305,9 +307,10 @@ app.post('/messages', function (request, response) {
                                             if(!isNaN(Number(second_check_tel))){
                                                 tel = check_tel;
                                             } 
-                                        } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
+                                        } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1 || line_text.indexOf("传真") != -1){
                                             var check_fax = line_text;
                                             check_fax = (check_fax.toLowerCase()).replace("fax", "");
+                                            check_fax = check_fax.replace("传真", "");
                                             check_fax = check_fax.replace("傳真", "");
                                             check_fax = check_fax.replace(":", "");
                                             fax = check_fax;
