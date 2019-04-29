@@ -271,7 +271,7 @@ app.post('/messages', function (request, response) {
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
                                                 check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
-                                                email = line_text;
+                                                email = check_email;
                                             }
                                         }
                                         if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行動") != -1){
