@@ -283,6 +283,7 @@ app.post('/messages', function (request, response) {
                                             }
                                         } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
                                             var check_tel = line_text.toLowerCase();
+                                            console.log(check_tel);
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 check_tel = check_tel.split("fax")[0];
                                             }
