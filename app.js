@@ -269,7 +269,6 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
@@ -295,7 +294,14 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
+                                        } else if(line_text.length>=13 && line_text.indexOf('886') != -1){
+                                            var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
+                                            if(check_phone_number.slice(0,1) == "9"){ //判斷切出來的string後面一位是否是數字
+                                                console.log(check_phone_number);
+                                            } else {
+                                                console.log(check_phone_number);
+                                            }
+                                        }else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
