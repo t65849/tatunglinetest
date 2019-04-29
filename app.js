@@ -333,7 +333,7 @@ app.post('/messages', function (request, response) {
                                 } else {
                                     SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                         if(email != ''){
-                                            SendMessage(acct, '這是信箱'+email, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            SendMessage(acct, '信箱  '+email, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
                                         if(address != ''){
