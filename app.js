@@ -283,7 +283,9 @@ app.post('/messages', function (request, response) {
                                             var check_company0 = line_text.split("公司")[0];
                                             var check_company1 = line_text.split("公司")[1];
                                             check_company0 = check_company0+'公司';
+                                            console.log(check_company0);
                                             line_text = line_text+check_company1; //公司後面的字串丟回line_text
+                                            console.log(line_text);
                                             company = check_company0;
                                         }
                                         if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1){
