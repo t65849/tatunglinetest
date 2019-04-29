@@ -282,7 +282,10 @@ app.post('/messages', function (request, response) {
                                                 }
                                             }
                                         } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
-                                            var check_tel = line_text;
+                                            var check_tel = line_text.toLowerCase();
+                                            if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
+                                                check_tel = line_text.split("fax")[0];
+                                            }
                                             check_tel = (check_tel.toLowerCase()).replace("tel", "");
                                             check_tel = check_tel.replace("市話", "");
                                             check_tel = check_tel.replace(":", "");
