@@ -286,7 +286,6 @@ app.post('/messages', function (request, response) {
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 check_tel = check_tel.split("fax")[0];
                                                 fax = check_tel.split("fax")[1];
-                                                fax = fax.replace(":", "");
                                             }
                                             check_tel = check_tel.replace("tel", "");
                                             check_tel = check_tel.replace("市話", "");
