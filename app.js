@@ -297,11 +297,11 @@ app.post('/messages', function (request, response) {
                                         } else if(line_text.indexOf('886') != -1){
                                             console.log('----------------------------------------------------------'+line_text);
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
-                                            //if(check_phone_number.slice(0,1) == "9"){ //判斷切出來的string後面一位是否是數字
+                                            if(check_phone_number.slice(0,1) == "9"){ //判斷切出來的string後面一位是否是數字
                                                 console.log('----------------------------------------------------------'+check_phone_number);
-                                            //} else {
-                                                //console.log(check_phone_number);
-                                            //}
+                                            } else {
+                                                console.log(check_phone_number);
+                                            }
                                         }else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
