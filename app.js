@@ -270,7 +270,7 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        console.log(line_text);
+                                        //console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
