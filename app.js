@@ -297,9 +297,7 @@ app.post('/messages', function (request, response) {
                                             var second_check_tel = check_tel.slice(0,1);
                                             if(!isNaN(Number(second_check_tel))){
                                                 tel = check_tel;
-                                            } else {
-                                                continue;
-                                            }
+                                            } 
                                         } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
                                             var check_fax = line_text;
                                             check_fax = (check_fax.toLowerCase()).replace("fax", "");
