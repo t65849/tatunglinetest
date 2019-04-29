@@ -307,7 +307,7 @@ app.post('/messages', function (request, response) {
                                     //console.log(regions[i].words.length);
                                 }
                                 if(all_text == ''){
-                                    SendMessage(acct, '對不起我太傻了，此照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                    SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
                                     });
                                 } else {
                                     SendMessage(acct, all_text, 'tstiisacompanyfortatung', reply_token, function (ret) {
