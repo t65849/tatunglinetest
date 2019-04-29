@@ -276,7 +276,7 @@ app.post('/messages', function (request, response) {
                                                 check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
                                                 email = check_email;
                                             }
-                                        } else if (line_text.indexOf("路")!= -1 || line_text.indexOf("號")!= -1  || line_text.indexOf("号")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
+                                        } else if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         } else if(line_text.indexOf("公司")!= -1 || line_text.indexOf("銀行")!= -1 || line_text.indexOf("银行")!= -1 || line_text.indexOf("國際")!= -1 || line_text.indexOf("国际")!= -1 || line_text.indexOf("科技")!= -1 || line_text.indexOf("院")!= -1 || line_text.indexOf("矽谷")!= -1 || line_text.indexOf("集團")!= -1 || line_text.indexOf("集团")!= -1 || line_text.indexOf("大學")!= -1 || line_text.indexOf("大学")!= -1 || line_text.indexOf("聯盟")!= -1 || line_text.indexOf("联盟")!= -1 || line_text.indexOf("人壽")!= -1 || line_text.indexOf("人寿")!= -1 || (line_text.toLowerCase()).indexOf("inc.")!= -1 || (line_text.toLowerCase()).indexOf("co.")!= -1 || (line_text.toLowerCase()).indexOf("technology")!= -1){
                                             company = line_text;
