@@ -234,6 +234,8 @@ app.post('/messages', function (request, response) {
                                 var tel = '';
                                 var fax = '';
                                 var line_id='';
+                                var company = '';
+                                var address = '';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
@@ -274,6 +276,8 @@ app.post('/messages', function (request, response) {
                                                 check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
                                                 email = check_email;
                                             }
+                                        } else if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1){
+                                            address = line_text;
                                         }
                                         if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1){
                                             var check_mobilephone = line_text;
@@ -329,6 +333,10 @@ app.post('/messages', function (request, response) {
                                             SendMessage(acct, '這是信箱'+email, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
+                                        if(address != ''){
+                                            SendMessage(acct, '這是地址'+address, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            });
+                                        }
                                         if(mobilephone != ''){
                                             SendMessage(acct, '這是手機'+mobilephone, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
@@ -342,7 +350,7 @@ app.post('/messages', function (request, response) {
                                             });
                                         }
                                         if(line_id != ''){
-                                            SendMessage(acct, '這是LINEID'+line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            SendMessage(acct, 'LINE_ID:    '+line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
                                     });
