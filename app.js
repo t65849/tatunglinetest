@@ -281,7 +281,7 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        } else if((line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
+                                        } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1){
                                             var check_tel = line_text.toLowerCase();
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 var splitfax = check_tel.split("fax")[1];
@@ -289,11 +289,15 @@ app.post('/messages', function (request, response) {
                                                 fax = splitfax;
                                                 fax = fax.replace(":", "");
                                             }
+                                            check_tel = check_tel.replace("telphone", "");
                                             check_tel = check_tel.replace("tel", "");
                                             check_tel = check_tel.replace("市話", "");
                                             check_tel = check_tel.replace(":", "");
                                             check_tel = check_tel.replace("/", "");
-                                            tel = check_tel;
+                                            var second_check_tel = check_tel.slice(0,1);
+                                            if(!isNaN(Number(second_check_tel))){
+                                                tel = check_tel;
+                                            }
                                         } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1){
                                             var check_fax = line_text;
                                             check_fax = (check_fax.toLowerCase()).replace("fax", "");
