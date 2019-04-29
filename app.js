@@ -277,8 +277,6 @@ app.post('/messages', function (request, response) {
                                                 check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
                                                 email = check_email;
                                             }
-                                        } else if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
-                                            address = line_text;
                                         } else if(line_text.indexOf("公司")!= -1 || line_text.indexOf("銀行")!= -1 || line_text.indexOf("银行")!= -1 || line_text.indexOf("國際")!= -1 || line_text.indexOf("国际")!= -1 || line_text.indexOf("科技")!= -1 || line_text.indexOf("院")!= -1 || line_text.indexOf("矽谷")!= -1 || line_text.indexOf("集團")!= -1 || line_text.indexOf("集团")!= -1 || line_text.indexOf("大學")!= -1 || line_text.indexOf("大学")!= -1 || line_text.indexOf("聯盟")!= -1 || line_text.indexOf("联盟")!= -1 || line_text.indexOf("人壽")!= -1 || line_text.indexOf("人寿")!= -1 || (line_text.toLowerCase()).indexOf("inc.")!= -1 || (line_text.toLowerCase()).indexOf("co.")!= -1 || (line_text.toLowerCase()).indexOf("technology")!= -1){
                                             console.log('------------company');
                                             var check_company0 = line_text.split("公司")[0];
@@ -288,6 +286,8 @@ app.post('/messages', function (request, response) {
                                             line_text = line_text+check_company1; //公司後面的字串丟回line_text
                                             console.log('&&&&&&'+line_text);
                                             company = check_company0;
+                                        }  else if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
+                                            address = line_text;
                                         }
                                         if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1){
                                             var check_mobilephone = line_text;
@@ -356,11 +356,11 @@ app.post('/messages', function (request, response) {
                                             });
                                         }
                                         if(address != ''){
-                                            SendMessage(acct, '地址:    '+address, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            SendMessage(acct, '地址:  '+address, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
                                         if(company != ''){
-                                            SendMessage(acct, '公司:    '+company, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            SendMessage(acct, '公司:  '+company, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
                                         if(mobilephone != ''){
@@ -376,7 +376,7 @@ app.post('/messages', function (request, response) {
                                             });
                                         }
                                         if(line_id != ''){
-                                            SendMessage(acct, 'LINE_ID:    '+line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            SendMessage(acct, 'LINE_ID:  '+line_id, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
                                     });
