@@ -272,7 +272,7 @@ app.post('/messages', function (request, response) {
                                         }
                                         var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d*/);
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d ,\d{3,4}$/);
-                                        line_text = line_text.replace('-','').replace('-','').replace('-','');
+                                        //line_text = line_text.replace('-','').replace('-','').replace('-','');
                                         console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
