@@ -283,7 +283,7 @@ app.post('/messages', function (request, response) {
                                             }
                                         }
                                         //公司
-                                        if(line_text.indexOf("公司")!= -1){
+                                        if(line_text.indexOf("公司")!= -1 && line_text.indexOf("有限")!= -1){
                                             console.log('------------company');
                                             console.log(line_text);
                                             var check_company0 = line_text.split("公司")[0];
