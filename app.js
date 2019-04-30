@@ -294,8 +294,10 @@ app.post('/messages', function (request, response) {
                                                 //console.log('&&&&&&'+line_text);
                                                 words.push(check_company1);
                                                 company = check_company0;
+                                                return company;
                                             }else{
                                                 company = line_text;
+                                                return company;
                                             }
                                         }
                                         //地址
