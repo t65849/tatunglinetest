@@ -270,7 +270,8 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d$/);/*{7,8} */
+                                        var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8}$/);
+                                        line_text = line_text.replace('-','').replace('-','');
                                         console.log('@@@@@@');
                                         console.log(line_text.match(pattern));
                                         if(line_text.match(pattern) == true){
