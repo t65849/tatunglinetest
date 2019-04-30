@@ -270,9 +270,9 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d,\d(ext)*/);
+                                        var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d|ext*/);
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d ,\d{3,4}$/);
-                                        //line_text = line_text.replace('-','').replace('-','').replace('-','');
+                                        line_text = line_text.replace('-','').replace('-','').replace('-','').replace('ext.','');
                                         console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
@@ -350,7 +350,7 @@ app.post('/messages', function (request, response) {
                                                 check_phone_number = "886"+check_phone_number;
                                                 tel = check_phone_number;
                                             }
-                                        } else if(line_text.match(pattern)){
+                                        } else if(line_text.match(patterntel)){
                                             console.log('match');
                                             console.log('%%%%%'+line_text);
                                         }
