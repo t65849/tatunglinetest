@@ -285,7 +285,7 @@ app.post('/messages', function (request, response) {
                                             var check_company0 = line_text.split("公司")[0];
                                             var check_company1 = line_text.split("公司")[1];
                                             check_company0 = check_company0+'公司';
-                                            console.log('******'+check_company0);
+                                            console.log('******'+check_company1);
                                             //line_text = line_text+check_company1; //公司後面的字串丟回line_text
                                             //console.log('&&&&&&'+line_text);
                                             words.push(check_company1);
