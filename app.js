@@ -288,7 +288,7 @@ app.post('/messages', function (request, response) {
                                             console.log('******'+check_company0);
                                             //line_text = line_text+check_company1; //公司後面的字串丟回line_text
                                             //console.log('&&&&&&'+line_text);
-                                            lines.push(check_company1);
+                                            words.push(check_company1);
                                             company = check_company0;
                                         }
                                         //地址
