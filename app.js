@@ -302,15 +302,7 @@ app.post('/messages', function (request, response) {
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         }
-                                        var for_check_number = "";
-                                        if(line_text.indexOf("09")){
-                                            var test_number = line_text.split("09")[1];
-                                            console.log(test_number.slice(0,1));
-                                            if(!isNaN(Number(test_number.slice(0,1)))){
-                                                for_check_number = "ok";
-                                            }
-                                        }
-                                        if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && for_check_number == "ok"){
+                                        if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
                                             check_mobilephone = check_mobilephone.replace("手機", "").replace("手机", "").replace("行動電話", "").replace("行动电话", "").replace("行動", "").replace("行动", "");
