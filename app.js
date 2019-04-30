@@ -270,8 +270,8 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分)\d+/); //
-                                        var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
+                                        var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分)\d+/); //
+                                        var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
                                         line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','');
                                         console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
@@ -307,7 +307,7 @@ app.post('/messages', function (request, response) {
                                         }else if(line_text.length>=10 && line_text.indexOf('09') != -1){ //判斷長度大於10且包含09的string
                                             var check_mobile = line_text.split("09")[1]; //把09之後的string切出來
                                             if(!isNaN(Number(check_mobile.slice(0,1)))){ //判斷切出來的string後面一位是否是數字
-                                                if(check_mobile.length >=7 &&check_mobile.length <= 11 ){ //判斷長度是否介於8到10之間
+                                                if(check_mobile.length >=7 &&check_mobile.length <= 8 ){ //判斷長度是否介於7到8之間
                                                     check_mobile = '09'+check_mobile; //補上前面09
                                                     mobilephone = check_mobile;
                                                 }
@@ -342,17 +342,20 @@ app.post('/messages', function (request, response) {
                                         } else if(line_text.indexOf('886') != -1){
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
                                             if(check_phone_number.slice(0,1) == "9" || check_phone_number.slice(1,2) == "9"){ //判斷切出來的string後面一位是否是數字
-                                                if(check_phone_number.length<=12){
+                                                if(check_phone_number.length<=9){
                                                     check_phone_number = "886"+check_phone_number;
                                                     mobilephone = check_phone_number;
                                                 }
                                             } else {
-                                                check_phone_number = "886"+check_phone_number;
-                                                tel = check_phone_number;
+                                                if(!isNaN(Number(check_phone_number.slice(0,1)))){
+                                                    check_phone_number = "886"+check_phone_number;
+                                                    tel = check_phone_number;
+                                                }
                                             }
-                                        } else if(line_text.match(pattern)){
+                                        } else if(line_text.match(patterntel)){
                                             console.log('match');
                                             console.log('%%%%%'+line_text);
+                                            tel = line_text;
                                         }
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
