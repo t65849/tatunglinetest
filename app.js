@@ -302,12 +302,21 @@ app.post('/messages', function (request, response) {
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         }
-                                        if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("9") !=-1){
+                                        var for_check_number = "";
+                                        if(line_text.indexOf("09")){
+                                            var test_number = line_text.split("09")[1];
+                                            console.log(test_number.slice(0,1));
+                                            if(!isNaN(Number(test_number.slice(0,1)))){
+                                                for_check_number = "ok";
+                                            }
+                                        }
+                                        if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && for_check_number == "ok"){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
                                             check_mobilephone = check_mobilephone.replace("手機", "").replace("手机", "").replace("行動電話", "").replace("行动电话", "").replace("行動", "").replace("行动", "");
                                             check_mobilephone = check_mobilephone.replace(":", "");
                                             mobilephone = check_mobilephone;
+                                            for_check_number = "";
                                         }else if(line_text.length>=10 && line_text.indexOf('09') != -1){ //判斷長度大於10且包含09的string
                                             var check_mobile = line_text.split("09")[1]; //把09之後的string切出來
                                             if(!isNaN(Number(check_mobile.slice(0,1)))){ //判斷切出來的string後面一位是否是數字
@@ -316,6 +325,7 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
+                                            for_check_number = "";
                                         } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || line_text.indexOf("专线") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
