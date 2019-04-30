@@ -271,7 +271,7 @@ app.post('/messages', function (request, response) {
                                             //console.log(all_text);
                                         }
                                         var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d|ext*/);
-                                        var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d ,\d{3,4}$/);
+                                        var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
                                         line_text = line_text.replace('-','').replace('-','').replace('-','').replace('ext.','');
                                         console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
