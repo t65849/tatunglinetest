@@ -270,25 +270,29 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
-                                        //console.log(line_text);
+                                        console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
                                                 check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
                                                 email = check_email;
                                             }
-                                        } else if(line_text.indexOf("公司")!= -1 || line_text.indexOf("銀行")!= -1 || line_text.indexOf("银行")!= -1 || line_text.indexOf("國際")!= -1 || line_text.indexOf("国际")!= -1 || line_text.indexOf("科技")!= -1 || line_text.indexOf("院")!= -1 || line_text.indexOf("矽谷")!= -1 || line_text.indexOf("集團")!= -1 || line_text.indexOf("集团")!= -1 || line_text.indexOf("大學")!= -1 || line_text.indexOf("大学")!= -1 || line_text.indexOf("聯盟")!= -1 || line_text.indexOf("联盟")!= -1 || line_text.indexOf("人壽")!= -1 || line_text.indexOf("人寿")!= -1 || (line_text.toLowerCase()).indexOf("inc.")!= -1 || (line_text.toLowerCase()).indexOf("co.")!= -1 || (line_text.toLowerCase()).indexOf("technology")!= -1){
+                                        }
+                                        //公司
+                                        if(line_text.indexOf("公司")!= -1 || line_text.indexOf("銀行")!= -1 || line_text.indexOf("银行")!= -1 || line_text.indexOf("國際")!= -1 || line_text.indexOf("国际")!= -1 || line_text.indexOf("科技")!= -1 || line_text.indexOf("院")!= -1 || line_text.indexOf("矽谷")!= -1 || line_text.indexOf("集團")!= -1 || line_text.indexOf("集团")!= -1 || line_text.indexOf("大學")!= -1 || line_text.indexOf("大学")!= -1 || line_text.indexOf("聯盟")!= -1 || line_text.indexOf("联盟")!= -1 || line_text.indexOf("人壽")!= -1 || line_text.indexOf("人寿")!= -1 || (line_text.toLowerCase()).indexOf("inc.")!= -1 || (line_text.toLowerCase()).indexOf("co.")!= -1 || (line_text.toLowerCase()).indexOf("technology")!= -1){
                                             console.log('------------company');
                                             console.log(line_text);
                                             var check_company0 = line_text.split("公司")[0];
                                             var check_company1 = line_text.split("公司")[1];
                                             check_company0 = check_company0+'公司';
                                             console.log('******'+check_company0);
-                                            line_text = line_text+check_company1; //公司後面的字串丟回line_text
-                                            console.log(line_text);
-                                            console.log('&&&&&&'+line_text);
+                                            //line_text = line_text+check_company1; //公司後面的字串丟回line_text
+                                            //console.log('&&&&&&'+line_text);
+                                            lines.push(check_company1);
                                             company = check_company0;
-                                        }  else if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
+                                        }
+                                        //地址
+                                        if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         }
                                         if((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1){
