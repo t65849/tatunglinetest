@@ -285,7 +285,7 @@ app.post('/messages', function (request, response) {
                                         if(line_text.indexOf("公司")!= -1 || line_text.indexOf("院")!= -1 || line_text.indexOf("銀行")!= -1 || line_text.indexOf("银行")!= -1 || line_text.indexOf("國際")!= -1 || line_text.indexOf("国际")!= -1 || line_text.indexOf("科技")!= -1 || line_text.indexOf("矽谷")!= -1 || line_text.indexOf("集團")!= -1 || line_text.indexOf("集团")!= -1 || line_text.indexOf("大學")!= -1 || line_text.indexOf("大学")!= -1 || line_text.indexOf("聯盟")!= -1 || line_text.indexOf("联盟")!= -1 || line_text.indexOf("人壽")!= -1 || line_text.indexOf("人寿")!= -1 || (line_text.toLowerCase()).indexOf("inc.")!= -1 || (line_text.toLowerCase()).indexOf("co.")!= -1 || (line_text.toLowerCase()).indexOf("technology")!= -1){
                                             console.log('------------company');
                                             console.log(line_text);
-                                            if(line_text.indexOf("公司")!= -1){
+                                            if(line_text.indexOf("公司")!= -1){ //
                                                 var check_company0 = line_text.split("公司")[0];
                                                 var check_company1 = line_text.split("公司")[1];
                                                 check_company0 = check_company0+'公司';
