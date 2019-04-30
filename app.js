@@ -296,6 +296,7 @@ app.post('/messages', function (request, response) {
                                             company = check_company0;
                                             company = line_text;
                                         } else if(line_text.indexOf("院")!= -1 || line_text.indexOf("銀行")!= -1 || line_text.indexOf("银行")!= -1 || line_text.indexOf("國際")!= -1 || line_text.indexOf("国际")!= -1 || line_text.indexOf("科技")!= -1 || line_text.indexOf("矽谷")!= -1 || line_text.indexOf("集團")!= -1 || line_text.indexOf("集团")!= -1 || line_text.indexOf("大學")!= -1 || line_text.indexOf("大学")!= -1 || line_text.indexOf("聯盟")!= -1 || line_text.indexOf("联盟")!= -1 || line_text.indexOf("人壽")!= -1 || line_text.indexOf("人寿")!= -1 || (line_text.toLowerCase()).indexOf("inc.")!= -1 || (line_text.toLowerCase()).indexOf("co.")!= -1 || (line_text.toLowerCase()).indexOf("technology")!= -1){
+                                            console.log("集團");
                                             company2 = line_text;
                                         }
                                         //地址
