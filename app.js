@@ -270,6 +270,14 @@ app.post('/messages', function (request, response) {
                                             //console.log(text);
                                             //console.log(all_text);
                                         }
+                                        var pattern = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,13}$/);
+                                        console.log('@@@@@@');
+                                        console.log(line_text.match(pattern));
+                                        if(line_text.match(pattern) == true){
+                                            console.log('pattern0');
+                                            console.log('*****');
+                                            console.log(line_text.match(pattern));
+                                        }
                                         console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
@@ -309,18 +317,7 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_mobile;
                                                 }
                                             }
-                                        } else if(line_text.indexOf('886') != -1){
-                                            var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
-                                            if(check_phone_number.slice(0,1) == "9" || check_phone_number.slice(1,2) == "9"){ //判斷切出來的string後面一位是否是數字
-                                                if(check_phone_number.length<=12){
-                                                    check_phone_number = "886"+check_phone_number;
-                                                    mobilephone = check_phone_number;
-                                                }
-                                            } else {
-                                                check_phone_number = "886"+check_phone_number;
-                                                tel = check_phone_number;
-                                            }
-                                        }else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || line_text.indexOf("专线") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
+                                        } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || line_text.indexOf("专线") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
@@ -347,7 +344,21 @@ app.post('/messages', function (request, response) {
                                             check_fax = check_fax.replace("傳真", "");
                                             check_fax = check_fax.replace(":", "");
                                             fax = check_fax;
-                                        } 
+                                        } else if(line_text.indexOf('886') != -1){
+                                            var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
+                                            if(check_phone_number.slice(0,1) == "9" || check_phone_number.slice(1,2) == "9"){ //判斷切出來的string後面一位是否是數字
+                                                if(check_phone_number.length<=12){
+                                                    check_phone_number = "886"+check_phone_number;
+                                                    mobilephone = check_phone_number;
+                                                }
+                                            } else {
+                                                check_phone_number = "886"+check_phone_number;
+                                                tel = check_phone_number;
+                                            }
+                                        } else if(line_text.match(pattern)){
+                                            console.log('match');
+                                            console.log('%%%%%'+line_text);
+                                        }
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
