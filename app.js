@@ -237,6 +237,7 @@ app.post('/messages', function (request, response) {
                                 var company = '';
                                 var company2 = '';
                                 var address = '';
+                                var cardname = '';
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
@@ -301,6 +302,11 @@ app.post('/messages', function (request, response) {
                                         //地址
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
+                                        }
+                                        if(line_text.length == 3){
+                                            cardname = line_text;
+                                        }else if(line_text.length ==2 || line_text.length == 4){
+                                            cardname = line_text;
                                         }
                                         if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
                                             var check_mobilephone = line_text;
@@ -404,6 +410,10 @@ app.post('/messages', function (request, response) {
                                         }
                                         if(fax != ''){
                                             SendMessage(acct, '這是傳真'+fax, 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                            });
+                                        }
+                                        if(cardname != ''){
+                                            SendMessage(acct, '這是人名  '+cardname, 'tstiisacompanyfortatung', reply_token, function (ret) {
                                             });
                                         }
                                         if(line_id != ''){
