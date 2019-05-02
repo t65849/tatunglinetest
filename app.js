@@ -25,7 +25,7 @@ console.log(typeof(nodejiebatagstring))
 console.log(nodejiebatagstring);
 for(var i in nodejiebatagstring){
     if(nodejiebatagstring[i].tag == 'v'){
-        console.log(nodejiebatagstring[i]);
+        console.log(nodejiebatagstring[i].word);
     }
 }
 /*function jiebarun() {
