@@ -232,7 +232,7 @@ app.post('/messages', function (request, response) {
                             req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
-                                console.log(body);
+                                //console.log(body);
                                 var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
@@ -253,6 +253,8 @@ app.post('/messages', function (request, response) {
                                         //console.log(lines[j]);
                                         //console.log('j:  '+j);
                                         var words = lines[j].words;
+                                        var boundingBox = lines[j].boundingBox;
+                                        console.log(boundingBox);
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
