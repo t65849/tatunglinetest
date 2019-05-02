@@ -20,21 +20,22 @@ var analyzer = Jieba({
 jiebarun();
 
 function jiebarun() {
+    analyzer.pseg('带分割文本', function(error, result){
+        if(error) console.log(error);
+        console.log('----------'+result);
+    });
     /*analyzer.cut('带分割文本', function(error, result){
         if(error)console.log(error);
         console.log('----------'+result);
     });*/
-    analyzer.pseg("第一筆資料大同寶寶", {
+   /* analyzer.pseg("第一筆資料大同寶寶", {
         mode: Jieba.mode.SEARCH,
         HMM: true
     }, function (err, result) {
         if (err) console.log(err);
         console.log('----------'+JSON.stringify(result))
         var checkresult = JSON.stringify(result);
-        if (checkresult.indexOf('["[[') != -1 || checkresult.indexOf(']]"]') != -1) {
-            jiebarun();
-        }
-    })
+    })*/
     /*analyzer.dict('dict.txt', function (err) {
         if (err) console.log(err)
         analyzer.pseg("第一筆資料大同寶寶", {
