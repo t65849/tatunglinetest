@@ -14,13 +14,14 @@ var bodyParser = require('body-parser');
 var hashtable = require(__dirname + '/hashtable.js');
 var sha256 = require('sha256'); // sha256
 var Jieba = require('node-jieba');
-var analyzer = Jieba({ //==
-    debug: false
+var analyzer = Jieba({
+    debug: true
 });
 jiebarun();
 
 function jiebarun() {
     analyzer.cut('第一筆資料大同寶寶', function(error, result){
+        if(error)console.log(error);
         console.log(result);
     });
     /*analyzer.dict('dict.txt', function (err) {
