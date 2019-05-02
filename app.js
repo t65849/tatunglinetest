@@ -357,10 +357,13 @@ app.post('/messages', function (request, response) {
                                         } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || line_text.indexOf("专线") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
+                                            console.log('*-*********360'+check_tel);
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 splitfax = check_tel.split("fax")[1];
                                                 check_tel = check_tel.split("fax")[0];
                                                 fax = splitfax;
+                                                console.log('365: '+check_tel);
+                                                console.log('366: '+fax)
                                                 fax = fax.replace(":", "");
                                             }
                                             check_tel = check_tel.replace("telphone", "");
@@ -369,6 +372,7 @@ app.post('/messages', function (request, response) {
                                             check_tel = check_tel.replace("电话", "");
                                             check_tel = check_tel.replace("市話", "");
                                             check_tel = check_tel.replace(":", "");
+                                            check_tel = check_tel.replace("+", "").replace("(", "").replace(")", "");
                                             check_tel = check_tel.replace("/", "");
                                             var second_check_tel = check_tel.slice(0,1);
                                             if(!isNaN(Number(second_check_tel)) || second_check_tel == "(" || second_check_tel == "+"){
