@@ -321,22 +321,21 @@ app.post('/messages', function (request, response) {
                                         }*/
                                             if(line_text.length == 3){
                                                 console.log('333333333'+line_text.indexOf("業務"));
-                                                if(line_text.indexOf("業務") ==-1 || line_text.indexOf("經理") == -1 || line_text.indexOf("專員") == -1){
-                                                    cardname = line_text;
-                                                    //break;
-                                                }else{
+                                                if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1){
                                                     continue;
+                                                }else{
+                                                    cardname = line_text;
                                                 }
                                             }else if(line_text.length ==2 || line_text.length == 4){
                                                 console.log('~~~~~~~~~'+line_text.indexOf("業務"));
                                                 console.log('~~~~~~~~~'+line_text.indexOf("經理"));
                                                 console.log('~~~~~~~~~'+line_text.indexOf("專員"));
-                                                if(line_text.indexOf("業務") == -1 || line_text.indexOf("經理") == -1 || line_text.indexOf("專員") == -1){
-                                                    cardname = line_text;
-                                                    console.log('------------------------'+line_text);
-                                                }else{
+                                                if(line_text.indexOf("業務") != -1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1){
                                                     console.log('cccccccccc'+line_text);
                                                     continue;
+                                                }else{
+                                                    cardname = line_text;
+                                                    console.log('------------------------'+line_text);
                                                 }
                                             }
                                         if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
