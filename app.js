@@ -328,7 +328,9 @@ app.post('/messages', function (request, response) {
                                             }else if(line_text.length ==2 || line_text.length == 4){
                                                 if(line_text.indexOf("業務") ==-1 || line_text.indexOf("經理") == -1){
                                                     cardname = line_text;
+                                                    console.log('------------------------'+line_text);
                                                 }else{
+                                                    console.log('cccccccccc'+line_text);
                                                     continue;
                                                 }
                                             }
