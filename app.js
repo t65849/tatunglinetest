@@ -288,7 +288,7 @@ app.post('/messages', function (request, response) {
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
-                                                check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "");
+                                                check_email = check_email.replace("email", "").replace(":", "").replace("e-", "").replace("mail", "").replace("/tw", ".tw");
                                                 email = check_email;
                                             }
                                         }
@@ -385,7 +385,7 @@ app.post('/messages', function (request, response) {
                                                 }
                                             } else {
                                                 console.log('387'+check_phone_number);
-                                                if(!isNaN(Number(check_phone_number.slice(0,1)))){
+                                                if(!isNaN(Number(check_phone_number.slice(0,1))) || check_phone_number.slice(0,1) == "."){
                                                     check_phone_number=check_phone_number.toLowerCase();
                                                     if(check_phone_number.indexOf('fax')){
                                                         var split_fax = check_phone_number.split("fax")[1];
