@@ -255,7 +255,7 @@ app.post('/messages', function (request, response) {
                                         var words = lines[j].words;
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
-                                        console.log(boundingBox);
+                                        console.log(boundingBox[2]);
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
