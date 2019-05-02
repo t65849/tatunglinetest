@@ -355,6 +355,7 @@ app.post('/messages', function (request, response) {
                                             }
                                             for_check_number = "";
                                         } else if((line_text.toLowerCase()).indexOf("telphone") != -1 || (line_text.toLowerCase()).indexOf("tel") != -1 || line_text.indexOf("市話") != -1 || line_text.indexOf("专线") != -1 || (line_text.indexOf("電話") != -1 && line_text.indexOf("行動") == -1) || (line_text.indexOf("电话") != -1 && line_text.indexOf("行动") == -1)){
+                                            console.log('tel')
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
                                             console.log('*-*********360'+check_tel);
@@ -379,6 +380,7 @@ app.post('/messages', function (request, response) {
                                                 tel = check_tel;
                                             } 
                                         } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1 || line_text.indexOf("传真") != -1){
+                                            console.log('fax');
                                             var check_fax = line_text;
                                             check_fax = (check_fax.toLowerCase()).replace("fax", "");
                                             check_fax = check_fax.replace("传真", "");
@@ -386,6 +388,7 @@ app.post('/messages', function (request, response) {
                                             check_fax = check_fax.replace(":", "");
                                             fax = check_fax;
                                         } else if(line_text.indexOf('886') != -1){
+                                            console.log('886');
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
                                             if(check_phone_number.slice(0,1) == "9" || check_phone_number.slice(1,2) == "9"){ //判斷切出來的string後面一位是否是數字
                                                 if(check_phone_number.length<=9){
