@@ -13,11 +13,6 @@ var app = express();
 var bodyParser = require('body-parser');
 var hashtable = require(__dirname + '/hashtable.js');
 var sha256 = require('sha256'); // sha256
-/*var Jieba = require('node-jieba');
-var analyzer = Jieba({
-    debug: true
-});
-jiebarun();*/
 
 var nodejieba = require("nodejieba");
 var nodejiebatagstring = nodejieba.tag("红掌拨清波");
@@ -28,12 +23,6 @@ for(var i in nodejiebatagstring){
         console.log(nodejiebatagstring[i].word);
     }
 }
-/*function jiebarun() {
-    analyzer.pseg('带分割文本', function(error, result){
-        if(error) console.log(error);
-        console.log('----------'+result);
-    });
-}*/
 
 // Setup Express Server
 app.use(bodyParser.urlencoded({
@@ -323,10 +312,18 @@ app.post('/messages', function (request, response) {
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         }
-                                        if(line_text.length == 3){
-                                            cardname = line_text;
-                                        }else if(line_text.length ==2 || line_text.length == 4){
-                                            cardname = line_text;
+                                        var jieba_tag = nodejieba.tag(line_text);
+                                        for(var i in jieba_tag){
+                                            if(jieba_tag[i].tag == 'nr'){
+                                                cardname = jieba_tag[i].word
+                                            }
+                                        }
+                                        if(cardname == ''){
+                                            if(line_text.length == 3){
+                                                cardname = line_text;
+                                            }/*else if(line_text.length ==2 || line_text.length == 4){
+                                                cardname = line_text;
+                                            }*/
                                         }
                                         if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
                                             var check_mobilephone = line_text;
