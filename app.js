@@ -13,44 +13,20 @@ var app = express();
 var bodyParser = require('body-parser');
 var hashtable = require(__dirname + '/hashtable.js');
 var sha256 = require('sha256'); // sha256
-var Jieba = require('node-jieba');
+/*var Jieba = require('node-jieba');
 var analyzer = Jieba({
     debug: true
 });
-jiebarun();
+jiebarun();*/
 
-function jiebarun() {
+var nodejieba = require("nodejieba");
+console.log(nodejieba.tag("红掌拨清波"));
+/*function jiebarun() {
     analyzer.pseg('带分割文本', function(error, result){
         if(error) console.log(error);
         console.log('----------'+result);
     });
-    /*analyzer.cut('带分割文本', function(error, result){
-        if(error)console.log(error);
-        console.log('----------'+result);
-    });*/
-   /* analyzer.pseg("第一筆資料大同寶寶", {
-        mode: Jieba.mode.SEARCH,
-        HMM: true
-    }, function (err, result) {
-        if (err) console.log(err);
-        console.log('----------'+JSON.stringify(result))
-        var checkresult = JSON.stringify(result);
-    })*/
-    /*analyzer.dict('dict.txt', function (err) {
-        if (err) console.log(err)
-        analyzer.pseg("第一筆資料大同寶寶", {
-            mode: Jieba.mode.SEARCH,
-            HMM: true
-        }, function (err, result) {
-            if (err) console.log(err);
-            console.log(JSON.stringify(result))
-            var checkresult = JSON.stringify(result);
-            if (checkresult.indexOf('["[[') != -1 || checkresult.indexOf(']]"]') != -1) {
-                jiebarun();
-            }
-        })
-    });*/
-}
+}*/
 
 // Setup Express Server
 app.use(bodyParser.urlencoded({
