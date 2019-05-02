@@ -320,6 +320,7 @@ app.post('/messages', function (request, response) {
                                             }
                                         }*/
                                             if(line_text.length == 3){
+                                                console.log('333333333'+line_text.indexOf("業務"));
                                                 if(line_text.indexOf("業務") ==-1 || line_text.indexOf("經理") == -1 || line_text.indexOf("專員") == -1){
                                                     cardname = line_text;
                                                     //break;
@@ -327,6 +328,9 @@ app.post('/messages', function (request, response) {
                                                     continue;
                                                 }
                                             }else if(line_text.length ==2 || line_text.length == 4){
+                                                console.log('~~~~~~~~~'+line_text.indexOf("業務"));
+                                                console.log('~~~~~~~~~'+line_text.indexOf("經理"));
+                                                console.log('~~~~~~~~~'+line_text.indexOf("專員"));
                                                 if(line_text.indexOf("業務") == -1 || line_text.indexOf("經理") == -1 || line_text.indexOf("專員") == -1){
                                                     cardname = line_text;
                                                     console.log('------------------------'+line_text);
