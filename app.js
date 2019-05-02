@@ -253,7 +253,8 @@ app.post('/messages', function (request, response) {
                                         //console.log(lines[j]);
                                         //console.log('j:  '+j);
                                         var words = lines[j].words;
-                                        var boundingBox = lines[j].boundingBox[2];
+                                        var boundingBox = lines[j].boundingBox;
+                                        boundingBox = JSON.parse('['+boundingBox+']');
                                         console.log(boundingBox);
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
