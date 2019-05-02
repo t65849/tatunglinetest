@@ -24,7 +24,7 @@ var nodejiebatagstring = nodejieba.tag("红掌拨清波");
 console.log(typeof(nodejiebatagstring))
 console.log(nodejiebatagstring);
 for(var i in nodejiebatagstring){
-    if(nodejiebatagstring[i][1] == 'v'){
+    if(nodejiebatagstring[i].tag == 'v'){
         console.log(nodejiebatagstring[i]);
     }
 }
