@@ -247,6 +247,9 @@ app.post('/messages', function (request, response) {
                                 var company2 = '';
                                 var address = '';
                                 var cardname = '';
+                                var bwidth = 0;
+                                var bheight = 0;
+                                var size = [];
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
@@ -255,8 +258,11 @@ app.post('/messages', function (request, response) {
                                         var words = lines[j].words;
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
-                                        console.log(boundingBox[2]);
-                                        console.log(boundingBox[3]);
+                                        bwidth = boundingBox[2];
+                                        bheight = boundingBox[3];
+                                        console.log(bwidth);
+                                        console.log(bheight);
+                                        size.push([bwidth,bheight]);
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
@@ -316,20 +322,21 @@ app.post('/messages', function (request, response) {
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         }*/
-                                            /*if(line_text.length == 3){
-                                                console.log('333333333'+line_text.indexOf("業務"));
-                                                if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
-                                                    continue;
-                                                }else{
-                                                    cardname = line_text;
-                                                }
-                                            }else if(line_text.length ==2 || line_text.length == 4){
-                                                if(line_text.indexOf("業務") != -1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1|| line_text.indexOf("院長") != -1|| line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
-                                                    continue;
-                                                }else{
-                                                    cardname = line_text;
-                                                }
-                                            }*/
+                                        if(line_text.length == 3){
+                                            console.log('333333333'+line_text.indexOf("業務"));
+                                            if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
+                                                continue;
+                                            }else{
+                                                cardname = line_text;
+                                            }
+                                        }else if(line_text.length ==2 || line_text.length == 4){
+                                            if(line_text.indexOf("業務") != -1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1|| line_text.indexOf("院長") != -1|| line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
+                                                continue;
+                                            }else{
+                                                cardname = line_text;
+                                            }
+                                        }
+                                        
                                         /*if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
@@ -414,6 +421,7 @@ app.post('/messages', function (request, response) {
                                         line_text = '';
                                     }
                                 }
+                                console.log(size);
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
                                     });
