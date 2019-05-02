@@ -16,6 +16,7 @@
     "log4js": "^1.1.1",
     "log4js-extend": "^0.1.2",
     "request": "^2.88.0",
-    "sha256": "^0.2.0"
+    "sha256": "^0.2.0",
+    "node-jieba": "latest"
   }
 }

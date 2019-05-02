@@ -13,7 +13,28 @@ var app = express();
 var bodyParser = require('body-parser');
 var hashtable = require(__dirname + '/hashtable.js');
 var sha256 = require('sha256'); // sha256
+var Jieba = require('node-jieba');
+var analyzer = Jieba({ //==
+    debug: false
+});
+jiebarun();
 
+function jiebarun() {
+    analyzer.dict('dict.txt', function (err) { //==
+        if (err) console.log(err)
+        analyzer.pseg("第一筆資料大同寶寶", {
+            mode: Jieba.mode.SEARCH,
+            HMM: true
+        }, function (err, result) {
+            if (err) console.log(err);
+            console.log(JSON.stringify(result))
+            var checkresult = JSON.stringify(result);
+            if (checkresult.indexOf('["[[') != -1 || checkresult.indexOf(']]"]') != -1) {
+                jiebarun();
+            }
+        })
+    });
+}
 
 // Setup Express Server
 app.use(bodyParser.urlencoded({
