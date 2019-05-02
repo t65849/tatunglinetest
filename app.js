@@ -283,7 +283,7 @@ app.post('/messages', function (request, response) {
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
-                                        line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','').replace('+','');
+                                        line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','').replace('+','').replace("·","").replace("·","").replace("·","");
                                         console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
@@ -393,7 +393,7 @@ app.post('/messages', function (request, response) {
                                                         split_fax = split_fax.replace(":","");
                                                         fax = split_fax;
                                                         tel_number = tel_number.replace(":","");
-                                                        tel = tel_number;
+                                                        tel = '886'+tel_number;
                                                     } else {
                                                         check_phone_number = "886"+check_phone_number;
                                                         tel = check_phone_number;
