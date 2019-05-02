@@ -379,14 +379,6 @@ app.post('/messages', function (request, response) {
                                             if(!isNaN(Number(second_check_tel)) || second_check_tel == "(" || second_check_tel == "+"){
                                                 tel = check_tel;
                                             } 
-                                        } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1 || line_text.indexOf("传真") != -1){
-                                            console.log('fax');
-                                            var check_fax = line_text;
-                                            check_fax = (check_fax.toLowerCase()).replace("fax", "");
-                                            check_fax = check_fax.replace("传真", "");
-                                            check_fax = check_fax.replace("傳真", "");
-                                            check_fax = check_fax.replace(":", "");
-                                            fax = check_fax;
                                         } else if(line_text.indexOf('886') != -1){
                                             console.log('886');
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
@@ -397,10 +389,28 @@ app.post('/messages', function (request, response) {
                                                 }
                                             } else {
                                                 if(!isNaN(Number(check_phone_number.slice(0,1)))){
-                                                    check_phone_number = "886"+check_phone_number;
-                                                    tel = check_phone_number;
+                                                    check_phone_number=check_phone_number.toLowerCase();
+                                                    if(check_phone_number.indexOf('fax')){
+                                                        var split_fax = check_phone_number.split("fax")[1];
+                                                        var tel_number = check_phone_number.split("fax")[0];
+                                                        split_fax = split_fax.replace(":","");
+                                                        fax = split_fax;
+                                                        tel_number = tel_number.replace(":","");
+                                                        tel = tel_number;
+                                                    } else {
+                                                        check_phone_number = "886"+check_phone_number;
+                                                        tel = check_phone_number;
+                                                    }
                                                 }
                                             }
+                                        } else if((line_text.toLowerCase()).indexOf("fax") != -1 || line_text.indexOf("傳真") != -1 || line_text.indexOf("传真") != -1){
+                                            console.log('fax');
+                                            var check_fax = line_text;
+                                            check_fax = (check_fax.toLowerCase()).replace("fax", "");
+                                            check_fax = check_fax.replace("传真", "");
+                                            check_fax = check_fax.replace("傳真", "");
+                                            check_fax = check_fax.replace(":", "");
+                                            fax = check_fax;
                                         } else if(line_text.match(patterntel)){
                                             console.log('match');
                                             console.log('%%%%%'+line_text);
