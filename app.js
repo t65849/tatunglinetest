@@ -20,7 +20,9 @@ var analyzer = Jieba({
 jiebarun();*/
 
 var nodejieba = require("nodejieba");
-console.log(nodejieba.tag("红掌拨清波"));
+var nodejiebatagstring = nodejieba.tag("红掌拨清波");
+console.log(typeof(nodejiebatagstring))
+console.log(nodejiebatagstring);
 /*function jiebarun() {
     analyzer.pseg('带分割文本', function(error, result){
         if(error) console.log(error);
