@@ -320,13 +320,14 @@ app.post('/messages', function (request, response) {
                                             }
                                         }*/
                                             if(line_text.length == 3){
-                                                if(line_text.indexOf("業務") ==-1 || line_text.indexOf("經理") == -1){
+                                                if(line_text.indexOf("業務") ==-1 || line_text.indexOf("經理") == -1 || line_text.indexOf("專員") == -1){
                                                     cardname = line_text;
+                                                    break;
                                                 }else{
                                                     continue;
                                                 }
                                             }else if(line_text.length ==2 || line_text.length == 4){
-                                                if(line_text.indexOf("業務") ==-1 || line_text.indexOf("經理") == -1){
+                                                if(line_text.indexOf("業務") == -1 || line_text.indexOf("經理") == -1 || line_text.indexOf("專員") == -1){
                                                     cardname = line_text;
                                                     console.log('------------------------'+line_text);
                                                 }else{
