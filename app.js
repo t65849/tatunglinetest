@@ -23,6 +23,11 @@ var nodejieba = require("nodejieba");
 var nodejiebatagstring = nodejieba.tag("红掌拨清波");
 console.log(typeof(nodejiebatagstring))
 console.log(nodejiebatagstring);
+for(var i in nodejiebatagstring){
+    if(nodejiebatagstring[i][1] == 'v'){
+        console.log(nodejiebatagstring[i]);
+    }
+}
 /*function jiebarun() {
     analyzer.pseg('带分割文本', function(error, result){
         if(error) console.log(error);
