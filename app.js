@@ -283,8 +283,8 @@ app.post('/messages', function (request, response) {
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
-                                        line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','').replace('+','').replace("·","").replace("·","").replace("·","");
-                                        //console.log(line_text);
+                                        //line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','').replace('+','').replace("·","").replace("·","").replace("·","");
+                                        console.log(line_text);
                                         /*if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
@@ -311,8 +311,8 @@ app.post('/messages', function (request, response) {
                                         //地址
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
-                                        }
-                                            if(line_text.length == 3){
+                                        }*/
+                                            /*if(line_text.length == 3){
                                                 console.log('333333333'+line_text.indexOf("業務"));
                                                 if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
                                                     continue;
@@ -325,8 +325,8 @@ app.post('/messages', function (request, response) {
                                                 }else{
                                                     cardname = line_text;
                                                 }
-                                            }
-                                        if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
+                                            }*/
+                                        /*if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
                                             check_mobilephone = check_mobilephone.replace("手機", "").replace("手机", "").replace("行動電話", "").replace("行动电话", "").replace("行動", "").replace("行动", "");
@@ -405,11 +405,11 @@ app.post('/messages', function (request, response) {
                                             console.log('match');
                                             console.log('%%%%%'+line_text);
                                             tel = line_text;
-                                        }
+                                        }*/
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
-                                }*/
+                                }
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
                                     });
