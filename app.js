@@ -20,7 +20,10 @@ var analyzer = Jieba({ //==
 jiebarun();
 
 function jiebarun() {
-    analyzer.dict('dict.txt', function (err) { //==
+    analyzer.cut('第一筆資料大同寶寶', function(error, result){
+        console.log(result);
+    });
+    /*analyzer.dict('dict.txt', function (err) {
         if (err) console.log(err)
         analyzer.pseg("第一筆資料大同寶寶", {
             mode: Jieba.mode.SEARCH,
@@ -33,7 +36,7 @@ function jiebarun() {
                 jiebarun();
             }
         })
-    });
+    });*/
 }
 
 // Setup Express Server
