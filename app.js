@@ -313,6 +313,7 @@ app.post('/messages', function (request, response) {
                                             address = line_text;
                                         }
                                         var jieba_tag = nodejieba.tag(line_text);
+                                        console.log(jieba_tag);
                                         for(var i in jieba_tag){
                                             if(jieba_tag[i].tag == 'nr'){
                                                 cardname = jieba_tag[i].word
