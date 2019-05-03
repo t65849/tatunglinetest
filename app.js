@@ -261,10 +261,6 @@ app.post('/messages', function (request, response) {
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
                                         bheight = boundingBox[3];
-                                        /*console.log(bwidth);
-                                        console.log(bheight);
-                                        wordsize = bwidth*bheight;*/
-                                        //size.push([/*bwidth,bheight,*/wordsize]);
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
@@ -343,7 +339,11 @@ app.post('/messages', function (request, response) {
                                         console.log(bheight);
                                         wordsize = bwidth*bheight;
                                         if(line_text.length>=2 && line_text.length<=4){
-                                            keyname.push([{"size":wordsize, "name":line_text}]);
+                                            if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
+                                                continue;
+                                            } else {
+                                                keyname.push([{"size":wordsize, "name":line_text}]);
+                                            }
                                         }
                                         
                                         /*if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
