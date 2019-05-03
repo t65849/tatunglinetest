@@ -257,7 +257,7 @@ app.post('/messages', function (request, response) {
                                         //console.log(lines[j]);
                                         //console.log('j:  '+j);
                                         var words = lines[j].words;
-                                        console.log(lines[0].words);
+                                        console.log(lines[j].words);
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
