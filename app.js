@@ -442,6 +442,14 @@ app.post('/messages', function (request, response) {
                                 }*/
                                 console.log(JSON.stringify(keyname));
                                 console.log(keyname.length);
+                                for(var i=0; i<keyname.length;i++){
+                                    for(var j=i+1;j<keyname.length;j++){
+                                        if(keyname[i]<keyname[j]){
+                                            console.log(keyname[j]);
+                                            console.log(keyname[i]);
+                                        }
+                                    }
+                                }
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
                                     });
