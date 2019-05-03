@@ -249,7 +249,7 @@ app.post('/messages', function (request, response) {
                                 var cardname = '';
                                 var bwidth = 0;
                                 var bheight = 0;
-                                var size = [];
+                                var keyname = [];
                                 var wordsize = 0;
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
@@ -288,7 +288,6 @@ app.post('/messages', function (request, response) {
                                                 }
                                             }*/
                                             line_text = line_text+text;
-                                            console.log(line_text);
                                             //all_text = all_text+text;
                                             //console.log(text);
                                             //console.log(all_text);
@@ -338,8 +337,15 @@ app.post('/messages', function (request, response) {
                                                 cardname = line_text;
                                             }
                                         }*/
-                                        console.log('-----');
-                                        console.log(size);
+                                        console.log('-------------');
+                                        console.log(line_text);
+                                        console.log(bwidth);
+                                        console.log(bheight);
+                                        wordsize = bwidth*bheight;
+                                        if(line_text.length>=2 && line_text.length<=4){
+                                            keyname.push([{"size":wordsize, "name":line_text}]);
+                                        }
+                                        
                                         /*if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
                                             var check_mobilephone = line_text;
                                             check_mobilephone = (check_mobilephone.toLowerCase()).replace("mobile", "");
@@ -424,20 +430,17 @@ app.post('/messages', function (request, response) {
                                         line_text = '';
                                     }
                                 }
-                                console.log(size);
-                                for(var i= 0;i<size.length-1;i++){
+                                /*for(var i= 0;i<size.length-1;i++){
                                     for(var j=i+1; j<size.length;j++){
                                         if(size[j] > size[i]){
-                                            /*var sum = size[j];
-                                            size[j] = size[i];
-                                            size[i] = sum;*/
                                             console.log('i: '+i);
                                             console.log(size[i]);
                                             console.log('j: '+i);
                                             console.log(size[j]);
                                         }
                                     }
-                                }
+                                }*/
+                                console.log(JSON.stringify(keyname));
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
                                     });
