@@ -287,7 +287,7 @@ app.post('/messages', function (request, response) {
                                             }*/
                                             console.log(text);
                                             line_text = line_text+text;
-                                            console.log(line_text);
+                                            console.log('290'+line_text);
                                             //all_text = all_text+text;
                                             //console.log(text);
                                             //console.log(all_text);
@@ -337,8 +337,8 @@ app.post('/messages', function (request, response) {
                                                 cardname = line_text;
                                             }
                                         }*/
-                                        console.log('-------------');
-                                        console.log(line_text);
+                                        //console.log('-------------');
+                                        //console.log(line_text);
                                         console.log(bwidth);
                                         console.log(bheight);
                                         wordsize = bwidth*bheight;
@@ -430,8 +430,10 @@ app.post('/messages', function (request, response) {
                                             console.log('%%%%%'+line_text);
                                             tel = line_text;
                                         }*/
+                                        console.log(line_text);
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
+                                        console.log('text_line'+line_text);
                                     }
                                 }
                                 /*for(var i= 0;i<size.length-1;i++){
