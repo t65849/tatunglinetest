@@ -287,6 +287,7 @@ app.post('/messages', function (request, response) {
                                             }*/
                                             console.log(text);
                                             line_text = line_text+text;
+                                            console.log(line_text);
                                             //all_text = all_text+text;
                                             //console.log(text);
                                             //console.log(all_text);
