@@ -264,20 +264,8 @@ app.post('/messages', function (request, response) {
                                         bheight = boundingBox[3];
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
-                                            for(var tx=0;tx<text.length;tx++){
-                                                if(text=="一"){
-                                                    if(k == 0){
-                                                        continue;
-                                                    } else {
-                                                        if(!isNaN(Number(words[k-1].text)) || (words[k-1].text).indexOf('-') != -1){
-                                                            text = text.replace('一', '-');
-                                                        }
-                                                    }
-                                                }
-                                                console.log(text);
-                                                line_text = line_text+text;
-                                            }
-                                            /*if(text=="一"){
+                                            console.log(k);
+                                            if(text=="一"){
                                                 if(k == 0){
                                                     continue;
                                                 } else {
@@ -285,7 +273,7 @@ app.post('/messages', function (request, response) {
                                                         text = text.replace('一', '-');
                                                     }
                                                 }
-                                            }*/ /*else if(text.indexOf('@') != -1){
+                                            } /*else if(text.indexOf('@') != -1){
                                                 if(text.slice(0,1) != '@' && text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                     email = text;
                                                     //for(var e=0; e<words.length;e++){
@@ -297,7 +285,8 @@ app.post('/messages', function (request, response) {
                                                     line_id = line_id+words[lid].text;
                                                 }
                                             }*/
-                                            
+                                            console.log(text);
+                                            line_text = line_text+text;
                                             //all_text = all_text+text;
                                             //console.log(text);
                                             //console.log(all_text);
