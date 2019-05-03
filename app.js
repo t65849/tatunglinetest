@@ -257,6 +257,7 @@ app.post('/messages', function (request, response) {
                                         //console.log(lines[j]);
                                         //console.log('j:  '+j);
                                         var words = lines[j].words;
+                                        console.log(lines[0].words);
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
@@ -283,6 +284,7 @@ app.post('/messages', function (request, response) {
                                                     line_id = line_id+words[lid].text;
                                                 }
                                             }*/
+                                            console.log(text);
                                             line_text = line_text+text;
                                             //all_text = all_text+text;
                                             //console.log(text);
@@ -291,7 +293,7 @@ app.post('/messages', function (request, response) {
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
                                         //line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','').replace('+','').replace("·","").replace("·","").replace("·","");
-                                        console.log(line_text);
+                                        //console.log(line_text);
                                         /*if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
