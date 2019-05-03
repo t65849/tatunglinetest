@@ -442,7 +442,7 @@ app.post('/messages', function (request, response) {
                                 }*/
                                 console.log(JSON.stringify(keyname));
                                 if(keyname.length == 1){
-                                    cardname = keyname.name;
+                                    cardname = keyname[0].name;
                                 } else{
                                     for(var i=0; i<keyname.length;i++){
                                         for(var j=i+1;j<keyname.length;j++){
