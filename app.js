@@ -261,10 +261,10 @@ app.post('/messages', function (request, response) {
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
                                         bheight = boundingBox[3];
-                                        console.log(bwidth);
+                                        /*console.log(bwidth);
                                         console.log(bheight);
-                                        wordsize = bwidth*bheight;
-                                        size.push([/*bwidth,bheight,*/wordsize]);
+                                        wordsize = bwidth*bheight;*/
+                                        //size.push([/*bwidth,bheight,*/wordsize]);
                                         for(var k=0; k<words.length;k++){
                                             var text = words[k].text;
                                             if(text=="一"){
