@@ -441,12 +441,15 @@ app.post('/messages', function (request, response) {
                                     }
                                 }*/
                                 console.log(JSON.stringify(keyname));
-                                console.log(keyname.length);
-                                for(var i=0; i<keyname.length;i++){
-                                    for(var j=i+1;j<keyname.length;j++){
-                                        if(keyname[i]<keyname[j]){
-                                            console.log(keyname[j]);
-                                            console.log(keyname[i]);
+                                if(keyname.length == 1){
+                                    cardname = keyname.name;
+                                } else{
+                                    for(var i=0; i<keyname.length;i++){
+                                        for(var j=i+1;j<keyname.length;j++){
+                                            if(keyname[i].size<keyname[j].size){
+                                                console.log(keyname[j].size);
+                                                console.log(keyname[i].size);
+                                            }
                                         }
                                     }
                                 }
