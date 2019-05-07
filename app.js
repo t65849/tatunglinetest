@@ -256,10 +256,10 @@ app.post('/messages', function (request, response) {
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
-                                        console.log('lines[j]'+lines[j]);
+                                        console.log('lines[j]'+JSON.stringify(lines[j]));
                                         console.log('jjjjjjjjjjjjjjjj:  '+j);
                                         var words = lines[j].words;
-                                        console.log('262words~~~~~~~~~~ '+lines[j].words);
+                                        console.log('262'+JSON.stringify(lines[j].words));
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
@@ -284,10 +284,10 @@ app.post('/messages', function (request, response) {
                                                     line_id = line_id+words[lid].text;
                                                 }
                                             }*/
-                                            console.log('text``````````` '+text);
-                                            console.log('words.length%%%%%% '+words.length);
+                                            console.log('text++++++++++ '+text);
+                                            console.log('words.length '+words.length);
                                             line_text = line_text+text;
-                                            console.log('289'+line_text);
+                                            console.log('290'+line_text);
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
