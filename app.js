@@ -441,17 +441,18 @@ app.post('/messages', function (request, response) {
                                 console.log(JSON.stringify(keyname));
                                 if(keyname.length == 1){
                                     cardname = keyname[0];
-                                    console.log('###############'+keyname[0]);
                                 } else{
                                     //cardname = keyname[0];
                                     var max = -Infinity, min = +Infinity;
                                     for (var i = 0; i < asize.length; i++) {
                                         if (asize[i] > max) {
                                           max = asize[i];
+                                          console.log(asize[i]);
                                           cardname = keyname[i];
                                         }
                                         if (asize[i] < min) {
                                           min = asize[i];
+                                          console.log(asize[i]);
                                           console.log(keyname[i]);
                                         }
                                       }
