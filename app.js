@@ -444,19 +444,17 @@ app.post('/messages', function (request, response) {
                                     console.log('###############'+keyname[0]);
                                 } else{
                                     //cardname = keyname[0];
-                                    cardname = keyname[0];
-                                    var max = Math.max.apply(null, asize);
-                                    var min =  Math.min.apply(null, asize);
-                                    console.log('###############'+max);
-                                    console.log('###############'+min);
-                                    /*for (var i = 0; i < asize.length; i++) {
-                                        if (numbers[i] > max) {
-                                          max = numbers[i];
+                                    var max = -Infinity, min = +Infinity;
+                                    for (var i = 0; i < asize.length; i++) {
+                                        if (asize[i] > max) {
+                                          max = asize[i];
+                                          cardname = keyname[i];
                                         }
-                                        if (numbers[i] < min) {
-                                          min = numbers[i];
+                                        if (asize[i] < min) {
+                                          min = size[i];
+                                          console.log(keyname[i]);
                                         }
-                                      }*/
+                                      }
                                 }
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
