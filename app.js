@@ -252,7 +252,6 @@ app.post('/messages', function (request, response) {
                                 var keyname = [];
                                 var asize = [];
                                 var wordsize = 0;
-                                var fortest = "";
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
@@ -328,11 +327,14 @@ app.post('/messages', function (request, response) {
                                             }
                                         }*/
                                         wordsize = bwidth*bheight;
+                                        var checkEnglish = /^[\d|A-Z]+$/;
                                         if(line_text.length>=2 && line_text.length<=7){
                                             //if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
                                             if(line_text.slice(0,2)=="業務" || line_text.slice(0,3)=="總經理" || line_text.slice(0,2)=="經理" || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.slice(0,2)=="技術" || line_text.slice(1,3)=="術長"|| line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("有限") != -1 || line_text.indexOf("物聯") != -1 || line_text.indexOf("公司") != -1 || line_text.indexOf("科技") != -1 || line_text.indexOf("集團") != -1 || line_text.indexOf("電子") != -1 || line_text.indexOf("客服") != -1 || line_text.indexOf("編號") != -1 || line_text.indexOf("電話") != -1 || line_text.indexOf("電絡") != -1 || line_text.indexOf("機") != -1 || line_text.indexOf("桌") != -1){
                                                 //continue;
-                                            } else {
+                                            } else if(checkEnglish.test(line_text)){
+                                                //
+                                            }else {
                                                 //keyname.push({"size":wordsize, "name":line_text});
                                                 asize.push(wordsize);
                                                 keyname.push(line_text);
@@ -413,11 +415,10 @@ app.post('/messages', function (request, response) {
                                             console.log('%%%%%'+line_text);
                                             tel = line_text;
                                         }
-                                        console.log('416'+line_text);
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
-                                }
+                                } //end for loop
                                 console.log(JSON.stringify(keyname));
                                 if(keyname.length == 1){
                                     cardname = keyname[0];
