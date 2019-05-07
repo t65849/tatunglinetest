@@ -256,10 +256,7 @@ app.post('/messages', function (request, response) {
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
-                                        console.log('lines['+j+']'+JSON.stringify(lines[j]));
-                                        console.log('jjjjjjjjjjjjjjjj:  '+j);
                                         var words = lines[j].words;
-                                        console.log('262'+JSON.stringify(lines[j].words));
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
@@ -269,7 +266,7 @@ app.post('/messages', function (request, response) {
                                             console.log(k);
                                             if(text=="一"){
                                                 if(k == 0){
-                                                    continue;
+                                                    //continue;
                                                 } else {
                                                     if(!isNaN(Number(words[k-1].text)) || (words[k-1].text).indexOf('-') != -1){
                                                         text = text.replace('一', '-');
@@ -284,12 +281,7 @@ app.post('/messages', function (request, response) {
                                                     line_id = line_id+words[lid].text;
                                                 }
                                             }*/
-                                            console.log('text++++++++++ '+text);
-                                            console.log('words.length '+words.length);
-                                            console.log('289!!!!!!!!!! '+line_text);
                                             line_text = line_text+text;
-                                            console.log('290'+line_text);
-                                            console.log('checkend');
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
@@ -337,9 +329,8 @@ app.post('/messages', function (request, response) {
                                         }*/
                                         wordsize = bwidth*bheight;
                                         if(line_text.length>=2 && line_text.length<=7){
-                                            console.log('340經理');
                                             //if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
-                                            if(line_text.slice(0,2)=="業務" || line_text.slice(0,3)=="總經理" || line_text.slice(0,2)=="經理" || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.slice(0,2)=="技術" || line_text.slice(1,3)=="術長"|| line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("有限") != -1 || line_text.indexOf("物聯") != -1 || line_text.indexOf("公司") != -1 || line_text.indexOf("科技") != -1 || line_text.indexOf("桌") != -1){
+                                            if(line_text.slice(0,2)=="業務" || line_text.slice(0,3)=="總經理" || line_text.slice(0,2)=="經理" || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.slice(0,2)=="技術" || line_text.slice(1,3)=="術長"|| line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("有限") != -1 || line_text.indexOf("物聯") != -1 || line_text.indexOf("公司") != -1 || line_text.indexOf("科技") != -1 || line_text.indexOf("集團") != -1 || line_text.indexOf("電子") != -1 || line_text.indexOf("客服") != -1 || line_text.indexOf("編號") != -1 || line_text.indexOf("電話") != -1 || line_text.indexOf("電絡") != -1 || line_text.indexOf("機") != -1 || line_text.indexOf("桌") != -1){
                                                 //continue;
                                             } else {
                                                 //keyname.push({"size":wordsize, "name":line_text});
@@ -387,7 +378,7 @@ app.post('/messages', function (request, response) {
                                             } 
                                         } else if(line_text.indexOf('886') != -1){
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
-                                            console.log('380'+check_phone_number);
+                                            console.log('381'+check_phone_number);
                                             if(check_phone_number.slice(0,1) == "9" || check_phone_number.slice(1,2) == "9"){ //判斷切出來的string後面一位是否是數字
                                                 if(check_phone_number.length<=9){
                                                     check_phone_number = "886"+check_phone_number;
@@ -422,7 +413,7 @@ app.post('/messages', function (request, response) {
                                             console.log('%%%%%'+line_text);
                                             tel = line_text;
                                         }
-                                        console.log('423'+line_text);
+                                        console.log('416'+line_text);
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
