@@ -277,9 +277,6 @@ app.post('/messages', function (request, response) {
                                             } /*else if(text.indexOf('@') != -1){
                                                 if(text.slice(0,1) != '@' && text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                     email = text;
-                                                    //for(var e=0; e<words.length;e++){
-                                                        //email = email+words[e].text;
-                                                    //}
                                                 }
                                         }*/ /*else if((text.toLowerCase()).indexOf('line') != -1){
                                                 for(var lid=0; lid<words.length;lid++){
@@ -288,14 +285,11 @@ app.post('/messages', function (request, response) {
                                             }*/
                                             console.log(text);
                                             line_text = line_text+text;
-                                            //all_text = all_text+text;
-                                            //console.log(text);
-                                            //console.log(all_text);
+                                            console.log('288'+line_text);
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
                                         line_text = line_text.replace('-','').replace('-','').replace('-','').replace('-','').replace('(','').replace(')','').replace('+','').replace("·","").replace("·","").replace("·","");
-                                        //console.log(line_text);
                                         if((line_text.indexOf('@') != -1)){ //email
                                             if(line_text.slice(0,1) != '@' && line_text.indexOf('.') != -1){ //排除LINE ID前面的@
                                                 var check_email = line_text.toLowerCase();
@@ -337,10 +331,6 @@ app.post('/messages', function (request, response) {
                                                 cardname = line_text;
                                             }
                                         }
-                                        //console.log('-------------');
-                                        //console.log(line_text);
-                                        console.log(bwidth);
-                                        console.log(bheight);
                                         wordsize = bwidth*bheight;
                                         if(line_text.length>=2 && line_text.length<=7){
                                             //if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
@@ -372,13 +362,10 @@ app.post('/messages', function (request, response) {
                                             console.log('tel')
                                             var check_tel = line_text.toLowerCase();
                                             var splitfax = "";
-                                            console.log('*-*********360'+check_tel);
                                             if(check_tel.indexOf("fax") != -1){ //當tel和fax同一行
                                                 splitfax = check_tel.split("fax")[1];
                                                 check_tel = check_tel.split("fax")[0];
                                                 fax = splitfax;
-                                                console.log('365: '+check_tel);
-                                                console.log('366: '+fax)
                                                 fax = fax.replace(":", "");
                                             }
                                             check_tel = check_tel.replace("telphone", "");
@@ -394,7 +381,6 @@ app.post('/messages', function (request, response) {
                                                 tel = check_tel;
                                             } 
                                         } else if(line_text.indexOf('886') != -1){
-                                            console.log('886');
                                             var check_phone_number = line_text.split("886")[1]; //把886之後的string切出來
                                             console.log('380'+check_phone_number);
                                             if(check_phone_number.slice(0,1) == "9" || check_phone_number.slice(1,2) == "9"){ //判斷切出來的string後面一位是否是數字
@@ -403,7 +389,6 @@ app.post('/messages', function (request, response) {
                                                     mobilephone = check_phone_number;
                                                 }
                                             } else {
-                                                console.log('387'+check_phone_number);
                                                 if(!isNaN(Number(check_phone_number.slice(0,1))) || check_phone_number.slice(0,1) == "·"){
                                                     check_phone_number=check_phone_number.toLowerCase();
                                                     if(check_phone_number.indexOf('fax')){
@@ -435,14 +420,12 @@ app.post('/messages', function (request, response) {
                                         console.log(line_text);
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
-                                        console.log('text_line'+line_text);
                                     }
                                 }
                                 console.log(JSON.stringify(keyname));
                                 if(keyname.length == 1){
                                     cardname = keyname[0];
                                 } else{
-                                    //cardname = keyname[0];
                                     var max = -Infinity, min = +Infinity;
                                     for (var i = 0; i < asize.length; i++) {
                                         if (asize[i] > max) {
