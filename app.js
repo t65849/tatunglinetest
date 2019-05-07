@@ -256,7 +256,7 @@ app.post('/messages', function (request, response) {
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
-                                        console.log('lines[j]'+JSON.stringify(lines[j]));
+                                        console.log('lines['+j+']'+JSON.stringify(lines[j]));
                                         console.log('jjjjjjjjjjjjjjjj:  '+j);
                                         var words = lines[j].words;
                                         console.log('262'+JSON.stringify(lines[j].words));
