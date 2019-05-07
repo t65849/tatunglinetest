@@ -448,7 +448,7 @@ app.post('/messages', function (request, response) {
                                 console.log(JSON.stringify(keyname));
                                 if(keyname.length == 1){
                                     cardname = keyname[0].name;
-                                    console.log('###############'+cardname)
+                                    console.log('###############'+keyname["size"]);
                                 } else{
                                     cardname = keyname[0].name;
                                     //for(var i=0; i<keyname.length;i++){
