@@ -321,7 +321,7 @@ app.post('/messages', function (request, response) {
                                         if (line_text.indexOf("路")!= -1 || line_text.indexOf("市")!= -1 || line_text.indexOf("室")!= -1 || line_text.indexOf("樓")!= -1 || line_text.indexOf("楼")!= -1){
                                             address = line_text;
                                         }
-                                        if(line_text.length == 3){
+                                        /*if(line_text.length == 3){
                                             console.log('333333333'+line_text.indexOf("業務"));
                                             if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
                                                 continue;
@@ -334,7 +334,7 @@ app.post('/messages', function (request, response) {
                                             }else{
                                                 cardname = line_text;
                                             }
-                                        }
+                                        }*/
                                         wordsize = bwidth*bheight;
                                         if(line_text.length>=2 && line_text.length<=7){
                                             //if(line_text.indexOf("業務") !=-1 || line_text.indexOf("經理") != -1 || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.indexOf("技術") != -1 || line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("桌") != -1){
