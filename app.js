@@ -256,10 +256,10 @@ app.post('/messages', function (request, response) {
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
                                     for(var j =0; j < lines.length;j++){
-                                        //console.log(lines[j]);
-                                        //console.log('j:  '+j);
+                                        console.log('lines[j]'+lines[j]);
+                                        console.log('jjjjjjjjjjjjjjjj:  '+j);
                                         var words = lines[j].words;
-                                        console.log(lines[j].words);
+                                        console.log('262words~~~~~~~~~~ '+lines[j].words);
                                         var boundingBox = lines[j].boundingBox;
                                         boundingBox = JSON.parse('['+boundingBox+']');
                                         bwidth = boundingBox[2];
@@ -284,7 +284,8 @@ app.post('/messages', function (request, response) {
                                                     line_id = line_id+words[lid].text;
                                                 }
                                             }*/
-                                            console.log(text);
+                                            console.log('text``````````` '+text);
+                                            console.log('words.length%%%%%% '+words.length);
                                             line_text = line_text+text;
                                             console.log('289'+line_text);
                                         }
