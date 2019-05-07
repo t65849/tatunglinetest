@@ -286,9 +286,8 @@ app.post('/messages', function (request, response) {
                                             }*/
                                             console.log(text);
                                             line_text = line_text+text;
-                                            fortest = line_text;
-                                            console.log('288'+fortest);
-                                            fortest = "";
+                                            console.log('289'+line_text);
+                                            line_text = '';
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
                                         var patterntelc = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d{7,8},\d{3,4}$/);
