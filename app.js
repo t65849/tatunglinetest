@@ -451,7 +451,7 @@ app.post('/messages', function (request, response) {
                                           cardname = keyname[i];
                                         }
                                         if (asize[i] < min) {
-                                          min = size[i];
+                                          min = asize[i];
                                           console.log(keyname[i]);
                                         }
                                       }
