@@ -419,7 +419,8 @@ app.post('/messages', function (request, response) {
                                             console.log('%%%%%'+line_text);
                                             tel = line_text;
                                         }
-                                        console.log(line_text);
+                                        console.log('422'+lines.length);
+                                        console.log('423'+line_text);
                                         all_text = all_text+line_text+'\n';
                                         line_text = '';
                                     }
