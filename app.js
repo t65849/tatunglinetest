@@ -250,6 +250,7 @@ app.post('/messages', function (request, response) {
                                 var bwidth = 0;
                                 var bheight = 0;
                                 var keyname = [];
+                                var asize = [];
                                 var wordsize = 0;
                                 for(var i = 0; i < regions.length;i++){
                                     var lines = regions[i].lines;
@@ -346,7 +347,9 @@ app.post('/messages', function (request, response) {
                                             if(line_text.slice(0,2)=="業務" || line_text.slice(0,3)=="總經理" || line_text.slice(0,2)=="經理" || line_text.indexOf("專員") != -1 || line_text.indexOf("協理") != -1 || line_text.indexOf("教授") != -1 || line_text.indexOf("院長") != -1 || line_text.slice(0,2)=="技術" || line_text.slice(1,3)=="術長"|| line_text.indexOf("行銷") != -1 || line_text.indexOf("主任") != -1 || line_text.indexOf("執行") != -1 || line_text.indexOf("顧問") != -1 || line_text.indexOf("大中華") != -1 || line_text.indexOf("研究") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("业务") != -1 || line_text.indexOf("銷售") != -1 || line_text.indexOf("销售") != -1 || line_text.indexOf("統編") != -1 || line_text.indexOf("亞洲") != -1 || line_text.indexOf("工程") != -1 || line_text.indexOf("規劃") != -1 || line_text.indexOf("課長") != -1 || line_text.indexOf("創辦") != -1 || line_text.indexOf("辦公") != -1 || line_text.indexOf("市場") != -1 || line_text.indexOf("台灣") != -1 || line_text.indexOf("事業") != -1 || (line_text.toLowerCase()).indexOf("ceo") != -1 || line_text.indexOf("副理") != -1 || line_text.indexOf("處長") != -1 || line_text.indexOf("副總") != -1 || line_text.indexOf("博士") != -1 || line_text.indexOf("有限") != -1 || line_text.indexOf("物聯") != -1 || line_text.indexOf("公司") != -1 || line_text.indexOf("科技") != -1 || line_text.indexOf("桌") != -1){
                                                 continue;
                                             } else {
-                                                keyname.push({"size":wordsize, "name":line_text});
+                                                //keyname.push({"size":wordsize, "name":line_text});
+                                                asize.push(wordsize);
+                                                keyname.push(line_text);
                                             }
                                         }
                                         if(((line_text.toLowerCase()).indexOf("mobile") != -1 || line_text.indexOf("手機") != -1 || line_text.indexOf("手机") != -1 || line_text.indexOf("行動電話") != -1 || line_text.indexOf("行动电话") != -1 || line_text.indexOf("行動") != -1 || line_text.indexOf("行动") != -1) && line_text.indexOf("8869") != -1 || line_text.indexOf("09") != -1){
@@ -435,30 +438,25 @@ app.post('/messages', function (request, response) {
                                         console.log('text_line'+line_text);
                                     }
                                 }
-                                /*for(var i= 0;i<size.length-1;i++){
-                                    for(var j=i+1; j<size.length;j++){
-                                        if(size[j] > size[i]){
-                                            console.log('i: '+i);
-                                            console.log(size[i]);
-                                            console.log('j: '+i);
-                                            console.log(size[j]);
-                                        }
-                                    }
-                                }*/
                                 console.log(JSON.stringify(keyname));
                                 if(keyname.length == 1){
-                                    cardname = keyname[0].name;
-                                    console.log('###############'+keyname[0]["size"]);
+                                    cardname = keyname[0];
+                                    console.log('###############'+keyname[0]);
                                 } else{
-                                    cardname = keyname[0].name;
-                                    //for(var i=0; i<keyname.length;i++){
-                                        //for(var j=i+1;j<keyname.length;j++){
-                                            //if(keyname[i].size<keyname[j].size){
-                                                //console.log(keyname[j].size);
-                                                //console.log(keyname[i].size);
-                                            //}
-                                        //}
-                                    //}
+                                    //cardname = keyname[0];
+                                    cardname = keyname[0];
+                                    var max = Math.max.apply(null, asize);
+                                    var min =  Math.min.apply(null, asize);
+                                    console.log('###############'+max);
+                                    console.log('###############'+min);
+                                    /*for (var i = 0; i < asize.length; i++) {
+                                        if (numbers[i] > max) {
+                                          max = numbers[i];
+                                        }
+                                        if (numbers[i] < min) {
+                                          min = numbers[i];
+                                        }
+                                      }*/
                                 }
                                 if(all_text == ''){
                                     SendMessage(acct, '對不起我太傻了，這張照片我看不太懂，請再試一次，謝謝', 'tstiisacompanyfortatung', reply_token, function (ret) {
