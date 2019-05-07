@@ -286,6 +286,7 @@ app.post('/messages', function (request, response) {
                                             }*/
                                             console.log('text++++++++++ '+text);
                                             console.log('words.length '+words.length);
+                                            console.log('289!!!!!!!!!! '+line_text);
                                             line_text = line_text+text;
                                             console.log('290'+line_text);
                                             console.log('checkend');
