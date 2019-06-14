@@ -229,7 +229,7 @@ app.post('/messages', function (request, response) {
                                 },
                                 body:url
                             };
-                            req(options, function (error, response, body) {
+                            /*req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
                                 console.log(body);
@@ -279,7 +279,7 @@ app.post('/messages', function (request, response) {
                                                 for(var lid=0; lid<words.length;lid++){
                                                     line_id = line_id+words[lid].text;
                                                 }
-                                            }*/
+                                            }//this
                                             line_text = line_text+text;
                                         }
                                         var patterntel = new RegExp(/^0(2|3|37|4|49|5|6|7|8|82|89|826|836)\d+(ext|Ext|EXT|ext.|Ext.|EXT.|\#|\-|分機|分机|分|轉|转)\d+/); //
@@ -325,7 +325,7 @@ app.post('/messages', function (request, response) {
                                             }else{
                                                 cardname = line_text;
                                             }
-                                        }*/
+                                        }//this
                                         wordsize = bwidth*bheight;
                                         var checkEnglish = /^[\d|A-Z]+$/;
                                         if(line_text.length>=2 && line_text.length<=7){
@@ -486,7 +486,7 @@ app.post('/messages', function (request, response) {
                                         }
                                     });
                                 }
-                            });
+                            });*/
 
                         });
                     });
