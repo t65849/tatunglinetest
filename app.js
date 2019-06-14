@@ -229,11 +229,11 @@ app.post('/messages', function (request, response) {
                                 },
                                 body:url
                             };
-                            /*req(options, function (error, response, body) {
+                            req(options, function (error, response, body) {
                                 if (error) throw new Error(error);
                                 var text_to_Json = JSON.parse(body);
                                 console.log(body);
-                                var regions = text_to_Json.regions;
+                                /*var regions = text_to_Json.regions;
                                 //console.log(regions.length);
                                 //console.log(regions);
                                 var all_text = '';
@@ -485,8 +485,10 @@ app.post('/messages', function (request, response) {
                                             });
                                         }
                                     });
-                                }
-                            });*/
+                                }*/
+                                SendMessage(acct, "給誰?", 'tstiisacompanyfortatung', reply_token, function (ret) {
+                                });
+                            });
 
                         });
                     });
