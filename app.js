@@ -215,7 +215,7 @@ app.post('/messages', function (request, response) {
                             body:binaryData
                         };
                         request(options, function (error, response, body) {
-                            if (error) throw new Error(error);
+                            if (error) throw new Error(error);//
                             var parsetoJson = JSON.parse(body);
                             var blobName = parsetoJson.blobName;
                             url = 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/download/qbe/'+blobName;
