@@ -219,7 +219,7 @@ app.post('/messages', function (request, response) {
                             var parsetoJson = JSON.parse(body);
                             var blobName = parsetoJson.blobName;
                             url = 'https://tsti-qa-blob-storage.azurewebsites.net/attachment/download/qbe/'+blobName;
-
+                            console.log(url);
                             var req = require("request");
                             var options = {
                                 url: 'https://tsticomputervisionocrapp.azurewebsites.net/api/OcrOnline?key=87978a6ac7554c11ac65d5a460d3ed39',
